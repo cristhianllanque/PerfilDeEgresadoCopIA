@@ -1,0 +1,3 @@
+# CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+
+Contenido para CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico...
