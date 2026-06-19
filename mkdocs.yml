@@ -27,21 +27,21 @@ theme:
 nav:
   - Inicio: index.md
   - "Frank Choquehuanca (CE03: Infraestructura)":
-    - "CE0311 - Entregable 1: Diseño de Red": ce03/entregable1.md
-    - "CE0321 - Entregable 2: Planificación de Seguridad": ce03/entregable2.md
-    - "CE0331 - Entregable 3: Diseño de Centro de Datos": ce03/entregable3.md
-    - "CE0312-CE0313 - Entregable 1: Implementación y Testing de Red": ce03/entregable1-imp.md
-    - "CE0322-CE0324 - Entregable 2: Implementación, Monitoreo y Ética de Seguridad": ce03/entregable2-imp.md
-    - "CE0332-CE0333 - Entregable 3: Implementación y Control de Centro de Datos": ce03/entregable3-imp.md
+    - "CE0311 - Entregable 1: Diseño de Red": FrankChoquehuanca/entregable1.md
+    - "CE0321 - Entregable 2: Planificación de Seguridad": FrankChoquehuanca/entregable2.md
+    - "CE0331 - Entregable 3: Diseño de Centro de Datos": FrankChoquehuanca/entregable3.md
+    - "CE0312-CE0313 - Entregable 1: Implementación y Testing de Red": FrankChoquehuanca/entregable1-imp.md
+    - "CE0322-CE0324 - Entregable 2: Implementación, Monitoreo y Ética de Seguridad": FrankChoquehuanca/entregable2-imp.md
+    - "CE0332-CE0333 - Entregable 3: Implementación y Control de Centro de Datos": FrankChoquehuanca/entregable3-imp.md
   - "Christian Salas (CE01: Gestión)":
-    - "CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico": ce01/entregable1.md
-    - "CE0113 - Entregable 2: Business Case del Proyecto": ce01/entregable2.md
-    - "CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto": ce01/entregable3.md
-    - "CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE": ce01/entregable4.md
-    - "CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada": ce01/entregable5.md
+    - "CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico": ChristianSalas/entregable1.md
+    - "CE0113 - Entregable 2: Business Case del Proyecto": ChristianSalas/entregable2.md
+    - "CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto": ChristianSalas/entregable3.md
+    - "CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE": ChristianSalas/entregable4.md
+    - "CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada": ChristianSalas/entregable5.md
   - "Cristhian Llanque (CE02: Software)":
-    - "CE021 - Entregable 1: Requerimientos y Diseño del Sistema": ce02/entregable1.md
-    - "CE022 - Entregable 2: Plataforma de Datos del Sistema": ce02/entregable2.md
-    - "CE023 - Entregable 3: Sistema de Software Funcional Integrado": ce02/entregable3.md
-    - "CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema": ce02/entregable4.md
-    - "CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final": ce02/entregable5.md
+    - "CE021 - Entregable 1: Requerimientos y Diseño del Sistema": CristhianLlanque/entregable1.md
+    - "CE022 - Entregable 2: Plataforma de Datos del Sistema": CristhianLlanque/entregable2.md
+    - "CE023 - Entregable 3: Sistema de Software Funcional Integrado": CristhianLlanque/entregable3.md
+    - "CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema": CristhianLlanque/entregable4.md
+    - "CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final": CristhianLlanque/entregable5.md
