@@ -1,7 +1,7 @@
 # CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
 
 ## 1. Descripción
-*(Agrega aquí la descripción general del entregable, cuál es su propósito y qué problema resuelve)*
+Documento y evidencias que demuestran la calidad técnica del producto y del proceso de desarrollo mediante pruebas, automatización, métricas, revisión técnica, auditoría y mejora continua.
 
 ## 2. Plantilla del Producto
 
@@ -10,18 +10,45 @@
 * **Línea de Evaluación:** CE02: Ingeniería de Software
 * **Entregable:** Entregable 4: Calidad, Operación y Evolución del Sistema
 * **Responsable:** Cristhian Llanque
+* **Semestre:** [Semestre]
+* **Fecha:** [Fecha]
 
 ### Resumen Ejecutivo
-*(Redacta un resumen ejecutivo de máximo una página explicando los hallazgos o resultados de este entregable)*
+1 página resumiendo el estado de calidad, operación y mejora del sistema.
 
-### Secciones de Desarrollo
-*(Desarrolla aquí las secciones específicas que pide la rúbrica oficial para este entregable. Para ver exactamente qué secciones poner aquí, revisa el enlace oficial de la universidad que pasamos por el chat).*
-- **Sección 1:** ...
-- **Sección 2:** ...
-- **Sección 3:** ...
+### Sección 1: Pruebas
+- **Casos de prueba automatizados o sistematizados:**
+- **Reporte de ejecución:**
+- **Reporte de cobertura, si aplica:**
+- **Evidencia de pruebas sobre flujos críticos:**
+
+### Sección 2: Integración y Despliegue Continuo
+- **Pipeline CI/CD:**
+- **Configuración de automatización:**
+- **Evidencias de integración y despliegue:**
+
+### Sección 3: Gestión Técnica y Métricas
+- **Registro de incidencias:**
+- **Revisiones de código:**
+- **Métricas de calidad:**
+- **Control de deuda técnica:**
+
+### Sección 4: Auditoría y Evolución
+- **Informe de auditoría técnica:**
+- **Métricas de rendimiento:**
+- **Métricas de seguridad:**
+- **Plan de mejora y evolución:**
 
 ### Anexos
-*(Si tienes diagramas, capturas de pantalla, código fuente o configuraciones, insértalos aquí usando el formato de Markdown `![Nombre](../assets/imagen.png)`)*
+- Reportes de pruebas.
+- Capturas del pipeline.
+- Evidencias de revisión técnica.
+- Resultados de auditoría.
 
 ## 3. Rúbrica de Evaluación
-*(Recuerda revisar la página oficial de la universidad para asegurarte de cumplir con todos los criterios de la rúbrica antes de presentar esto a tus evaluadores)*
+* **Cobertura y calidad de pruebas:** Pruebas efectivas cubren componentes críticos
+* **Automatización (CI/CD):** Pipeline automatizado completo
+* **Uso de métricas y evaluación:** Métricas utilizadas para evaluar el sistema
+* **Gestión técnica del desarrollo:** Control de decisiones y deuda técnica
+* **Auditoría técnica del sistema:** Evaluación estructurada del sistema
+* **Propuesta de mejora continua:** Plan basado en evidencia

@@ -1,7 +1,7 @@
 # CE022 - Entregable 2: Plataforma de Datos del Sistema
 
 ## 1. Descripción
-*(Agrega aquí la descripción general del entregable, cuál es su propósito y qué problema resuelve)*
+Documento y evidencias técnicas que demuestran el modelado, implementación, consulta, programación, seguridad y administración de la base de datos que sostiene el sistema.
 
 ## 2. Plantilla del Producto
 
@@ -10,18 +10,46 @@
 * **Línea de Evaluación:** CE02: Ingeniería de Software
 * **Entregable:** Entregable 2: Plataforma de Datos del Sistema
 * **Responsable:** Cristhian Llanque
+* **Semestre:** [Semestre]
+* **Fecha:** [Fecha]
 
 ### Resumen Ejecutivo
-*(Redacta un resumen ejecutivo de máximo una página explicando los hallazgos o resultados de este entregable)*
+1 página explicando el rol de los datos en la solución.
 
-### Secciones de Desarrollo
-*(Desarrolla aquí las secciones específicas que pide la rúbrica oficial para este entregable. Para ver exactamente qué secciones poner aquí, revisa el enlace oficial de la universidad que pasamos por el chat).*
-- **Sección 1:** ...
-- **Sección 2:** ...
-- **Sección 3:** ...
+### Sección 1: Modelo de Datos
+- **Modelo entidad-relación:**
+- **Modelo lógico:**
+- **Modelo normalizado:**
+- **Diccionario de datos:**
+
+### Sección 2: Implementación de Base de Datos
+- **Scripts DDL:**
+- **Scripts DML:**
+- **Evidencias de creación de tablas, relaciones y restricciones:**
+
+### Sección 3: Consultas y Programación en Base de Datos
+- **Consultas SQL relevantes:**
+- **Procedimientos almacenados:**
+- **Funciones:**
+- **Triggers, si corresponde:**
+- **Planes de ejecución o evidencias de optimización:**
+
+### Sección 4: Seguridad y Administración
+- **Usuarios y roles:**
+- **Auditoría implementada:**
+- **Estrategias de respaldo y recuperación:**
+- **Evidencias de monitoreo:**
 
 ### Anexos
-*(Si tienes diagramas, capturas de pantalla, código fuente o configuraciones, insértalos aquí usando el formato de Markdown `![Nombre](../assets/imagen.png)`)*
+- Scripts completos.
+- Capturas de ejecución.
+- Resultados de consultas.
+- Documentación técnica de administración.
 
 ## 3. Rúbrica de Evaluación
-*(Recuerda revisar la página oficial de la universidad para asegurarte de cumplir con todos los criterios de la rúbrica antes de presentar esto a tus evaluadores)*
+* **Modelado de datos:** Modelo consistente, normalizado y alineado
+* **Integridad y consistencia de datos:** Integridad referencial completa
+* **Implementación y consultas SQL:** Consultas correctas y eficientes
+* **Programación de base de datos:** Uso adecuado de lógica en BD
+* **Seguridad y administración:** Control de accesos y seguridad definidos
+* **Rendimiento y optimización:** Índices y consultas optimizadas
