@@ -2,7 +2,7 @@
 
 ## Portada
 - **Título del sistema:** CopIA - Asistente de Conducción AI (Edge & Central Server)
-- **Nombre del estudiante:** Cristhian Llanque
+- **Nombre del estudiante:** Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca
 - **Semestre:** [Tu Semestre Actual]
 - **Fecha:** Julio 2026
 
