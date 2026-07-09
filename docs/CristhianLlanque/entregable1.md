@@ -73,21 +73,15 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 ### 2.2 Pantallas Principales
 - **Pantalla Login Edge:** 
   ![Login Edge](../imagenesllanque/login_edge.png)
-  *(Descripción: Interfaz oscura con CustomTkinter, solicitando ID y contraseña)*
-  > **🤖 Prompt sugerido para IA generadora de imágenes:**
-  > *A sleek, modern dark mode login interface for an in-car touchscreen display. The UI should have a deep blue and dark gray color palette, featuring two large text input fields for "Driver ID" and "Password", and a prominent bright blue "Login" button. Minimalist automotive design, high resolution, photorealistic dashboard UI.*
+  **Descripción Formal:** Interfaz de acceso seguro desarrollada con la librería CustomTkinter en modo oscuro (Dark Theme) para reducir la fatiga visual nocturna del conductor. Incluye controles de formulario (ID de Operador y Contraseña) optimizados para pantallas táctiles vehiculares. El sistema valida las credenciales contra la base de datos central antes de conceder acceso al monitoreo.
 
 - **Pantalla de Monitoreo Edge:**
   ![Monitor Edge](../imagenesllanque/monitor_edge.png)
-  *(Descripción: Vista de la cámara con landmarks faciales y botones de control)*
-  > **🤖 Prompt sugerido para IA generadora de imágenes:**
-  > *An advanced AI driving assistant interface for a vehicle touchscreen. The main area shows a live camera feed of a driver with glowing green AI facial tracking dots (landmarks) around the eyes and mouth. Below the video, there is a red "Fatigue Alert" warning and large buttons to "Stop Monitoring". Dark mode, futuristic automotive tech, highly detailed.*
+  **Descripción Formal:** Panel principal de conducción ejecutado en el Nodo Edge. La sección principal renderiza el stream de video en tiempo real de la cámara, superponiendo la malla facial (Facial Landmarks) generada por MediaPipe. El sistema extrae métricas biométricas como el Eye Aspect Ratio (EAR) para detectar somnolencia. Incluye indicadores visuales de estado y controles táctiles para finalizar la sesión de monitoreo.
 
 - **Dashboard Web (Cerebro Central):**
   ![Dashboard Web](../imagenesllanque/dashboard_web.png)
-  *(Descripción: Aplicación Vue.js mostrando tablas y estadísticas de MySQL)*
-  > **🤖 Prompt sugerido para IA generadora de imágenes:**
-  > *A professional web-based administrator dashboard for fleet management. The UI is clean and modern with a dark theme. It features a sidebar navigation, a top section with metric cards showing total drivers and incident counts, and a large data table listing recent driver fatigue alerts with timestamps and severity badges. Vue.js style, corporate analytics design, UI/UX mockup.*
+  **Descripción Formal:** Aplicación web de administración desarrollada con Vue.js y Tailwind CSS. Funciona como el panel de control para la empresa de transportes. Permite la visualización de métricas generales, listado de conductores registrados y un registro histórico detallado de los incidentes de fatiga o distracción reportados por todos los vehículos en tiempo real, garantizando una toma de decisiones preventiva.
 
 ### 2.3 Evidencia de Validación
 *(Adjuntar aquí el resumen de la prueba con usuarios simulados o feedback de los profesores)*
