@@ -1,15 +1,15 @@
 # Entregable 1: Requerimientos y Diseño del Sistema
 
 ## Portada
-- **Título del sistema:** CopIA - Asistente de Conducción AI (Edge & Central Server)
+- **Título del sistema:** CopAI - Asistente de Conducción AI (Edge & Central Server)
 - **Nombre del estudiante:** Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca
-- **Semestre:** [Tu Semestre Actual]
+- **Semestre:** X
 - **Fecha:** Julio 2026
 
 ---
 
 ## Resumen Ejecutivo
-CopIA es una solución integral de asistencia a la conducción diseñada para prevenir accidentes de tránsito causados por fatiga o distracción al volante. El sistema se compone de dos módulos principales: un **Nodo Edge (Raspberry Pi)** instalado en el vehículo que procesa video en tiempo real mediante Inteligencia Artificial (MediaPipe y OpenCV) para detectar somnolencia o falta de atención, y un **Cerebro Central (Servidor Windows)** que centraliza los datos, emite reportes y permite el monitoreo remoto por parte de la empresa de transportes a través de una aplicación web (Vue.js + FastAPI + MySQL). La comunicación entre ambos nodos se realiza de forma segura mediante túneles inversos (Ngrok).
+CopAI es una solución integral de asistencia a la conducción diseñada para prevenir accidentes de tránsito causados por fatiga o distracción al volante. El sistema se compone de dos módulos principales: un **Nodo Edge (Raspberry Pi)** instalado en el vehículo que procesa video en tiempo real mediante Inteligencia Artificial (MediaPipe y OpenCV) para detectar somnolencia o falta de atención, y un **Cerebro Central (Servidor Windows)** que centraliza los datos, emite reportes y permite el monitoreo remoto por parte de la empresa de transportes a través de una aplicación web (Vue.js + FastAPI + MySQL). La comunicación entre ambos nodos se realiza de forma segura mediante túneles inversos (Ngrok).
 
 El alcance del proyecto cubre desde la detección local en tiempo real hasta la persistencia y visualización de las métricas de conducción, ofreciendo alertas sonoras inmediatas al conductor y reportes estadísticos al administrador.
 
@@ -18,25 +18,34 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 ## Sección 1: Especificación de Requerimientos
 
 ### 1.1 Requerimientos Funcionales (RF)
-- **RF01:** El sistema Edge debe capturar video en tiempo real utilizando una cámara conectada.
-- **RF02:** El sistema Edge debe analizar los rostros usando IA para determinar el nivel de fatiga (bostezos, ojos cerrados) o distracción.
-- **RF03:** El sistema Edge debe emitir alertas sonoras (mediante altavoces) cuando detecte un nivel de riesgo crítico.
-- **RF04:** El sistema Edge debe requerir inicio de sesión del conductor antes de iniciar el monitoreo.
-- **RF05:** El sistema Edge debe transmitir los eventos de riesgo al servidor central a través de una API REST.
-- **RF06:** El Servidor Central debe almacenar los eventos de riesgo y sesiones en una base de datos relacional (MySQL).
-- **RF07:** El Servidor Central debe exponer una interfaz web de administrador para visualizar el histórico de incidentes.
-- **RF08:** El Servidor Central debe permitir el registro y gestión (CRUD) de conductores.
+
+| ID | Descripción del Requerimiento Funcional | Módulo Asociado |
+|:---|:---|:---|
+| **RF01** | El sistema Edge debe capturar video en tiempo real utilizando una cámara conectada. | Edge (Cámara) |
+| **RF02** | El sistema Edge debe analizar los rostros usando IA para determinar el nivel de fatiga o distracción. | Edge (MediaPipe) |
+| **RF03** | El sistema Edge debe emitir alertas sonoras inmediatamente al detectar un nivel de riesgo. | Edge (Audio) |
+| **RF04** | El sistema Edge debe requerir inicio de sesión del conductor antes de iniciar el monitoreo. | Edge (GUI) |
+| **RF05** | El sistema Edge debe transmitir eventos de riesgo al servidor central a través de una API REST. | Backend |
+| **RF06** | El Servidor Central debe almacenar eventos de riesgo y sesiones en una base de datos relacional. | Base de Datos |
+| **RF07** | El Servidor Central debe exponer una interfaz web para visualizar el histórico de incidentes. | Frontend Web |
+| **RF08** | El Servidor Central debe permitir el registro y gestión (CRUD) de conductores. | Frontend Web |
 
 ### 1.2 Requerimientos No Funcionales (RNF)
-- **RNF01 (Rendimiento):** El análisis de video en el Edge debe ejecutarse a un mínimo de 15 cuadros por segundo (FPS) en una Raspberry Pi.
-- **RNF02 (Conectividad):** El sistema debe manejar conexiones inestables, encolando eventos si el servidor central no responde.
-- **RNF03 (Seguridad):** La comunicación entre Edge y el Servidor Central debe estar encriptada (HTTPS vía Ngrok).
-- **RNF04 (Usabilidad):** La interfaz del conductor (Edge) debe ser táctil, con botones grandes y de alto contraste (Dark Mode).
-- **RNF05 (Despliegue):** El servidor central debe poder inicializarse con un solo clic automatizado.
+
+| ID | Criterio | Descripción del Requerimiento No Funcional |
+|:---|:---|:---|
+| **RNF01** | Rendimiento | El análisis de video en el Edge debe ejecutarse a un mínimo de 15 FPS en hardware de bajo costo. |
+| **RNF02** | Conectividad | El sistema debe encolar eventos localmente si pierde conexión con el servidor (Tolerancia a fallos). |
+| **RNF03** | Seguridad | La comunicación entre nodos debe estar encriptada vía túneles inversos HTTPS (Ngrok). |
+| **RNF04** | Usabilidad | La interfaz en cabina debe ser táctil, de alto contraste (Dark Mode) y botones grandes. |
+| **RNF05** | Despliegue | El servidor central y el nodo Edge deben poder inicializarse mediante scripts automatizados. |
 
 ### 1.3 Reglas de Negocio
-- **RN01:** Un conductor no puede iniciar un viaje sin antes autenticarse en el sistema.
-- **RN02:** Se considera "Riesgo de Fatiga" cuando los ojos permanecen cerrados por más de 1.5 segundos consecutivos.
+
+| ID | Regla |
+|:---|:---|
+| **RN01** | Un conductor no puede iniciar un viaje ni habilitar la cámara sin antes autenticarse en el sistema. |
+| **RN02** | Se considera "Riesgo de Fatiga" cuando los ojos permanecen cerrados por más de 1.5 segundos consecutivos. |
 
 ### 1.4 Restricciones del Sistema
 - El nodo Edge está limitado al hardware de una Raspberry Pi y a su capacidad de procesamiento térmico (CPU).
@@ -65,12 +74,20 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 - **Pantalla Login Edge:** 
   ![Login Edge](../imagenesllanque/login_edge.png)
   *(Descripción: Interfaz oscura con CustomTkinter, solicitando ID y contraseña)*
+  > **🤖 Prompt sugerido para IA generadora de imágenes:**
+  > *A sleek, modern dark mode login interface for an in-car touchscreen display. The UI should have a deep blue and dark gray color palette, featuring two large text input fields for "Driver ID" and "Password", and a prominent bright blue "Login" button. Minimalist automotive design, high resolution, photorealistic dashboard UI.*
+
 - **Pantalla de Monitoreo Edge:**
   ![Monitor Edge](../imagenesllanque/monitor_edge.png)
   *(Descripción: Vista de la cámara con landmarks faciales y botones de control)*
+  > **🤖 Prompt sugerido para IA generadora de imágenes:**
+  > *An advanced AI driving assistant interface for a vehicle touchscreen. The main area shows a live camera feed of a driver with glowing green AI facial tracking dots (landmarks) around the eyes and mouth. Below the video, there is a red "Fatigue Alert" warning and large buttons to "Stop Monitoring". Dark mode, futuristic automotive tech, highly detailed.*
+
 - **Dashboard Web (Cerebro Central):**
   ![Dashboard Web](../imagenesllanque/dashboard_web.png)
   *(Descripción: Aplicación Vue.js mostrando tablas y estadísticas de MySQL)*
+  > **🤖 Prompt sugerido para IA generadora de imágenes:**
+  > *A professional web-based administrator dashboard for fleet management. The UI is clean and modern with a dark theme. It features a sidebar navigation, a top section with metric cards showing total drivers and incident counts, and a large data table listing recent driver fatigue alerts with timestamps and severity badges. Vue.js style, corporate analytics design, UI/UX mockup.*
 
 ### 2.3 Evidencia de Validación
 *(Adjuntar aquí el resumen de la prueba con usuarios simulados o feedback de los profesores)*
