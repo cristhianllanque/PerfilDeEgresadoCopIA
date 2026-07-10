@@ -116,7 +116,7 @@ El centro de control no requiere uso de la terminal por parte del cliente. Se ha
 
 ### 4.3 Evidencia de Despliegue
 ![Despliegue Edge](./imagenesllanque/evidencia_despliegue.png)
-*(Instrucción: Toma una captura de tu script de instalación terminando exitosamente o la pantalla del Server Dashboard funcionando).*
+
 
 ---
 
@@ -128,3 +128,5 @@ El código completo, historial de commits y manual de usuario (README.md) se enc
 
 ### 5.2 Capturas de Desempeño
 Se ha comprobado que el sistema mantiene un uso de CPU por debajo del 65% en la Raspberry Pi 5 gracias al procesamiento en formato de tensor optimizado (TFLite) integrado en MediaPipe.
+
+![Uso de CPU Raspberry Pi 5](./imagenesllanque/evidencia_cpu.jpeg)
