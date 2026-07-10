@@ -9,9 +9,11 @@
 ---
 
 ## Resumen Ejecutivo
-CopAI es una solución integral de asistencia a la conducción diseñada para prevenir accidentes de tránsito causados por fatiga o distracción al volante. El sistema se compone de dos módulos principales: un **Nodo Edge (Raspberry Pi)** instalado en el vehículo que procesa video en tiempo real mediante Inteligencia Artificial (MediaPipe y OpenCV) para detectar somnolencia o falta de atención, y un **Cerebro Central (Servidor Windows)** que centraliza los datos, emite reportes y permite el monitoreo remoto por parte de la empresa de transportes a través de una aplicación web (Vue.js + FastAPI + MySQL). La comunicación entre ambos nodos se realiza de forma segura mediante túneles inversos (Ngrok).
+CopAI es una solución integral de asistencia a la conducción y gestión de flotas diseñada para prevenir accidentes de tránsito causados por fatiga o distracción al volante. El sistema se compone de dos módulos principales: un **Nodo Edge (Raspberry Pi 4)** instalado en el vehículo y un **Cerebro Central (Servidor Windows)**. 
 
-El alcance del proyecto cubre desde la detección local en tiempo real hasta la persistencia y visualización de las métricas de conducción, ofreciendo alertas sonoras inmediatas al conductor y reportes estadísticos al administrador.
+El Nodo Edge procesa video en tiempo real mediante algoritmos de Inteligencia Artificial (MediaPipe para landmarks faciales de alta precisión, apoyado por arquitecturas ligeras como MobileNet) para calcular métricas vitales como el **PERCLOS (Percentage of Eye Closure)** y el EAR (Eye Aspect Ratio). Simultáneamente, el sistema captura telemetría de ubicación y velocidad a través de un módulo GPS de hardware dedicado (**SIM7600G-H**) y sincroniza datos de telemetría a través de **Firebase** para redundancia.
+
+El Servidor Central centraliza los datos, emite reportes y permite el monitoreo remoto por parte de la empresa de transportes a través de una aplicación web robusta (Vue.js + FastAPI + MySQL). Esta plataforma web no solo recibe alertas, sino que ofrece gestión completa de conductores (CRUD), asignación de rutas, y visualización de gráficos estadísticos. La comunicación bidireccional entre los vehículos (Edge) y el servidor se realiza de forma segura mediante túneles inversos (Ngrok).
 
 ---
 
@@ -21,44 +23,49 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 
 | ID | Descripción del Requerimiento Funcional | Módulo Asociado |
 |:---|:---|:---|
-| **RF01** | El sistema Edge debe capturar video en tiempo real utilizando una cámara conectada. | Edge (Cámara) |
-| **RF02** | El sistema Edge debe analizar los rostros usando IA para determinar el nivel de fatiga o distracción. | Edge (MediaPipe) |
-| **RF03** | El sistema Edge debe emitir alertas sonoras inmediatamente al detectar un nivel de riesgo. | Edge (Audio) |
-| **RF04** | El sistema Edge debe requerir inicio de sesión del conductor antes de iniciar el monitoreo. | Edge (GUI) |
-| **RF05** | El sistema Edge debe transmitir eventos de riesgo al servidor central a través de una API REST. | Backend |
-| **RF06** | El Servidor Central debe almacenar eventos de riesgo y sesiones en una base de datos relacional. | Base de Datos |
-| **RF07** | El Servidor Central debe exponer una interfaz web para visualizar el histórico de incidentes. | Frontend Web |
-| **RF08** | El Servidor Central debe permitir el registro y gestión (CRUD) de conductores. | Frontend Web |
+| **RF01** | El sistema Edge debe capturar y procesar video en tiempo real para extraer landmarks faciales. | Edge (Visión / MediaPipe) |
+| **RF02** | El sistema debe calcular el PERCLOS y EAR en tiempo real para determinar el nivel de fatiga. | Edge (Algoritmo IA) |
+| **RF03** | El sistema debe obtener coordenadas de geolocalización (Latitud/Longitud) y velocidad mediante el módulo hardware SIM7600G-H. | Edge (GPS / SIM7600) |
+| **RF04** | El sistema debe emitir alertas sonoras (mediante gTTS) de manera inmediata al detectar un riesgo crítico. | Edge (Audio) |
+| **RF05** | La pantalla del conductor debe mostrar un menú interactivo para Inicio de Sesión, Monitoreo en vivo y Ajustes. | Edge (GUI / CustomTkinter) |
+| **RF06** | El sistema Edge debe transmitir eventos de fatiga, junto con sus coordenadas GPS, al backend central y a Firebase. | Edge (Red) |
+| **RF07** | El panel web (Administrador) debe permitir la Gestión de Conductores (Crear, Leer, Actualizar, Eliminar). | Frontend Web (Vue.js) |
+| **RF08** | El panel web debe incluir un módulo de Gestión de Rutas y asignación de vehículos. | Frontend Web (Vue.js) |
+| **RF09** | El panel web debe renderizar gráficas estadísticas (Dashboard) sobre la accidentabilidad y alertas por conductor. | Frontend Web (Vue.js) |
+| **RF10** | El backend debe asegurar los endpoints mediante autenticación basada en tokens JWT (JSON Web Tokens). | Backend (FastAPI) |
 
 ### 1.2 Requerimientos No Funcionales (RNF)
 
 | ID | Criterio | Descripción del Requerimiento No Funcional |
 |:---|:---|:---|
-| **RNF01** | Rendimiento | El análisis de video en el Edge debe ejecutarse a un mínimo de 15 FPS en hardware de bajo costo. |
-| **RNF02** | Conectividad | El sistema debe encolar eventos localmente si pierde conexión con el servidor (Tolerancia a fallos). |
-| **RNF03** | Seguridad | La comunicación entre nodos debe estar encriptada vía túneles inversos HTTPS (Ngrok). |
-| **RNF04** | Usabilidad | La interfaz en cabina debe ser táctil, de alto contraste (Dark Mode) y botones grandes. |
-| **RNF05** | Despliegue | El servidor central y el nodo Edge deben poder inicializarse mediante scripts automatizados. |
+| **RNF01** | Rendimiento | La inferencia del modelo (MediaPipe/MobileNet) debe mantener un mínimo de 15 FPS en la Raspberry Pi para garantizar latencia cero. |
+| **RNF02** | Conectividad | Tolerancia a fallos: El sistema debe encolar eventos localmente si pierde conexión con Ngrok/Firebase y reintentar el envío. |
+| **RNF03** | Precisión | El cálculo del PERCLOS debe tener una precisión superior al 90% en condiciones de iluminación variable (diurna/nocturna). |
+| **RNF04** | Usabilidad | La interfaz en cabina debe ser táctil, de alto contraste (Dark Mode) para evitar el deslumbramiento nocturno del conductor. |
+| **RNF05** | Arquitectura | El servidor central debe operar bajo un despliegue automatizado mediante scripts orquestadores (Batch/Python GUI). |
 
 ### 1.3 Reglas de Negocio
 
 | ID | Regla |
 |:---|:---|
-| **RN01** | Un conductor no puede iniciar un viaje ni habilitar la cámara sin antes autenticarse en el sistema. |
-| **RN02** | Se considera "Riesgo de Fatiga" cuando los ojos permanecen cerrados por más de 1.5 segundos consecutivos. |
+| **RN01** | Un conductor no puede habilitar la cámara ni iniciar la ruta sin antes autenticarse en el sistema del vehículo. |
+| **RN02** | Se genera una "Alerta Crítica de Fatiga" si el cálculo del EAR indica que los ojos están cerrados por más de 1.5 segundos consecutivos (basado en estándares PERCLOS). |
+| **RN03** | Todo registro de incidente de fatiga debe estar obligatoriamente vinculado a una coordenada GPS (SIM7600G-H) en la base de datos MySQL. |
 
 ### 1.4 Restricciones del Sistema
-- El nodo Edge está limitado al hardware de una Raspberry Pi y a su capacidad de procesamiento térmico (CPU).
-- El software Edge se desarrolla en Python 3.11, utilizando entornos virtuales o Conda para garantizar compatibilidad de librerías.
+- El procesamiento de imágenes está limitado por la capacidad térmica y de CPU de la arquitectura ARM de la Raspberry Pi 4.
+- Las dependencias de hardware incluyen periféricos obligatorios: Cámara USB/CSI, Módulo SIM7600G-H, y Altavoces.
+- El software Edge se ejecuta exclusivamente en entornos aislados (Miniforge/Conda con Python 3.11) para evitar conflictos de librerías globales.
 
 ### 1.5 Historias de Usuario
-- **HU01:** Como *Conductor*, quiero *iniciar sesión en la pantalla táctil de mi vehículo* para *comenzar el monitoreo de mi viaje.*
-- **HU02:** Como *Conductor*, quiero *recibir una alerta de voz inmediata* cuando *muestre signos de sueño*, para *evitar un accidente.*
-- **HU03:** Como *Administrador de Flota*, quiero *ver un dashboard web con los incidentes de mis conductores* para *tomar decisiones preventivas.*
+- **HU01:** Como *Conductor*, quiero *iniciar sesión en la pantalla táctil de mi vehículo* para *comenzar mi ruta y habilitar el monitoreo.*
+- **HU02:** Como *Conductor*, quiero *recibir una alerta de voz inmediata* cuando *me quede dormido al volante*, para *reaccionar a tiempo y evitar un accidente.*
+- **HU03:** Como *Administrador*, quiero *gestionar a mis conductores, rutas y ver sus métricas en gráficas web* para *monitorear la salud de mi flota en tiempo real.*
+- **HU04:** Como *Administrador*, quiero *conocer la ubicación GPS exacta (vía SIM7600) de dónde ocurrió una alerta de fatiga* para *tomar acciones logísticas.*
 
 ### 1.6 Criterios de Aceptación
-- Para HU02: La alerta debe sonar en menos de 2 segundos de detectado el evento.
-- Para HU03: El panel web debe cargar los datos desde MySQL usando endpoints de FastAPI con código HTTP 200.
+- **Para HU02:** El procesamiento IA debe ser local (sin depender de internet) para que la alerta suene en menos de 1 segundo de cerrado el ojo.
+- **Para HU03:** El dashboard web debe mostrar componentes interactivos (DataTables y Chart.js/ECharts) cargados dinámicamente desde FastAPI.
 
 ---
 
@@ -67,24 +74,25 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 *Nota: Reemplazar los textos entre corchetes con las imágenes correspondientes ubicadas en la carpeta `imagenesllanque`.*
 
 ### 2.1 Flujo de Navegación
-1. **Inicio:** Pantalla de Login en Edge -> Validación -> Dashboard de Conducción.
-2. **Web:** Pantalla de Login Web -> Dashboard Central -> Gestión de Conductores.
+1. **Edge (Vehículo):** Pantalla de Login -> Menú Principal -> Modo Monitoreo en Vivo (Con Overlay IA) / Modo Ajustes.
+2. **Web (Administrador):** Login Web -> Dashboard (Gráficas y KPIs) -> Módulo de Conductores -> Módulo de Rutas e Incidentes.
 
 ### 2.2 Pantallas Principales
+
 - **Pantalla Login Edge:** 
   ![Login Edge](../imagenesllanque/login_edge.png)
-  **Descripción Formal:** Interfaz de acceso seguro desarrollada con la librería CustomTkinter en modo oscuro (Dark Theme) para reducir la fatiga visual nocturna del conductor. Incluye controles de formulario (ID de Operador y Contraseña) optimizados para pantallas táctiles vehiculares. El sistema valida las credenciales contra la base de datos central antes de conceder acceso al monitoreo.
+  **Descripción Formal:** Interfaz de acceso seguro desarrollada con la librería CustomTkinter en modo oscuro (Dark Theme). Incluye controles optimizados para pantallas táctiles vehiculares. El sistema valida las credenciales contra la base de datos central antes de conceder acceso al menú de conducción.
 
 - **Pantalla de Monitoreo Edge:**
   ![Monitor Edge](../imagenesllanque/monitor_edge.png)
-  **Descripción Formal:** Panel principal de conducción ejecutado en el Nodo Edge. La sección principal renderiza el stream de video en tiempo real de la cámara, superponiendo la malla facial (Facial Landmarks) generada por MediaPipe. El sistema extrae métricas biométricas como el Eye Aspect Ratio (EAR) para detectar somnolencia. Incluye indicadores visuales de estado y controles táctiles para finalizar la sesión de monitoreo.
+  **Descripción Formal:** Panel principal de conducción ejecutado en la Raspberry Pi. Renderiza el stream de video en tiempo real superponiendo la malla facial generada por MediaPipe. Integra lecturas asíncronas del módulo GPS SIM7600G-H para mostrar velocidad y ubicación. Emplea la métrica PERCLOS para disparar el estado de alarma.
 
 - **Dashboard Web (Cerebro Central):**
   ![Dashboard Web](../imagenesllanque/dashboard_web.png)
-  **Descripción Formal:** Aplicación web de administración desarrollada con Vue.js y Tailwind CSS. Funciona como el panel de control para la empresa de transportes. Permite la visualización de métricas generales, listado de conductores registrados y un registro histórico detallado de los incidentes de fatiga o distracción reportados por todos los vehículos en tiempo real, garantizando una toma de decisiones preventiva.
+  **Descripción Formal:** Aplicación web de administración desarrollada con Vue.js y Tailwind CSS. Funciona como el panel de control integral. Muestra gráficas estadísticas de rendimiento, un módulo CRUD completo de Gestión de Conductores y Rutas, y una tabla histórica de incidentes de fatiga vinculados a datos de Firebase y MySQL.
 
 ### 2.3 Evidencia de Validación
-*(Adjuntar aquí el resumen de la prueba con usuarios simulados o feedback de los profesores)*
+*(Adjuntar aquí el resumen de la prueba con usuarios simulados, feedback de los profesores o captura de las pruebas de integración)*
 ![Evidencia de Prueba](../imagenesllanque/evidencia_prueba.png)
 
 ---
@@ -92,39 +100,38 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 ## Sección 3: Diseño Arquitectónico
 
 ### 3.1 Documento de Arquitectura
-La arquitectura sigue un patrón **Edge-Cloud (Cliente-Servidor)**. El componente Edge procesa carga pesada (IA de visión) de forma descentralizada para garantizar latencia cero en las alertas. El Servidor opera como un monolito modular con Backend en Python (FastAPI) y Frontend en Javascript (Vue.js).
+La arquitectura sigue un patrón **Edge-Cloud híbrido**. 
+El **Nodo Edge** procesa la visión computacional pesada (MediaPipe, algoritmos tipo MobileNet) de forma descentralizada y extrae telemetría mediante hardware dedicado (SIM7600G-H). Al procesar de forma local, se garantiza latencia cero en las alertas de riesgo vital. 
+La capa de persistencia es dual: envía logs inmediatos a **Firebase** para telemetría ágil, y al **Cerebro Central (Monolito FastAPI + MySQL)** mediante un túnel inverso (Ngrok) para integridad relacional. El Frontend consume esta información para renderizar gráficas y gestionar rutas.
 
 ### 3.2 Diagrama de Componentes
 ![Diagrama de Componentes](../imagenesllanque/diagrama_componentes.png)
 
-**Descripción Formal:** El diagrama ilustra la arquitectura de componentes distribuida del sistema CopAI. En el lado izquierdo, el Nodo Edge (Raspberry Pi) encapsula el Motor de IA (basado en MediaPipe y OpenCV) para el procesamiento de imágenes local, el Asistente de Voz (gTTS) para alertas y la Interfaz Gráfica (CustomTkinter). Estos componentes se comunican con un Gestor de Estado local. A través de un túnel seguro Ngrok, el Edge se conecta al Cerebro Central en el lado derecho. Este servidor central aloja la API REST desarrollada en FastAPI, la cual interactúa con una Base de Datos MySQL y provee datos al Dashboard Web implementado con Vue.js y Tailwind CSS.
-
+**Descripción Formal:** El diagrama ilustra la arquitectura distribuida del sistema CopAI. En el Nodo Edge (Raspberry Pi), coexisten el Motor de IA (MediaPipe/OpenCV), el Módulo GPS (SIM7600G-H), el Asistente de Voz (gTTS) y la GUI (CustomTkinter). Estos convergen en un Gestor de Estado que enruta la telemetría hacia Firebase y hacia el Servidor Central a través de Ngrok. El Cerebro Central expone una API REST (FastAPI) asegurada con JWT, que guarda relaciones en MySQL y sirve métricas al panel de administración en Vue.js.
 
 ### 3.3 Diagrama de Despliegue
 ![Diagrama de Despliegue](../imagenesllanque/diagrama_despliegue.png)
 
-**Descripción Formal:** El diagrama de despliegue muestra la topología de red y hardware físico del sistema. Ilustra un nodo cliente (Raspberry Pi 4) operando en el entorno del vehículo (Edge), el cual se comunica bidireccionalmente a través de internet con el nodo servidor (Windows PC). La conexión atraviesa redes con NAT estricto mediante un túnel inverso proporcionado por Ngrok, asegurando la transmisión HTTPS de los eventos de riesgo hacia el servidor.
-
+**Descripción Formal:** El diagrama de despliegue muestra la topología de red y hardware. En el entorno vehicular, la Raspberry Pi 4 interactúa directamente con periféricos (Cámara, GPS SIM7600, Parlantes). Este nodo atraviesa redes celulares con NAT estricto utilizando un túnel Ngrok seguro, alcanzando al Servidor Windows central. Además, se observa la conexión secundaria asíncrona hacia la infraestructura de nube de Firebase.
 
 ### 3.4 Registro de Decisiones Arquitectónicas (ADRs)
-- **ADR 01:** Uso de **CustomTkinter** en lugar de PyQt5 para el Edge debido a su ligereza y modernidad estética en pantallas táctiles de baja resolución.
-- **ADR 02:** Uso de **Ngrok** para exposición de red debido a que las redes celulares en los vehículos manejan NAT estricto (CGNAT), impidiendo conexiones directas.
+- **ADR 01:** Priorizar **MediaPipe** sobre implementaciones puras de MobileNet/YOLO debido a la altísima eficiencia de MediaPipe en la extracción de landmarks faciales (468 puntos) en procesadores ARM sin necesidad de GPU, ideal para la métrica PERCLOS.
+- **ADR 02:** Integración de hardware **SIM7600G-H** por hardware (UART/USB) en lugar de depender del GPS de un teléfono móvil, para hacer al nodo vehicular un sistema autónomo y a prueba de desconexiones móviles.
+- **ADR 03:** Uso de una interfaz gráfica orquestadora para Windows (`server_dashboard.py`) que previene errores humanos en el arranque de la API, MySQL y Ngrok.
 
 ---
 
 ## Sección 4: Diseño Detallado
 
-### 4.1 Diagrama de Secuencia (Detección de Fatiga)
+### 4.1 Diagrama de Secuencia (Detección de Fatiga y Telemetría)
 ![Diagrama de Secuencia](../imagenesllanque/diagrama_secuencia.png)
 
-**Descripción Formal:** Este diagrama de secuencia detalla el flujo de ejecución sincrónico y asincrónico durante un evento de riesgo. Inicia cuando la cámara captura el rostro del conductor y envía el frame al Motor de IA. El motor calcula el Eye Aspect Ratio (EAR). Si el EAR cae por debajo del umbral predefinido (ojos cerrados por más de 1.5s), el sistema entra en estado crítico: dispara simultáneamente una alerta de voz mediante gTTS para despertar al conductor, y emite una petición HTTP POST asincrónica hacia la API central de FastAPI para registrar el incidente.
-
+**Descripción Formal:** El diagrama modela el flujo síncrono y asíncrono. La cámara entrega frames al Motor IA, que calcula el EAR y el PERCLOS. Paralelamente, el hilo del GPS sondea el SIM7600G-H. Si el PERCLOS indica fatiga, el sistema local dispara instantáneamente la alerta de voz. Simultáneamente, el hilo de red agrupa la alerta y las coordenadas GPS, realizando un push hacia Firebase y una petición POST a FastAPI para registrar el incidente en MySQL.
 
 ### 4.2 Diagrama de Estados (Máquina de Estados del Edge)
 ![Diagrama de Estados](../imagenesllanque/diagrama_estados.png)
 
-**Descripción Formal:** El diagrama de máquina de estados modela el ciclo de vida del software del Nodo Edge. Inicia en estado de Standby esperando la autenticación del conductor. Una vez logueado, transita al estado de Monitoreo Activo, donde entra en un bucle continuo de captura de frames y análisis facial. Si se detecta fatiga, el sistema salta al estado de Alerta Crítica (disparando alarmas y peticiones HTTP), y luego retorna al monitoreo tras un tiempo de enfriamiento (cooldown) para evitar saturación de la red.
-
+**Descripción Formal:** Modela el ciclo de vida del software en el vehículo. Desde el estado inicial, se ingresa al menú de Autenticación. Una vez validado, se accede al Menú Principal. Al iniciar ruta, se transita al estado de Monitoreo Activo (bucle de captura de video y sondeo GPS). Ante fatiga, el sistema salta al estado de Alerta Crítica (generando alarmas y envíos a Firebase/API) y retorna al monitoreo tras un tiempo de enfriamiento (cooldown).
 
 ---
 
@@ -136,7 +143,7 @@ La arquitectura sigue un patrón **Edge-Cloud (Cliente-Servidor)**. El component
 ### 5.2 Matriz de Trazabilidad de Requerimientos
 | ID Requerimiento | Componente de Diseño Asociado | Prueba de Validación |
 |------------------|-------------------------------|----------------------|
-| RF01, RF02       | Motor IA (MediaPipe)          | Prueba en Cabina     |
-| RF03             | AsistenteVoz (gTTS)           | Test de Audio        |
-| RF06             | API (FastAPI) / DB (MySQL)    | Postman Test         |
-| RNF04            | GUI (CustomTkinter)           | UX Review            |
+| RF01, RF02       | Motor IA (MediaPipe / PERCLOS)| Prueba en Cabina     |
+| RF03             | Hilo GPS (Módulo SIM7600G-H)  | Validación de Coordenadas |
+| RF07, RF08, RF09 | Dashboard Web (Vue.js) / FastAPI| UX Review & Postman  |
+| RNF04            | GUI (CustomTkinter Dark Mode) | Test de Usabilidad   |
