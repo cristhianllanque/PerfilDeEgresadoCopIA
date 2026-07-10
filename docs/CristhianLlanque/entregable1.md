@@ -95,39 +95,16 @@ El alcance del proyecto cubre desde la detección local en tiempo real hasta la 
 La arquitectura sigue un patrón **Edge-Cloud (Cliente-Servidor)**. El componente Edge procesa carga pesada (IA de visión) de forma descentralizada para garantizar latencia cero en las alertas. El Servidor opera como un monolito modular con Backend en Python (FastAPI) y Frontend en Javascript (Vue.js).
 
 ### 3.2 Diagrama de Componentes
-```mermaid
-graph TD
-    subgraph Vehículo [Nodo Edge - Raspberry Pi]
-        GUI[Interfaz Gráfica\nCustomTkinter]
-        IA[Motor IA\nMediaPipe + OpenCV]
-        Voz[Asistente Voz\ngTTS]
-        LocalState[Gestor de Estado]
-    end
+![Diagrama de Componentes](../imagenesllanque/diagrama_componentes.png)
 
-    subgraph Servidor [Cerebro Central - Windows PC]
-        API[API REST\nFastAPI]
-        DB[(Base de Datos\nMySQL / XAMPP)]
-        Web[Dashboard Web\nVue.js + Tailwind]
-    end
+**Descripción Formal:** El diagrama ilustra la arquitectura de componentes distribuida del sistema CopAI. En el lado izquierdo, el Nodo Edge (Raspberry Pi) encapsula el Motor de IA (basado en MediaPipe y OpenCV) para el procesamiento de imágenes local, el Asistente de Voz (gTTS) para alertas y la Interfaz Gráfica (CustomTkinter). Estos componentes se comunican con un Gestor de Estado local. A través de un túnel seguro Ngrok, el Edge se conecta al Cerebro Central en el lado derecho. Este servidor central aloja la API REST desarrollada en FastAPI, la cual interactúa con una Base de Datos MySQL y provee datos al Dashboard Web implementado con Vue.js y Tailwind CSS.
 
-    GUI <--> LocalState
-    LocalState --> IA
-    IA --> Voz
-    LocalState -- Túnel Ngrok HTTPS --> API
-    API <--> DB
-    Web <--> API
-```
 
 ### 3.3 Diagrama de Despliegue
-```mermaid
-flowchart LR
-    nodeEdge[Raspberry Pi 4]
-    nodePC[Windows PC]
-    internet((Internet))
-    
-    nodeEdge -- Ngrok Tunnel --> internet
-    internet -- Ngrok Endpoint --> nodePC
-```
+![Diagrama de Despliegue](../imagenesllanque/diagrama_despliegue.png)
+
+**Descripción Formal:** El diagrama de despliegue muestra la topología de red y hardware físico del sistema. Ilustra un nodo cliente (Raspberry Pi 4) operando en el entorno del vehículo (Edge), el cual se comunica bidireccionalmente a través de internet con el nodo servidor (Windows PC). La conexión atraviesa redes con NAT estricto mediante un túnel inverso proporcionado por Ngrok, asegurando la transmisión HTTPS de los eventos de riesgo hacia el servidor.
+
 
 ### 3.4 Registro de Decisiones Arquitectónicas (ADRs)
 - **ADR 01:** Uso de **CustomTkinter** en lugar de PyQt5 para el Edge debido a su ligereza y modernidad estética en pantallas táctiles de baja resolución.
@@ -138,40 +115,16 @@ flowchart LR
 ## Sección 4: Diseño Detallado
 
 ### 4.1 Diagrama de Secuencia (Detección de Fatiga)
-```mermaid
-sequenceDiagram
-    participant Conductor
-    participant Camara
-    participant MotorIA
-    participant AsistenteVoz
-    participant FastAPI_Central
+![Diagrama de Secuencia](../imagenesllanque/diagrama_secuencia.png)
 
-    Conductor->>Camara: Muestra signos de sueño
-    Camara->>MotorIA: Envía Frame de Video
-    MotorIA->>MotorIA: Calcula EAR (Eye Aspect Ratio)
-    alt EAR < Umbral (Fatiga detectada)
-        MotorIA->>AsistenteVoz: Dispara evento Riesgo
-        AsistenteVoz->>Conductor: Reproduce Audio "¡Despierta!"
-        MotorIA->>FastAPI_Central: POST /api/incidente (JSON)
-        FastAPI_Central-->>MotorIA: HTTP 200 OK
-    end
-```
+**Descripción Formal:** Este diagrama de secuencia detalla el flujo de ejecución sincrónico y asincrónico durante un evento de riesgo. Inicia cuando la cámara captura el rostro del conductor y envía el frame al Motor de IA. El motor calcula el Eye Aspect Ratio (EAR). Si el EAR cae por debajo del umbral predefinido (ojos cerrados por más de 1.5s), el sistema entra en estado crítico: dispara simultáneamente una alerta de voz mediante gTTS para despertar al conductor, y emite una petición HTTP POST asincrónica hacia la API central de FastAPI para registrar el incidente.
+
 
 ### 4.2 Diagrama de Estados (Máquina de Estados del Edge)
-```mermaid
-stateDiagram-v2
-    [*] --> Standby
-    Standby --> Autenticando: Ingreso Credenciales
-    Autenticando --> Standby: Error Login
-    Autenticando --> MonitoreoActivo: Login Exitoso
-    
-    MonitoreoActivo --> AnalizandoRostro: Captura Frame
-    AnalizandoRostro --> AlertaCritica: Condición de Riesgo
-    AnalizandoRostro --> MonitoreoActivo: Condición Normal
-    
-    AlertaCritica --> MonitoreoActivo: Tiempo de Enfriamiento
-    MonitoreoActivo --> [*]: Apagar Sistema
-```
+![Diagrama de Estados](../imagenesllanque/diagrama_estados.png)
+
+**Descripción Formal:** El diagrama de máquina de estados modela el ciclo de vida del software del Nodo Edge. Inicia en estado de Standby esperando la autenticación del conductor. Una vez logueado, transita al estado de Monitoreo Activo, donde entra en un bucle continuo de captura de frames y análisis facial. Si se detecta fatiga, el sistema salta al estado de Alerta Crítica (disparando alarmas y peticiones HTTP), y luego retorna al monitoreo tras un tiempo de enfriamiento (cooldown) para evitar saturación de la red.
+
 
 ---
 
