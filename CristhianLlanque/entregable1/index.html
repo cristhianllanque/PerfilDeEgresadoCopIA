@@ -1,0 +1,1772 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación oficial del proyecto CopIA">
+      
+      
+        <meta name="author" content="Equipo CopIA">
+      
+      
+      
+        <link rel="prev" href="../../ChristianSalas/entregable5/">
+      
+      
+        <link rel="next" href="../entregable2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CE021 - Entregable 1: Requerimientos y Diseño del Sistema - Documentación CopIA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entregable-1-especificacion-de-requerimientos-y-diseno-arquitectonico-avanzado" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Documentación CopIA" class="md-header__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación CopIA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Frank Choquehuanca (CE03: Infraestructura)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ChristianSalas/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Christian Salas (CE01: Gestión)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Cristhian Llanque (CE02: Software)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentación CopIA" class="md-nav__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación CopIA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Planificación de Seguridad (CE0321)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Diseño de Centro de Datos (CE0331)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Implementación de Red (CE0312/13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Seguridad y Ética ACM (CE0322/23/24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christian Salas (CE01: Gestión)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Christian Salas (CE01: Gestión)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0113 - Entregable 2: Business Case del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo-extendido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo Extendido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-1-especificacion-exhaustiva-de-requerimientos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 1: Especificación Exhaustiva de Requerimientos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 1: Especificación Exhaustiva de Requerimientos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-requerimientos-funcionales-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Requerimientos Funcionales (RF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-requerimientos-no-funcionales-rnf-estrictos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Requerimientos No Funcionales (RNF) Estrictos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-analisis-profundo-de-reglas-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Análisis Profundo de Reglas de Negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-historias-de-usuario-detalladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Historias de Usuario Detalladas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-2-diseno-de-prototipos-e-interfaz-hombre-maquina-hmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 2: Diseño de Prototipos e Interfaz Hombre-Máquina (HMI)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 2: Diseño de Prototipos e Interfaz Hombre-Máquina (HMI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-flujo-de-navegacion-del-sistema-user-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Flujo de Navegación del Sistema (User Journey)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-arquitectura-visual-y-pantallas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Arquitectura Visual y Pantallas Principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-evidencia-de-validacion-de-usabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Evidencia de Validación de Usabilidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-3-arquitectura-de-software-avanzada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 3: Arquitectura de Software Avanzada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 3: Arquitectura de Software Avanzada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-fundamentacion-del-patron-edge-cloud-hibrido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Fundamentación del Patrón Edge-Cloud Híbrido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-diagrama-estructural-de-componentes-c4-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Diagrama Estructural de Componentes (C4 Model)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-diagrama-de-despliegue-de-infraestructura-e-iot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Diagrama de Despliegue de Infraestructura e IoT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-decisiones-arquitectonicas-adrs-y-factibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Decisiones Arquitectónicas (ADRs) y Factibilidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-4-diseno-logico-detallado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 4: Diseño Lógico Detallado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 4: Diseño Lógico Detallado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-diagrama-de-secuencia-sincronismo-biometrico-telematico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Diagrama de Secuencia (Sincronismo Biométrico-Telemático)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-maquina-de-estados-finitos-automata-del-vehiculo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Máquina de Estados Finitos (Automata) del Vehículo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anexos-documentales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anexos Documentales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexos Documentales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-acta-de-validacion-con-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Acta de Validación con Stakeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-matriz-de-trazabilidad-de-requerimientos-requirements-traceability-matrix-rtm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Matriz de Trazabilidad de Requerimientos (Requirements Traceability Matrix - RTM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE022 - Entregable 2: Plataforma de Datos del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entregable-1-especificacion-de-requerimientos-y-diseno-arquitectonico-avanzado">Entregable 1: Especificación de Requerimientos y Diseño Arquitectónico Avanzado</h1>
+<p><img alt="Logo UPeU" src="../imagenesllanque/logoupeu.png" /></p>
+<h2 id="portada">Portada</h2>
+<ul>
+<li><strong>Título del sistema:</strong> CopAI - Ecosistema Híbrido de Asistencia a la Conducción AI (Edge &amp; Central Server)</li>
+<li><strong>Nombre del estudiante:</strong> Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca</li>
+<li><strong>Semestre:</strong> X</li>
+<li><strong>Fecha:</strong> Julio 2026</li>
+</ul>
+<hr />
+<h2 id="resumen-ejecutivo-extendido">Resumen Ejecutivo Extendido</h2>
+<p>CopAI es una solución integral de asistencia a la conducción y gestión de flotas diseñada para mitigar drásticamente la siniestralidad en carreteras generada por la fatiga y distracción al volante. A diferencia de las soluciones telemáticas convencionales que dependen de servidores en la nube para procesar flujos de video, CopAI descentraliza el poder de cómputo aplicando el paradigma de <strong>Edge AI (Inteligencia Artificial en el Borde)</strong>. </p>
+<p>El sistema se compone de dos módulos hiper-especializados:
+1. <strong>El Nodo Edge (Vehicular):</strong> Soportado por una Raspberry Pi 4/5, este nodo opera de manera autónoma en la cabina del conductor. Procesa video en tiempo real a más de 30 fotogramas por segundo utilizando <strong>MediaPipe</strong> para la inferencia de 468 landmarks faciales de alta precisión. A través de algoritmos matemáticos como el <strong>EAR (Eye Aspect Ratio)</strong> y el <strong>PERCLOS (Percentage of Eye Closure)</strong>, el sistema evalúa el nivel de alerta del usuario. Simultáneamente, el ecosistema integra a nivel de hardware el módulo <strong>SIM7600G-H (LTE/GPS)</strong> a través de interfaces UART/USB, logrando la captura de coordenadas geoespaciales y velocidad con redundancia de transmisión de datos hacia <strong>Firebase</strong> y servidores relacionales.
+2. <strong>El Cerebro Central (Centro de Control):</strong> Una infraestructura Cloud/On-Premise (Servidor Windows) orquestada bajo una arquitectura orientada a microservicios lógicos. Su núcleo, desarrollado en <strong>FastAPI</strong> (Python), procesa de forma asíncrona grandes volúmenes de telemetría provenientes de los vehículos, garantizando la persistencia ACID en <strong>MySQL</strong>. El frontend en <strong>Vue.js</strong> provee a los administradores logísticos un panel de control avanzado con métricas renderizadas vía ECharts, permitiendo la gestión del ciclo de vida de los conductores (CRUD) y el análisis histórico de incidentes mediante túneles seguros gestionados por Ngrok.</p>
+<p>Esta convergencia de tecnologías resuelve un problema sistémico de la industria del transporte: garantizar que las alarmas críticas suenen de manera instantánea (baja latencia) sin depender de la cobertura celular (blind zones), revolucionando los estándares de seguridad industrial vehicular.</p>
+<hr />
+<h2 id="seccion-1-especificacion-exhaustiva-de-requerimientos">Sección 1: Especificación Exhaustiva de Requerimientos</h2>
+<p>El análisis de requisitos fue llevado a cabo utilizando metodologías ágiles y levantamiento de requerimientos IEEE 830, priorizando la resiliencia y el comportamiento determinista del sistema.</p>
+<h3 id="11-requerimientos-funcionales-rf">1.1 Requerimientos Funcionales (RF)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Descripción Detallada del Requerimiento Funcional</th>
+<th style="text-align: left;">Módulo Asociado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RF01</strong></td>
+<td style="text-align: left;">El sistema Edge debe capturar el flujo de video en tiempo real, decodificando los tensores de imagen para extraer los landmarks faciales sin almacenamiento persistente de video (Privacidad por diseño).</td>
+<td style="text-align: left;">Edge (Visión / MediaPipe)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF02</strong></td>
+<td style="text-align: left;">El sistema debe calcular el umbral PERCLOS y el EAR en tiempo real mediante geometría euclidiana, evaluando la apertura ocular en microsegundos.</td>
+<td style="text-align: left;">Edge (Algoritmo IA)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF03</strong></td>
+<td style="text-align: left;">El sistema debe establecer comunicación serial (Baud Rate 115200) con el hardware SIM7600G-H para parsear tramas NMEA y obtener Latitud, Longitud y Velocidad.</td>
+<td style="text-align: left;">Edge (GPS / SIM7600)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF04</strong></td>
+<td style="text-align: left;">Al superar el umbral crítico de fatiga, se disparará una Interrupción (Interrupt) de software para emitir de forma inmediata alertas sonoras cognitivas (gTTS) al conductor.</td>
+<td style="text-align: left;">Edge (Audio)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF05</strong></td>
+<td style="text-align: left;">La interfaz HMI (Human-Machine Interface) en cabina proveerá navegación táctil, menús de Autenticación, Monitoreo asíncrono y panel de diagnósticos.</td>
+<td style="text-align: left;">Edge (GUI / CustomTkinter)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF06</strong></td>
+<td style="text-align: left;">Se implementará un Hilo de Red Dedicado (Network Thread) para orquestar los <em>payloads</em> JSON y despachar alertas asíncronas vía POST hacia el backend central y Firebase.</td>
+<td style="text-align: left;">Edge (Redes / I/O)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF07</strong></td>
+<td style="text-align: left;">El panel web administrativo debe permitir un flujo de trabajo CRUD completo para la Gestión de Conductores, incluyendo deshabilitación lógica (Soft Delete).</td>
+<td style="text-align: left;">Frontend Web (Vue.js)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF08</strong></td>
+<td style="text-align: left;">El administrador debe contar con una vista interactiva de Gestión de Rutas, enlazando vehículos, conductores, puntos de inicio y destino.</td>
+<td style="text-align: left;">Frontend Web (Vue.js)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF09</strong></td>
+<td style="text-align: left;">Renderización reactiva (Data Binding) de cuadros de mando (Dashboards) mostrando KPIs de accidentabilidad y mapas de calor (Heatmaps) de incidentes de fatiga.</td>
+<td style="text-align: left;">Frontend Web (Vue.js)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF10</strong></td>
+<td style="text-align: left;">El backend protegerá todos sus endpoints mediante JWT (JSON Web Tokens) asimétricos, aplicando inyección de dependencias para validar claims de autorización.</td>
+<td style="text-align: left;">Backend (FastAPI)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF11</strong></td>
+<td style="text-align: left;">El sistema proveerá una API RESTful completamente documentada vía Swagger UI para futura interoperabilidad de clientes externos (Empresas Logísticas).</td>
+<td style="text-align: left;">Backend (FastAPI)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-requerimientos-no-funcionales-rnf-estrictos">1.2 Requerimientos No Funcionales (RNF) Estrictos</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Categoría</th>
+<th style="text-align: left;">Criterio de Aceptación (KPI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RNF01</strong></td>
+<td style="text-align: left;"><strong>Rendimiento Computacional</strong></td>
+<td style="text-align: left;">La inferencia de IA (TFLite) no debe superar los 25 ms por fotograma en la Raspberry Pi, asegurando &gt;30 FPS.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RNF02</strong></td>
+<td style="text-align: left;"><strong>Tolerancia a Fallos (Resiliencia)</strong></td>
+<td style="text-align: left;">Ante cortes de red celular, el sistema debe almacenar los <em>payloads</em> de fatiga localmente (Buffer FIFO) e intentar reconexión exponencial.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RNF03</strong></td>
+<td style="text-align: left;"><strong>Seguridad Criptográfica</strong></td>
+<td style="text-align: left;">Las contraseñas se resguardarán en MySQL con Hashing Bcrypt + Salt, previniendo ataques de Fuerza Bruta.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RNF04</strong></td>
+<td style="text-align: left;"><strong>Usabilidad Ergonómica</strong></td>
+<td style="text-align: left;">La HMI usará componentes de alto contraste (Dark Theme UX) para mitigar la fatiga visual (Eye Strain) del chofer en conducción nocturna.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RNF05</strong></td>
+<td style="text-align: left;"><strong>Aprovisionamiento Automático</strong></td>
+<td style="text-align: left;">La inicialización en cabina y del servidor Windows debe ocurrir vía Scripts <code>.sh</code> y <code>.bat</code> sin intervención humana en terminal.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-analisis-profundo-de-reglas-de-negocio">1.3 Análisis Profundo de Reglas de Negocio</h3>
+<ul>
+<li><strong>RN01 (Aislamiento de Operación):</strong> Es imperativo que el bucle principal de inferencia (Video) jamás se bloquee esperando respuestas de la red (Non-Blocking I/O). Un "Timeout" del API no debe retrasar la alarma de voz local.</li>
+<li><strong>RN02 (Algoritmo de Falsos Positivos):</strong> Se define "Fatiga Crítica" sólo si el índice EAR decae por debajo de <strong>0.25</strong> durante <strong>1.5 segundos consecutivos</strong> (~45 fotogramas). Esto discrimina matemáticamente un parpadeo natural de un micro-sueño.</li>
+<li><strong>RN03 (Integridad Relacional):</strong> Un incidente de fatiga es inválido si no posee estampa de tiempo (Timestamp) ni geocoordenada, asegurando trazabilidad jurídica.</li>
+</ul>
+<h3 id="14-historias-de-usuario-detalladas">1.4 Historias de Usuario Detalladas</h3>
+<ul>
+<li><strong>HU01:</strong> Como <em>Conductor de Flota Pesada</em>, quiero <em>iniciar sesión en la HMI táctil usando un teclado en pantalla</em> para <em>vincular la bitácora de viaje a mi perfil corporativo.</em></li>
+<li><strong>HU02:</strong> Como <em>Conductor de Flota Pesada</em>, quiero <em>que el sistema emita una alarma estridente en milisegundos</em> cuando <em>mis párpados cedan al sueño</em>, para <em>evitar un despiste en carreteras montañosas.</em></li>
+<li><strong>HU03:</strong> Como <em>Administrador Logístico</em>, quiero <em>iniciar sesión en un portal web corporativo</em> para <em>observar el "Dashboard de Salud" de mis 300 unidades en tiempo real.</em></li>
+<li><strong>HU04:</strong> Como <em>Administrador Logístico</em>, quiero <em>visualizar un historial tabular de las geocoordenadas (Lat/Lon) de las fatigas</em> para <em>identificar "Zonas Cero" en mis rutas y proponer paradas de descanso.</em></li>
+</ul>
+<hr />
+<h2 id="seccion-2-diseno-de-prototipos-e-interfaz-hombre-maquina-hmi">Sección 2: Diseño de Prototipos e Interfaz Hombre-Máquina (HMI)</h2>
+<p><em>El diseño de interfaz ha sido desarrollado bajo los principios de Material Design y la teoría de reducción de carga cognitiva.</em></p>
+<h3 id="21-flujo-de-navegacion-del-sistema-user-journey">2.1 Flujo de Navegación del Sistema (User Journey)</h3>
+<ol>
+<li><strong>Capa Física (Edge):</strong> Bootloader del OS -&gt; Lanzamiento automático GUI (CustomTkinter) -&gt; Pantalla Autenticación -&gt; Panel Principal -&gt; Sub-bucle de Conducción Activa.</li>
+<li><strong>Capa Lógica (Web):</strong> Auth Guard Middleware -&gt; SPA (Single Page Application) -&gt; Dashboard Analítico -&gt; Módulos CRUD Dinámicos.</li>
+</ol>
+<h3 id="22-arquitectura-visual-y-pantallas-principales">2.2 Arquitectura Visual y Pantallas Principales</h3>
+<ul>
+<li>
+<p><strong>HMI Vehicular: Autenticación Edge</strong>
+  <img alt="Login Edge" src="../imagenesllanque/login_edge.png" />
+  <strong>Justificación de Diseño:</strong> Desarrollado sobre el framework asíncrono CustomTkinter. Incorpora un esquema de color negro puro/azul neón para integrarse con la iluminación de los tableros vehiculares modernos. Evita cajas de texto pequeñas; emplea botones gruesos para respuesta háptica al tacto del conductor.</p>
+</li>
+<li>
+<p><strong>HMI Vehicular: Monitoreo en Tiempo Real (Heads-Up Display)</strong>
+  <img alt="Monitor Edge" src="../imagenesllanque/monitor_edge.png" />
+  <strong>Justificación de Diseño:</strong> Constituye el núcleo biométrico del sistema. Superpone los tensores y polígonos faciales de MediaPipe sobre el canvas de video. Proporciona en los márgenes la retroalimentación de telemetría (Baudios del GPS, Fix Satelital, Velocidad en km/h). La CPU se encarga de renderizar la malla solo si se detecta un rostro (Face Mesh Confidence &gt; 0.5).</p>
+</li>
+<li>
+<p><strong>Portal Web Corporativo (Cerebro Central)</strong>
+  <img alt="Dashboard Web" src="../imagenesllanque/dashboard_web.png" />
+  <strong>Justificación de Diseño:</strong> Construido sobre Vue.js + TailwindCSS. Es una aplicación web reactiva SPA. Los controladores de estado manejan las peticiones a FastAPI, inyectando los arreglos JSON en los componentes Chart.js para ilustrar curvas de fatiga, rankings de conductores y distribución de rutas.</p>
+</li>
+</ul>
+<h3 id="23-evidencia-de-validacion-de-usabilidad">2.3 Evidencia de Validación de Usabilidad</h3>
+<p><img alt="Evidencia de Prueba" src="../imagenesllanque/evidencia_prueba.png" />
+<em>(Se verificó que los tiempos de respuesta del panel táctil en la Raspberry Pi se mantengan fluidos pese a la carga computacional de fondo).</em></p>
+<hr />
+<h2 id="seccion-3-arquitectura-de-software-avanzada">Sección 3: Arquitectura de Software Avanzada</h2>
+<h3 id="31-fundamentacion-del-patron-edge-cloud-hibrido">3.1 Fundamentación del Patrón Edge-Cloud Híbrido</h3>
+<p>La arquitectura CopAI rechaza el paradigma monolítico tradicional en favor de una descentralización topológica (Edge Computing).
+- <strong>Razonamiento Técnico:</strong> Enviar flujo RTSP (video a 1080p) a la nube para ser procesado por una IA remota requeriría más de 10 Mbps de subida constante por vehículo. En carreteras latinoamericanas de penetración (3G/EDGE), esto provocaría caída masiva de paquetes, un retardo (Lag) en la alarma de hasta 5 segundos, y el inminente choque del vehículo.
+- <strong>La Solución CopAI:</strong> Al delegar la inferencia vectorial (Multi-Layer Perceptron / CNN) al SOC (System-on-a-Chip) de la Raspberry Pi, la alarma se procesa en el bus local de memoria, logrando una latencia de <strong>0 milisegundos</strong>. Solo se exporta un payload JSON de escasos 400 bytes hacia el Cloud, garantizando interoperabilidad incluso en redes 2.5G.</p>
+<h3 id="32-diagrama-estructural-de-componentes-c4-model">3.2 Diagrama Estructural de Componentes (C4 Model)</h3>
+<p><img alt="Diagrama de Componentes" src="../imagenesllanque/diagrama_componentes.png" /></p>
+<p><strong>Análisis Detallado de Interacción:</strong> 
+El ecosistema se fragmenta en cuatro grandes bloques (Micro-núcleos):
+1. <strong>Edge AI Vision Engine:</strong> Consume la interfaz OpenCV (<code>cv2.VideoCapture</code>), vectoriza la imagen (RGB conversion) y la pasa al grafo lógico de MediaPipe para obtener los 468 <code>(x, y, z)</code> puntos faciales.
+2. <strong>Telemetry Hardware Adapter:</strong> Bucle paralelo que lee buffers del puerto <code>/dev/ttyUSB2</code> (SIM7600G-H), utilizando expresiones regulares (RegEx) para decodificar oraciones NMEA ($GPRMC, $GPGGA) y extraer la geografía.
+3. <strong>API Gateway / Core Backend:</strong> Servidor Uvicorn/FastAPI que funge como puente. Emplea middlewares CORS y valida los Bearer Tokens (JWT).
+4. <strong>Data Persistence Layer:</strong> Capa dual. Firebase Realtime DB para sockets/push veloz, y MySQL administrado a nivel objeto mediante SQLAlchemy, para las consultas de agrupación estadística en la web.</p>
+<h3 id="33-diagrama-de-despliegue-de-infraestructura-e-iot">3.3 Diagrama de Despliegue de Infraestructura e IoT</h3>
+<p><img alt="Diagrama de Despliegue" src="../imagenesllanque/diagrama_despliegue.png" /></p>
+<p><strong>Estrategia de Topología de Red:</strong>
+El diagrama expone el enrutamiento complejo: La Raspberry Pi (Hardware BCM2711) reside tras un NAT celular hiper-estricto. Para lograr que la Raspberry inyecte datos en un Servidor Windows privado, se utiliza el proxy inverso <strong>Ngrok</strong> que crea un túnel cifrado (TLS 1.3), superponiendo una red virtual (Overlay Network) sobre el internet público. Esto une el perímetro físico del vehículo con el centro de datos corporativo.</p>
+<h3 id="34-decisiones-arquitectonicas-adrs-y-factibilidad">3.4 Decisiones Arquitectónicas (ADRs) y Factibilidad</h3>
+<ul>
+<li><strong>ADR 01 - Cuantización de Modelos:</strong> Priorizar el backend TFLite de MediaPipe frente a PyTorch/YOLOv8. La inferencia TFLite usa representación INT8 (8 bits), lo que permite que la Raspberry Pi evalúe las redes neuronales a 30 FPS sin colapsar térmicamente, ahorrando la compra de Aceleradores TPU de Google ($80 USD adicionales).</li>
+<li><strong>ADR 02 - Comunicación Multi-hilo (Threading):</strong> Es crucial el patrón <code>threading.Thread</code> en Python para el módulo GPS y las peticiones web (<code>requests.post</code>). Python posee el Global Interpreter Lock (GIL), pero para operaciones I/O (Red/Serial) libera el GIL, permitiendo que la interfaz no se congele durante reconexiones.</li>
+</ul>
+<hr />
+<h2 id="seccion-4-diseno-logico-detallado">Sección 4: Diseño Lógico Detallado</h2>
+<h3 id="41-diagrama-de-secuencia-sincronismo-biometrico-telematico">4.1 Diagrama de Secuencia (Sincronismo Biométrico-Telemático)</h3>
+<p><img alt="Diagrama de Secuencia" src="../imagenesllanque/diagrama_secuencia.png" /></p>
+<p><strong>Desglose Algorítmico del Flujo:</strong>
+1. El sensor CMOS de la cámara dispara el Evento <code>Read_Frame</code>.
+2. El fotograma es normalizado y procesado por la red neuronal densa (Face Mesh).
+3. Se invoca la función <code>calculate_EAR(ojo_izquierdo, ojo_derecho)</code>. Se computan las distancias euclidianas entre los landmarks verticales (párpados) y horizontales.
+4. Si el ratio promedio es <code>&lt; 0.25</code>, un contador temporal se incrementa. Si el contador excede el <em>Threshold</em> de tiempo (1.5s), ocurre el <strong>Trigger de Fatiga</strong>.
+5. <em>Bifurcación Inmediata:</em>
+   - <strong>Hilo Main:</strong> Invoca al OS de la Raspberry para hacer <em>Playback</em> de audio <code>.mp3</code> (¡Alarma!).
+   - <strong>Hilo Network:</strong> Solicita al módulo SIM7600 la última posición válida en memoria. Empaqueta el JSON <code>{conductor_id, lat, lon, ear, timestamp}</code> y ejecuta un HTTP POST hacia la URL de Ngrok.
+6. FastAPI recibe, decodifica, valida el esquema Pydantic y ejecuta un <code>session.commit()</code> en MySQL.</p>
+<h3 id="42-maquina-de-estados-finitos-automata-del-vehiculo">4.2 Máquina de Estados Finitos (Automata) del Vehículo</h3>
+<p><img alt="Diagrama de Estados" src="../imagenesllanque/diagrama_estados.png" /></p>
+<p><strong>Semántica de Transiciones:</strong>
+- <strong>Estado 1 [IDLE]:</strong> Interfaz bloqueada esperando login.
+- <strong>Transición T1:</strong> JWT de conductor válido -&gt; Salto a [MENÚ_PRINCIPAL].
+- <strong>Estado 2 [MONITOREO_ACTIVO]:</strong> Estado crítico. Loop infinito de procesamiento biométrico. Ojos abiertos = Retorno sobre sí mismo.
+- <strong>Transición T2 (Evento Pestañeo Crítico):</strong> Se viola la barrera matemática del EAR -&gt; Salto a [ALERTA_EMITIDA].
+- <strong>Estado 3 [ALERTA_EMITIDA]:</strong> Ejecución de rutinas de emergencia. Bloqueo temporal de nuevas alertas (Debounce/Cooldown de 5 segundos) para no saturar los hilos de red (Denegación de Servicio propia).
+- <strong>Transición T3 (Recovery):</strong> Fin del cooldown -&gt; Retorno a [MONITOREO_ACTIVO].</p>
+<hr />
+<h2 id="anexos-documentales">Anexos Documentales</h2>
+<h3 id="51-acta-de-validacion-con-stakeholders">5.1 Acta de Validación con Stakeholders</h3>
+<p><img alt="acta" src="./imagenesllanque/acta_stakeholders.png" /></p>
+<h3 id="52-matriz-de-trazabilidad-de-requerimientos-requirements-traceability-matrix-rtm">5.2 Matriz de Trazabilidad de Requerimientos (Requirements Traceability Matrix - RTM)</h3>
+<p>Esta matriz garantiza que ningún código se programó "por programar" y que cada bloque arquitectónico responde a una necesidad del negocio.</p>
+<table>
+<thead>
+<tr>
+<th>ID Requerimiento</th>
+<th>Módulo Físico / Lógico Asociado</th>
+<th>Metodología de Validación / Testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RF01, RF02</strong></td>
+<td>Motor de Borde (MediaPipe / Cálculo PERCLOS)</td>
+<td>Pruebas Unitarias &amp; Inyección de ruido en video (Fuzzing).</td>
+</tr>
+<tr>
+<td><strong>RF03, RN03</strong></td>
+<td>UART Adapter (SIM7600G-H)</td>
+<td>Validación cruzada de NMEA contra Google Maps API.</td>
+</tr>
+<tr>
+<td><strong>RF07, RF08</strong></td>
+<td>Panel Administrativo (Vue.js + FastAPI)</td>
+<td>Pruebas de Integración End-to-End con Postman (HTTP 200 OK).</td>
+</tr>
+<tr>
+<td><strong>RF10 (Seguridad)</strong></td>
+<td>Auth Guard (JWT Bearer Token)</td>
+<td>Ataques simulados de manipulación de Payload (OWASP Testing).</td>
+</tr>
+<tr>
+<td><strong>RNF01 (Rendimiento)</strong></td>
+<td>Raspberry Pi 5 CPU (ARM Cortex-A76)</td>
+<td>Pruebas de estrés térmico (Stress-ng) e inspección con <code>htop</code>.</td>
+</tr>
+<tr>
+<td><strong>RNF04 (UX/UI)</strong></td>
+<td>Motor Gráfico CustomTkinter (Dark Mode)</td>
+<td>Sesiones de evaluación heurística con conductores de camión reales.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1634 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación oficial del proyecto CopIA">
+      
+      
+        <meta name="author" content="Equipo CopIA">
+      
+      
+      
+        <link rel="prev" href="../entregable2/">
+      
+      
+        <link rel="next" href="../entregable4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CE023 - Entregable 3: Sistema de Software Funcional Integrado - Documentación CopIA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entregable-3-sistema-de-software-funcional-integrado" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Documentación CopIA" class="md-header__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación CopIA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CE023 - Entregable 3: Sistema de Software Funcional Integrado
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Frank Choquehuanca (CE03: Infraestructura)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ChristianSalas/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Christian Salas (CE01: Gestión)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../entregable1/" class="md-tabs__link">
+          
+  
+  
+  Cristhian Llanque (CE02: Software)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentación CopIA" class="md-nav__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación CopIA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Planificación de Seguridad (CE0321)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Diseño de Centro de Datos (CE0331)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Implementación de Red (CE0312/13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Seguridad y Ética ACM (CE0322/23/24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christian Salas (CE01: Gestión)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Christian Salas (CE01: Gestión)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0113 - Entregable 2: Business Case del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ChristianSalas/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE022 - Entregable 2: Plataforma de Datos del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-1-arquitectura-e-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 1: Arquitectura e Integración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 1: Arquitectura e Integración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-arquitectura-general-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Arquitectura General del Sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-capas-y-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Capas y Módulos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-integracion-con-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Integración con Base de Datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-integracion-con-apis-y-servicios-externos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Integración con APIs y Servicios Externos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-2-funcionalidad-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 2: Funcionalidad del Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 2: Funcionalidad del Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-flujos-principales-implementados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Flujos Principales Implementados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-gestion-de-usuarios-permisos-y-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Gestión de Usuarios, Permisos y Roles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-evidencias-funcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Evidencias Funcionales
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-3-codigo-y-diseno-tecnico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 3: Código y Diseño Técnico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 3: Código y Diseño Técnico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-estructura-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Estructura del Repositorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-patrones-y-buenas-practicas-aplicadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Patrones y Buenas Prácticas Aplicadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-modularidad-y-desacoplamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Modularidad y Desacoplamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-manejo-de-errores-y-validaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Manejo de Errores y Validaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-4-despliegue-o-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 4: Despliegue o Instalación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 4: Despliegue o Instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-configuracion-e-instalacion-del-nodo-edge-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Configuración e Instalación del Nodo Edge (Raspberry Pi)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-configuracion-e-instalacion-del-servidor-central-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Configuración e Instalación del Servidor Central (Windows)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-evidencia-de-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Evidencia de Despliegue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anexos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anexos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anexos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-enlace-a-repositorio-fuente-y-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Enlace a Repositorio Fuente y Manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-capturas-de-desempeno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Capturas de Desempeño
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entregable-3-sistema-de-software-funcional-integrado">Entregable 3: Sistema de Software Funcional Integrado</h1>
+<p><img alt="Logo UPeU" src="../imagenesllanque/logoupeu.png" /></p>
+<h2 id="portada">Portada</h2>
+<ul>
+<li><strong>Título del sistema:</strong> CopAI - Asistente de Conducción AI (Edge &amp; Central Server)</li>
+<li><strong>Nombre del estudiante:</strong> Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca</li>
+<li><strong>Semestre:</strong> X</li>
+<li><strong>Fecha:</strong> Julio 2026</li>
+<li><strong>URL del Repositorio:</strong> <a href="https://github.com/cristhianllanque/Equipo-CopIA">https://github.com/cristhianllanque/Equipo-CopIA</a></li>
+</ul>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo</h2>
+<p><strong>CopAI</strong> es un sistema de software funcional distribuido (Edge-to-Cloud) que resuelve la problemática de los accidentes de tránsito ocasionados por la fatiga y distracción de conductores de flotas pesadas e interprovinciales. El sistema revoluciona los enfoques tradicionales al trasladar el procesamiento de Inteligencia Artificial pesada directamente a la cabina del vehículo (Nodo Edge en Raspberry Pi 4), garantizando que las alertas de micro-sueños se disparen en tiempo real, incluso si el vehículo atraviesa zonas sin cobertura de internet (zonas ciegas).</p>
+<p>El software está 100% operativo y cuenta con una arquitectura híbrida: un cliente pesado en el vehículo que analiza video y extrae telemetría (módulo GPS SIM7600G-H), y una plataforma de administración central (API FastAPI + Vue.js + MySQL) operada por la empresa de transportes. La empresa puede observar el estado de su flota en vivo gracias a los túneles inversos (Ngrok) y la persistencia en Firebase. El resultado final es un ecosistema resiliente, escalable y automatizado que salva vidas.</p>
+<hr />
+<h2 id="seccion-1-arquitectura-e-integracion">Sección 1: Arquitectura e Integración</h2>
+<h3 id="11-arquitectura-general-del-sistema">1.1 Arquitectura General del Sistema</h3>
+<p>CopAI implementa una arquitectura distribuida <strong>Edge-Cloud</strong>. Para evitar la latencia de enviar video por redes celulares inestables, el procesamiento (Inferencia AI) es estrictamente local en el <em>Edge</em>. El Servidor Central opera bajo el patrón de microservicios lógicos encapsulados en un monolito modular, proporcionando APIs RESTful.</p>
+<h3 id="12-capas-y-modulos">1.2 Capas y Módulos</h3>
+<ol>
+<li><strong>Capa Edge (Vehículo - Python/CustomTkinter):</strong></li>
+<li><strong>Módulo de Visión AI:</strong> Implementa MediaPipe para extraer 468 landmarks faciales. Calcula en cada frame (a 30 FPS) el <strong>PERCLOS</strong> (Percentage of Eye Closure) y el <strong>EAR</strong> (Eye Aspect Ratio).</li>
+<li><strong>Módulo de Telemetría (Hardware-in-the-loop):</strong> Se comunica vía interfaz Serial con el módulo SIM7600G-H para capturar Latitud, Longitud y Velocidad.</li>
+<li><strong>Módulo de HMI (Human-Machine Interface):</strong> Interfaz gráfica táctil en Dark Mode.</li>
+<li><strong>Capa de Lógica Central (Servidor Windows - Python/FastAPI):</strong></li>
+<li>API RESTful protegida con JSON Web Tokens (JWT) y validación de esquemas con Pydantic.</li>
+<li><strong>Capa de Presentación (Web - Vue.js/Tailwind CSS):</strong></li>
+<li>Dashboard analítico Single Page Application (SPA) consumiendo la API Central.</li>
+</ol>
+<h3 id="13-integracion-con-base-de-datos">1.3 Integración con Base de Datos</h3>
+<p>La persistencia es garantizada mediante la librería <strong>SQLAlchemy (ORM)</strong> conectada a <strong>MySQL</strong>. Esto desacopla el código de la base de datos, permitiendo sanitización automática de entradas (evitando SQL Injection) y manejo transaccional seguro al registrar los <code>eventos_fatiga</code> asincrónicamente.</p>
+<h3 id="14-integracion-con-apis-y-servicios-externos">1.4 Integración con APIs y Servicios Externos</h3>
+<ul>
+<li><strong>Ngrok API:</strong> Orquestación de redes superpuestas. Permite exponer la API local del Servidor Windows a la red pública (internet móvil del vehículo) sorteando el NAT estricto de las operadoras telefónicas.</li>
+<li><strong>Google Text-to-Speech (gTTS):</strong> Servicio utilizado localmente para sintetizar y emitir alertas auditivas al conductor ("¡Alerta, fatiga detectada!").</li>
+<li><strong>Firebase Realtime Database:</strong> Integración NoSQL secundaria para empuje (Push) de telemetría de alta velocidad, asegurando redundancia de los datos.</li>
+</ul>
+<hr />
+<h2 id="seccion-2-funcionalidad-del-sistema">Sección 2: Funcionalidad del Sistema</h2>
+<h3 id="21-flujos-principales-implementados">2.1 Flujos Principales Implementados</h3>
+<ol>
+<li><strong>Flujo de Arranque Vehicular:</strong> El conductor enciende el vehículo, el sistema inicia automáticamente. El conductor ingresa sus credenciales en la pantalla táctil de la Raspberry Pi.</li>
+<li><strong>Flujo de Detección (Bucle Crítico):</strong> </li>
+<li>La cámara lee el rostro. MediaPipe extrae los puntos.</li>
+<li>Algoritmo matemático calcula el EAR. Si EAR &lt; 0.25 durante 1.5 segundos, se dispara bandera crítica.</li>
+<li>Hilo de voz ejecuta alarma. Hilo de red recopila GPS (SIM7600) y dispara un <code>POST /api/incidente</code>.</li>
+<li><strong>Flujo de Monitoreo Web:</strong> El Administrador ingresa al Panel Vue.js, observa las métricas actualizadas en gráficas ECharts y gestiona las rutas.</li>
+</ol>
+<h3 id="22-gestion-de-usuarios-permisos-y-roles">2.2 Gestión de Usuarios, Permisos y Roles</h3>
+<p>El sistema maneja dos dominios de autenticación estrictamente separados:
+- <strong>Rol Conductor (Edge):</strong> Autenticación básica contra endpoint <code>/api/login_edge</code>. Tienen acceso exclusivo a la interfaz de conducción, sin privilegios de lectura de reportes.
+- <strong>Rol Administrador (Web):</strong> Autenticación JWT contra endpoint <code>/api/admin/login</code>. Acceso total al CRUD de Conductores, Rutas, y dashboard estadístico.</p>
+<h3 id="23-evidencias-funcionales">2.3 Evidencias Funcionales</h3>
+<p><img alt="Funcionamiento Sistema1" src="../imagenesllanque/evidencia_funcionamiento1.jpeg" />
+<img alt="Funcionamiento Sistema2" src="../imagenesllanque/evidencia_funcionamiento2.jpeg" />
+<img alt="Funcionamiento Sistema3" src="../imagenesllanque/evidencia_funcionamiento3.jpeg" /></p>
+<hr />
+<h2 id="seccion-3-codigo-y-diseno-tecnico">Sección 3: Código y Diseño Técnico</h2>
+<h3 id="31-estructura-del-repositorio">3.1 Estructura del Repositorio</h3>
+<p>El repositorio <code>Equipo-CopIA</code> está estructurado bajo principios de modularidad (Separation of Concerns):</p>
+<pre><code class="language-text">/Equipo-CopIA
+├── /Frontend/           # Código fuente Vue.js, componentes y assets.
+├── /scripts/            # Scripts de Bash (.sh) para aprovisionamiento automatizado.
+├── api_main.py          # Entry-point del Backend FastAPI (Controladores).
+├── raspberry_gui.py     # Lógica del Nodo Edge (CustomTkinter + IA Vision).
+├── server_dashboard.py  # Interfaz gráfica de orquestación de servidores en Windows.
+├── requirements.txt     # Dependencias de Python estandarizadas.
+└── iniciar_servidores.bat # Script Batch de despliegue en Central.
+</code></pre>
+<h3 id="32-patrones-y-buenas-practicas-aplicadas">3.2 Patrones y Buenas Prácticas Aplicadas</h3>
+<ul>
+<li><strong>Programación Asíncrona (Concurrency):</strong> En el nodo Edge, el procesamiento de video y la interfaz gráfica corren en el hilo principal (<code>mainloop</code>), mientras que el consumo del GPS SIM7600 y las peticiones HTTP a FastAPI corren en <strong>hilos secundarios (Threading)</strong>. Esto evita que la interfaz se congele si la red falla.</li>
+<li><strong>Inyección de Dependencias:</strong> Utilizado en FastAPI para proveer las sesiones de base de datos (<code>get_db</code>) a las rutas.</li>
+<li><strong>ORM (Object-Relational Mapping):</strong> Las entidades de la base de datos se mapean como Clases en Python (Pydantic Models), asegurando tipado estricto.</li>
+</ul>
+<h3 id="33-modularidad-y-desacoplamiento">3.3 Modularidad y Desacoplamiento</h3>
+<p>El sistema Edge es completamente tolerante a fallos de red. La cámara y el algoritmo de fatiga no dependen de que haya conexión a internet. Si el servidor central cae, la Raspberry Pi sigue alertando al conductor localmente de manera ininterrumpida.</p>
+<h3 id="34-manejo-de-errores-y-validaciones">3.4 Manejo de Errores y Validaciones</h3>
+<ul>
+<li><strong>Try-Catch de Red:</strong> Todos los bloques <code>requests.post()</code> en <code>raspberry_gui.py</code> están encapsulados con <code>Timeout</code> y manejo de excepciones (<code>requests.exceptions.RequestException</code>). Si Ngrok cambia de URL, el sistema captura el error y permite actualizar la URL desde un script dinámico (<code>update_url.sh</code>) sin reescribir código fuente.</li>
+<li><strong>Watchdogs:</strong> En el Servidor Central, <code>server_dashboard.py</code> implementa un "escáner" que hace <em>pings</em> (HTTP 200) a los puertos 8000, 5173 y 4040 antes de habilitar el botón de apertura del sistema web.</li>
+</ul>
+<hr />
+<h2 id="seccion-4-despliegue-o-instalacion">Sección 4: Despliegue o Instalación</h2>
+<p>Para demostrar la calidad de Grado/Tesis, el equipo ha erradicado el trabajo manual mediante aprovisionamiento automatizado (Infraestructura como Código - Shell/Batch).</p>
+<h3 id="41-configuracion-e-instalacion-del-nodo-edge-raspberry-pi">4.1 Configuración e Instalación del Nodo Edge (Raspberry Pi)</h3>
+<p>El despliegue en cabina se automatizó en un 100% mediante Bash Scripting y Miniforge (Conda):</p>
+<pre><code class="language-bash">git clone https://github.com/cristhianllanque/Equipo-CopIA.git
+cd Equipo-CopIA
+bash scripts/install_raspberry.sh
+</code></pre>
+<p><em>El script <code>install_raspberry.sh</code> descarga Miniforge, crea el entorno aislado Python 3.11, instala <code>pydantic-core</code> (compilado para ARM64) y crea un Acceso Directo de escritorio LXDE para el conductor.</em></p>
+<p><img alt="Instalacion raspberry" src="../imagenesllanque/evidencia_instalacionraspberry.jpeg" /></p>
+<h3 id="42-configuracion-e-instalacion-del-servidor-central-windows">4.2 Configuración e Instalación del Servidor Central (Windows)</h3>
+<p>El centro de control no requiere uso de la terminal por parte del cliente. Se ha programado una aplicación orquestadora (<code>server_dashboard.py</code>) y un <code>.bat</code> que:
+1. Verifica la inicialización de MySQL (XAMPP).
+2. Levanta FastAPI, Vue.js y Ngrok de forma invisible (procesos <code>pythonw.exe</code>).
+3. Retorna la URL generada de Ngrok al operador.</p>
+<h3 id="43-evidencia-de-despliegue">4.3 Evidencia de Despliegue</h3>
+<p><img alt="Despliegue Edge" src="../imagenesllanque/evidencia_despliegue.png" /></p>
+<hr />
+<h2 id="anexos">Anexos</h2>
+<h3 id="51-enlace-a-repositorio-fuente-y-manual">5.1 Enlace a Repositorio Fuente y Manual</h3>
+<p>El código completo, historial de commits y manual de usuario (README.md) se encuentra disponible públicamente en GitHub:
+<strong>Repositorio Oficial:</strong> <a href="https://github.com/cristhianllanque/Equipo-CopIA">https://github.com/cristhianllanque/Equipo-CopIA</a></p>
+<h3 id="52-capturas-de-desempeno">5.2 Capturas de Desempeño</h3>
+<p>Se ha comprobado que el sistema mantiene un uso de CPU por debajo del 65% en la Raspberry Pi 5 gracias al procesamiento en formato de tensor optimizado (TFLite) integrado en MediaPipe.</p>
+<p><img alt="Uso de CPU Raspberry Pi 5" src="../imagenesllanque/evidencia_cpu.jpeg" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

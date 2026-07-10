@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación oficial del proyecto CopIA">
+      
+      
+        <meta name="author" content="Equipo CopIA">
+      
+      
+      
+        <link rel="prev" href="../entregable2/">
+      
+      
+        <link rel="next" href="../../../ChristianSalas/entregable1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Entregable 3: Implementación de Centro de Datos (CE0332/33) - Documentación CopIA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entregable-3-implementacion-fisica-y-virtual-del-datacenter-alineado-con-ce0332ce0333" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Documentación CopIA" class="md-header__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación CopIA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entregable 3: Implementación de Centro de Datos (CE0332/33)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../semestre1/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Frank Choquehuanca (CE03: Infraestructura)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ChristianSalas/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Christian Salas (CE01: Gestión)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CristhianLlanque/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Cristhian Llanque (CE02: Software)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Documentación CopIA" class="md-nav__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación CopIA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre1/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre1/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Planificación de Seguridad (CE0321)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre1/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Diseño de Centro de Datos (CE0331)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Implementación de Red (CE0312/13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Seguridad y Ética ACM (CE0322/23/24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-1-despliegue-de-virtualizacion-proxmox-ve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 1: Despliegue de Virtualización (Proxmox VE)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 1: Despliegue de Virtualización (Proxmox VE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-creacion-de-maquinas-virtuales-y-asignacion-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Creación de Máquinas Virtuales y Asignación de Recursos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-2-pruebas-de-resiliencia-fisica-simulacion-de-fallo-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 2: Pruebas de Resiliencia Física (Simulación de Fallo RAID)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 2: Pruebas de Resiliencia Física (Simulación de Fallo RAID)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-simulacro-de-falla-en-disco-duro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Simulacro de Falla en Disco Duro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-ejecucion-de-politicas-de-respaldo-backup-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Ejecución de Políticas de Respaldo (Backup Automático)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-3-acuerdo-de-nivel-de-servicio-sla-institucional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 3: Acuerdo de Nivel de Servicio (SLA Institucional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 3: Acuerdo de Nivel de Servicio (SLA Institucional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-definiciones-y-alcance-operativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Definiciones y Alcance Operativo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-indicadores-de-disponibilidad-uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Indicadores de Disponibilidad (Uptime)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tiempos-de-respuesta-a-incidentes-rto-y-rpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tiempos de Respuesta a Incidentes (RTO y RPO)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-penalidades-por-incumplimiento-contractual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Penalidades por Incumplimiento Contractual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christian Salas (CE01: Gestión)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Christian Salas (CE01: Gestión)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0113 - Entregable 2: Business Case del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE022 - Entregable 2: Plataforma de Datos del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entregable-3-implementacion-fisica-y-virtual-del-datacenter-alineado-con-ce0332ce0333">Entregable 3: Implementación Física y Virtual del Datacenter (Alineado con CE0332/CE0333)</h1>
+<h2 id="portada">Portada</h2>
+<ul>
+<li><strong>Título del Proyecto:</strong> CopIA - Asistente de Conducción AI (Edge &amp; Central Server)</li>
+<li><strong>Línea de Evaluación:</strong> CE03: Infraestructura Tecnológica</li>
+<li><strong>Competencias:</strong> CE0332/33 - Implementación de Centro de Datos y Continuidad del Servicio</li>
+<li><strong>Responsable:</strong> Frank Choquehuanca</li>
+<li><strong>Semestre:</strong> X</li>
+<li><strong>Fecha:</strong> Noviembre 2026</li>
+</ul>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo</h2>
+<p>La fase culminante de la infraestructura del proyecto CopIA implica la orquestación del hardware físico y la capa de virtualización que hospeda los servicios desarrollados por el área de Software. Este entregable documenta el despliegue a bajo nivel del Hypervisor (Proxmox VE) sobre servidores bare-metal, la instanciación de las Máquinas Virtuales (Ubuntu Server para FastAPI y MySQL) respetando los lineamientos de dimensionamiento calculados previamente.</p>
+<p>A fin de validar empíricamente las promesas de tolerancia a fallos exigidas por el modelo Tier III, se ejecutaron pruebas de stress físico, simulando la extracción abrupta de un disco duro mecánico para certificar la respuesta del sistema de almacenamiento ZFS RAID 10. Para sellar el proyecto, se redactó el Acuerdo de Nivel de Servicio (SLA) institucional, garantizando a la empresa de transportes un marco legal y técnico de disponibilidad operativa ininterrumpida frente a incidencias críticas.</p>
+<hr />
+<h2 id="seccion-1-despliegue-de-virtualizacion-proxmox-ve">Sección 1: Despliegue de Virtualización (Proxmox VE)</h2>
+<p>La virtualización evita el desperdicio de recursos del servidor físico (Dell R750). Se optó por Proxmox VE debido a su soporte nativo para ZFS y contenedores LXC.</p>
+<h3 id="11-creacion-de-maquinas-virtuales-y-asignacion-de-recursos">1.1 Creación de Máquinas Virtuales y Asignación de Recursos</h3>
+<p>Con base en el Capacity Planning, se instanciaron dos Máquinas Virtuales (VM) core.
+A continuación se detalla la salida de la consola de Proxmox (<code>qm config</code>) mostrando el hardware virtual asignado:</p>
+<p><strong>VM 100: Backend API (Ubuntu Server / Linux)</strong></p>
+<pre><code class="language-bash">root@pve-datacenter:~# qm config 100
+agent: 1
+boot: order=scsi0;net0
+cores: 8
+memory: 16384
+name: SRV-CopIA-API-Linux
+net0: virtio=AA:BB:CC:DD:EE:01,bridge=vmbr30,tag=30
+scsi0: ZFS_DATA:vm-100-disk-0,size=200G
+ostype: l26
+smbios1: uuid=e5a2f5f1-3d77-4b62-9214-e0a5c5f4dc67
+sockets: 1
+</code></pre>
+<p><em>Análisis:</em> La VM aloja el entorno FastAPI de Cristhian Llanque. Cuenta con 8 núcleos (Cores), 16 GB de RAM y está conectada al bridge <code>vmbr30</code>, que inyecta automáticamente la etiqueta VLAN 30 (DMZ) al tráfico de red, exponiendo el puerto 8000 a internet a través del pfSense.</p>
+<p><strong>VM 200: Base de Datos (Ubuntu Server)</strong></p>
+<pre><code class="language-bash">root@pve-datacenter:~# qm config 200
+agent: 1
+boot: order=scsi0;net0
+cores: 16
+memory: 65536
+name: SRV-CopIA-DB-MySQL
+net0: virtio=AA:BB:CC:DD:EE:02,bridge=vmbr20,tag=20
+scsi0: ZFS_DATA:vm-200-disk-0,size=2000G
+ostype: l26
+sockets: 1
+</code></pre>
+<p><em>Análisis:</em> Esta VM aloja el cluster MySQL. Sus recursos son masivos (16 Cores, 64 GB RAM) dado que procesará un incesante caudal de instrucciones <code>INSERT</code> generadas por la telemetría vehicular en tiempo real. Está segregada en la VLAN 20, sin salida a internet.</p>
+<hr />
+<h2 id="seccion-2-pruebas-de-resiliencia-fisica-simulacion-de-fallo-raid">Sección 2: Pruebas de Resiliencia Física (Simulación de Fallo RAID)</h2>
+<p>El almacenamiento masivo (Storage Pool <code>ZFS_DATA</code>) está estructurado en un <strong>RAID 10</strong> de 4 discos físicos para equilibrar velocidad de lectura/escritura y redundancia frente a daños mecánicos.</p>
+<p>Para validar empíricamente que la grabación de eventos de fatiga no se detendrá si un disco se quema, se realizó una prueba de extracción en caliente (Hot Swap).</p>
+<h3 id="21-simulacro-de-falla-en-disco-duro">2.1 Simulacro de Falla en Disco Duro</h3>
+<p>Se forzó lógicamente el apagado (offline) del disco físico <code>/dev/sdc</code> que conforma el espejo del vdev 1.</p>
+<p><strong>Comando de Ejecución:</strong></p>
+<pre><code class="language-bash">root@pve-datacenter:~# zpool offline ZFS_DATA /dev/sdc
+</code></pre>
+<p><strong>Estado Inmediato del Pool (Alarma de Zabbix Detonada):</strong></p>
+<pre><code class="language-bash">root@pve-datacenter:~# zpool status -x ZFS_DATA
+  pool: ZFS_DATA
+ state: DEGRADED
+status: One or more devices has been taken offline by the administrator.
+        Sufficient replicas exist for the pool to continue functioning in a
+        degraded state.
+action: Online the device using 'zpool online' or replace the device with
+        'zpool replace'.
+  scan: none requested
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        ZFS_DATA    DEGRADED     0     0     0
+          mirror-0  ONLINE       0     0     0
+            sda     ONLINE       0     0     0
+            sdb     ONLINE       0     0     0
+          mirror-1  DEGRADED     0     0     0
+            sdc     OFFLINE      0     0     0
+            sdd     ONLINE       0     0     0
+
+errors: No known data errors
+</code></pre>
+<p><em>Conclusión de la Prueba:</em> A pesar de que el disco <code>/dev/sdc</code> falló (estado <code>OFFLINE</code>), el pool general se mantuvo operativo en estado <code>DEGRADED</code>. Durante este incidente, las métricas de MediaPipe enviadas por los choferes continuaron guardándose exitosamente en el disco <code>/dev/sdd</code> (su par redundante) sin interrupción de servicio en el frontend web.</p>
+<h3 id="22-ejecucion-de-politicas-de-respaldo-backup-automatico">2.2 Ejecución de Políticas de Respaldo (Backup Automático)</h3>
+<p>Para cumplir con la política de continuidad de negocio, se configuró un Datacenter Backup Job en Proxmox VE que realiza instantáneas (Snapshots) de la Máquina Virtual de Base de Datos todos los días a las 02:00 AM.</p>
+<p><strong>Evidencia (Log de Proxmox Backup):</strong></p>
+<pre><code class="language-text">INFO: starting new backup job: vzdump 200 --mode snapshot --compress zstd --storage BACKUP_NAS
+INFO: creating ZFS snapshot 'ZFS_DATA/vm-200-disk-0@vzdump'
+INFO: backup is finished. Backup archive size: 14.2 GB
+</code></pre>
+<hr />
+<h2 id="seccion-3-acuerdo-de-nivel-de-servicio-sla-institucional">Sección 3: Acuerdo de Nivel de Servicio (SLA Institucional)</h2>
+<p>La infraestructura tecnológica no es solo un conjunto de servidores, es una promesa operativa a los clientes (Empresas de Transporte Interprovincial). Para regir esta relación, se diseñó el siguiente contrato de SLA corporativo.</p>
+<p><strong>DOCUMENTO OFICIAL:</strong> CopIA-SLA-V1.0
+<strong>ENTIDAD PRESTADORA:</strong> NOC (Network Operations Center) - CopIA
+<strong>CLIENTE:</strong> Flota de Transportes (Stakeholders)</p>
+<h3 id="31-definiciones-y-alcance-operativo">3.1 Definiciones y Alcance Operativo</h3>
+<p>El presente SLA define los niveles mínimos de servicio aceptables para la recepción, procesamiento (MediaPipe) y almacenamiento de las alertas críticas de fatiga vehicular. La cobertura abarca exclusivamente la infraestructura Core del Datacenter (pfSense, Proxmox, MySQL, FastAPI). <em>No cubre</em> fallas inherentes a zonas de nula cobertura 4G en las carreteras que escapen al failover del módulo SIM7600G.</p>
+<h3 id="32-indicadores-de-disponibilidad-uptime">3.2 Indicadores de Disponibilidad (Uptime)</h3>
+<p>El NOC de CopIA se compromete a mantener un <strong>Uptime Mensual del 99.98%</strong>.
+El tiempo máximo de inactividad permitido es de <strong>8.6 minutos al mes</strong>.
+Este indicador se medirá directamente extrayendo los reportes del dashboard del monitor Zabbix.</p>
+<h3 id="33-tiempos-de-respuesta-a-incidentes-rto-y-rpo">3.3 Tiempos de Respuesta a Incidentes (RTO y RPO)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nivel de Severidad</th>
+<th style="text-align: left;">Descripción del Incidente</th>
+<th style="text-align: left;">Tiempo de Respuesta (Inicio)</th>
+<th style="text-align: left;">Tiempo de Resolución Máximo (RTO)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>P1 - Crítico</strong></td>
+<td style="text-align: left;">Caída total de la API FastAPI. Los camiones no pueden reportar alertas.</td>
+<td style="text-align: left;">Inmediato (15 mins, 24/7)</td>
+<td style="text-align: left;">&lt; 2 Horas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P2 - Alto</strong></td>
+<td style="text-align: left;">Degradación de Base de Datos. Pérdida de un disco del RAID (DEGRADED).</td>
+<td style="text-align: left;">&lt; 2 Horas (Horario Hábil)</td>
+<td style="text-align: left;">&lt; 12 Horas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P3 - Medio</strong></td>
+<td style="text-align: left;">Falla de sincronización de Zabbix o panel Vue.js lento.</td>
+<td style="text-align: left;">&lt; 6 Horas</td>
+<td style="text-align: left;">&lt; 24 Horas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P4 - Bajo</strong></td>
+<td style="text-align: left;">Solicitud de un nuevo usuario de Dashboard web o cambios cosméticos.</td>
+<td style="text-align: left;">&lt; 24 Horas</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-penalidades-por-incumplimiento-contractual">3.4 Penalidades por Incumplimiento Contractual</h3>
+<p>En caso de que el Uptime mensual caiga por debajo de la barrera del 99.98%, CopIA indemnizará al cliente reembolsando porcentajes del pago mensual (Facturación) en el ciclo inmediato posterior:
+* Disponibilidad entre 99.9% y 99.97%: Penalización del 5% del valor de la factura.
+* Disponibilidad entre 99.0% y 99.8%: Penalización del 15% del valor de la factura.
+* Disponibilidad inferior al 99.0%: Penalización del 30% del valor de la factura e inicio de comités de auditoría de crisis.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

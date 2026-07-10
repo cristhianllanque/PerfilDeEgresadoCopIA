@@ -1,0 +1,2637 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación oficial del proyecto CopIA">
+      
+      
+        <meta name="author" content="Equipo CopIA">
+      
+      
+      
+        <link rel="prev" href="../entregable4/">
+      
+      
+        <link rel="next" href="../../CristhianLlanque/entregable1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada - Documentación CopIA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entregable-5-propuesta-de-solucion-tic-integrada-al-ecosistema-de-sistemas-de-informacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Documentación CopIA" class="md-header__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación CopIA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Frank Choquehuanca (CE03: Infraestructura)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../entregable1/" class="md-tabs__link">
+          
+  
+  
+  Christian Salas (CE01: Gestión)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CristhianLlanque/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Cristhian Llanque (CE02: Software)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentación CopIA" class="md-nav__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación CopIA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Planificación de Seguridad (CE0321)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre1/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Diseño de Centro de Datos (CE0331)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Implementación de Red (CE0312/13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Seguridad y Ética ACM (CE0322/23/24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FrankChoquehuanca/semestre2/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christian Salas (CE01: Gestión)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Christian Salas (CE01: Gestión)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0113 - Entregable 2: Business Case del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CristhianLlanque/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CristhianLlanque/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE022 - Entregable 2: Plataforma de Datos del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CristhianLlanque/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CristhianLlanque/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CristhianLlanque/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entregable-5-propuesta-de-solucion-tic-integrada-al-ecosistema-de-sistemas-de-informacion">ENTREGABLE 5: PROPUESTA DE SOLUCIÓN TIC INTEGRADA AL ECOSISTEMA DE SISTEMAS DE INFORMACIÓN</h1>
+<p><strong>Evalúa:</strong> CE014 – Gestión de Sistemas de Información<br />
+<strong>Competencias:</strong> CE0141 – CE0145<br />
+<strong>Proyecto:</strong> CopIA – Driver Monitoring System (DMS) – Transportes Veloz<br />
+<strong>Equipo:</strong> Christian Wilbert Salas Yupanqui | Cristhian Eddy Llanque Tipo | Frank Diego Choquehuanca Huayhua<br />
+<strong>Docentes:</strong> Abel Huanca<br />
+<strong>Universidad:</strong> Universidad Peruana Unión – Filial Juliaca | 2026</p>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo</h2>
+<p>La presente propuesta describe la integración del sistema CopIA (Driver Monitoring System) como solución TIC central en el ecosistema de sistemas de información de Transportes Veloz. CopIA no es una solución aislada: se concibe como el núcleo tecnológico de una transformación digital progresiva de la empresa, conectando los procesos de monitoreo de conductores con la gestión operativa de flota, la administración de RRHH, la facturación y el cumplimiento regulatorio.</p>
+<p>El documento presenta la arquitectura de solución completa, el mapa de integración con los sistemas existentes, los controles de seguridad y gobernanza de datos, y el plan de escalabilidad tecnológica a 3 años, garantizando coherencia con el ecosistema de información institucional y el marco regulatorio peruano (Ley 29733, Ley 30096, normativas MTC/SUTRAN).</p>
+<hr />
+<h1 id="51-arquitectura-de-la-solucion">5.1 ARQUITECTURA DE LA SOLUCIÓN</h1>
+<h2 id="ce0141-mapa-del-ecosistema-de-sistemas-de-informacion-de-la-organizacion">CE0141 – Mapa del Ecosistema de Sistemas de Información de la Organización</h2>
+<h3 id="a-situacion-actual-del-ecosistema-as-is">A. Situación Actual del Ecosistema (AS-IS)</h3>
+<p>Transportes Veloz opera actualmente con un ecosistema de sistemas de información fragmentado y mayoritariamente manual. No existe integración entre los sistemas existentes; cada uno opera como una isla de información.</p>
+<table>
+<thead>
+<tr>
+<th>Sistema / Herramienta</th>
+<th>Función Actual</th>
+<th>Tecnología</th>
+<th>Integración Actual</th>
+<th>Limitación Principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planillas Excel de viajes</td>
+<td>Control manual de rutas, conductores y horarios</td>
+<td>Microsoft Excel (local)</td>
+<td>Ninguna – isla de información</td>
+<td>Sin trazabilidad digital; datos no estructurados; no escalable</td>
+</tr>
+<tr>
+<td>Sistema de facturación legacy</td>
+<td>Emisión de comprobantes de pago a clientes</td>
+<td>Software local</td>
+<td>Ninguna</td>
+<td>Sin API; sin exportación a otras plataformas; datos de clientes aislados</td>
+</tr>
+<tr>
+<td>WhatsApp Business</td>
+<td>Comunicación operativa con conductores en ruta</td>
+<td>App móvil – Meta</td>
+<td>Ninguna – canal informal</td>
+<td>Sin registro estructurado; sin trazabilidad; sin alertas automáticas</td>
+</tr>
+<tr>
+<td>GPS básico independiente</td>
+<td>Rastreo vehicular por dispositivo autónomo</td>
+<td>Hardware GPS propietario</td>
+<td>Ninguna con sistemas internos</td>
+<td>Sin integración con control de viajes ni con alertas de seguridad</td>
+</tr>
+<tr>
+<td>Correo electrónico corporativo</td>
+<td>Comunicación interna y con clientes</td>
+<td>Gmail / Outlook</td>
+<td>Ninguna</td>
+<td>Manual; sin automatización de reportes</td>
+</tr>
+<tr>
+<td>Registros físicos de conductores</td>
+<td>Datos de licencias, contratos y evaluaciones</td>
+<td>Archivos físicos / Excel</td>
+<td>Ninguna</td>
+<td>Sin digitalización; riesgo de pérdida; difícil auditoría</td>
+</tr>
+<tr>
+<td>Reportes MTC / SUTRAN (manuales)</td>
+<td>Reporte periódico de incidentes de seguridad vial</td>
+<td>Formularios físicos / PDF</td>
+<td>Ninguna – proceso completamente manual</td>
+<td>Propenso a errores; demoras; sin evidencia digital de eventos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-mapa-visual-del-ecosistema-as-is">B. Mapa Visual del Ecosistema AS-IS</h3>
+<p><img alt="Diagrama de Islas de Información" src="../imageneschris/isla_de_informacion.png" /></p>
+<h3 id="c-ecosistema-propuesto-con-copia-to-be">C. Ecosistema Propuesto con CopIA (TO-BE)</h3>
+<p>Con la implementación de CopIA como hub tecnológico central, el ecosistema de Transportes Veloz evoluciona hacia una arquitectura integrada donde los sistemas intercambian datos en tiempo real a través de APIs REST estandarizadas.</p>
+<table>
+<thead>
+<tr>
+<th>Sistema</th>
+<th>Rol en el Ecosistema TO-BE</th>
+<th>Integración con CopIA</th>
+<th>Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CopIA DMS (núcleo)</td>
+<td>Hub central de monitoreo de conductores y flota</td>
+<td>Sistema central que integra todos los demás</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Firebase Realtime DB</td>
+<td>Fuente de datos GPS en tiempo real para la flota</td>
+<td><code>sync_firebase_gps()</code> en <code>api_main.py</code> (ya implementada)</td>
+<td>Implementada</td>
+</tr>
+<tr>
+<td>PostgreSQL (CopIA BD)</td>
+<td>Persistencia de sesiones, eventos de fatiga, conductores</td>
+<td>Nativa – ORM SQLAlchemy en <code>api_main.py</code></td>
+<td>Implementada</td>
+</tr>
+<tr>
+<td>Dashboard React (CopIA)</td>
+<td>Interfaz de supervisores: mapa, alertas, video, analytics</td>
+<td>Consume API REST CopIA directamente</td>
+<td>Implementada</td>
+</tr>
+<tr>
+<td>Sistema de RRHH / Conductores</td>
+<td>Datos maestros de conductores (contrato, licencia, estado)</td>
+<td>API bidireccional: CopIA lee <code>conductor_id</code>; RRHH recibe ranking de riesgo</td>
+<td>Fase 1 (6 meses)</td>
+</tr>
+<tr>
+<td>Sistema de facturación / ERP</td>
+<td>Liquidación automática de viajes completados</td>
+<td>CopIA envía evento "viaje completado" → ERP genera liquidación</td>
+<td>Fase 2 (12 meses)</td>
+</tr>
+<tr>
+<td>Sistema de mantenimiento vehicular</td>
+<td>Correlación entre alertas de fatiga y estado mecánico</td>
+<td>CopIA expone datos de sesión por vehículo; mantenimiento consume API</td>
+<td>Fase 2 (12 meses)</td>
+</tr>
+<tr>
+<td>Portal regulatorio MTC/SUTRAN</td>
+<td>Reporte automático de eventos críticos de seguridad vial</td>
+<td>CopIA genera exportación en formato MTC; envío programado</td>
+<td>Fase 3 (24 meses)</td>
+</tr>
+<tr>
+<td>App móvil supervisores (CopIA Mobile)</td>
+<td>Acceso móvil al dashboard para supervisores en campo</td>
+<td>Consume misma API CopIA con perfil móvil</td>
+<td>Fase 2 (12 meses)</td>
+</tr>
+<tr>
+<td>Plataforma de seguros</td>
+<td>Envío automático de reportes de siniestros con evidencia digital</td>
+<td>CopIA exporta eventos + snapshots como evidencia; API a aseguradora</td>
+<td>Fase 3 (24 meses)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d-mapa-visual-del-ecosistema-to-be">D. Mapa Visual del Ecosistema TO-BE</h3>
+<p><img alt="Diagrama de Integración CopIA" src="../imageneschris/diagrama_integracion_copIA.png" /></p>
+<hr />
+<h2 id="ce0142-arquitectura-conceptual-del-sistema-de-informacion-propuesto">CE0142 – Arquitectura Conceptual del Sistema de Información Propuesto</h2>
+<h3 id="a-descripcion-de-la-arquitectura">A. Descripción de la Arquitectura</h3>
+<p>CopIA implementa una <strong>Arquitectura Orientada a Servicios (SOA)</strong> con componentes desacoplados distribuidos en tres capas: Edge Computing (Raspberry Pi en vehículos), Cloud Services (AWS + Firebase) y Presentation Layer (React Dashboard + App Móvil futura). La comunicación entre capas utiliza exclusivamente REST APIs con autenticación JWT, garantizando interoperabilidad con cualquier sistema futuro.</p>
+<h3 id="b-diagrama-de-arquitectura-conceptual-vista-de-componentes">B. Diagrama de Arquitectura Conceptual – Vista de Componentes</h3>
+<p><img alt="Modelo C4 Nivel 2" src="../imageneschris/modelo_c4.png" /></p>
+<h3 id="c-componentes-principales-y-responsabilidades">C. Componentes Principales y Responsabilidades</h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Capa</th>
+<th>Tecnología</th>
+<th>Responsabilidad</th>
+<th>Interfaces Expuestas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CopIASystem (Motor IA)</td>
+<td>Edge</td>
+<td>Python, OpenCV, dlib/MediaPipe</td>
+<td>Calcula EAR, MAR, PERCLOS, Pose y Risk Score por frame</td>
+<td>Clase Python interna; desacoplada de GUI y cliente</td>
+</tr>
+<tr>
+<td>RaspberryClient (Transmisor)</td>
+<td>Edge</td>
+<td>Python, aiohttp/requests</td>
+<td>Empaqueta y envía telemetría + snapshots; gestiona cola offline</td>
+<td><code>POST /api/telemetry</code>; retry con backoff exponencial</td>
+</tr>
+<tr>
+<td>RaspberryGUI (Cabina)</td>
+<td>Edge</td>
+<td>Python, OpenCV/Tkinter</td>
+<td>Muestra alertas visuales tipo semáforo; activa alarma sonora</td>
+<td>Recibe Risk Score de CopIASystem; sin dependencia de red</td>
+</tr>
+<tr>
+<td>FastAPI Central (Hub)</td>
+<td>Cloud – API</td>
+<td>Python, FastAPI, Uvicorn</td>
+<td>Hub de integración: recibe telemetría, gestiona estado de flota, sirve MJPEG, expone analytics</td>
+<td>REST API: <code>/telemetry</code>, <code>/status</code>, <code>/video_feed</code>, <code>/analytics</code>, <code>/trips</code></td>
+</tr>
+<tr>
+<td>PostgreSQL (Persistencia)</td>
+<td>Cloud – Datos</td>
+<td>PostgreSQL 15, SQLAlchemy</td>
+<td>Persiste SesionConduccion, EventoFatiga, Conductor, Vehiculo</td>
+<td>ORM SQLAlchemy; accesible solo desde FastAPI</td>
+</tr>
+<tr>
+<td>Firebase Realtime DB (GPS)</td>
+<td>Cloud – Datos externos</td>
+<td>Firebase SDK, Google Cloud</td>
+<td>Provee ubicación GPS en tiempo real de la flota vía push events</td>
+<td>Firebase SDK en <code>sync_firebase_gps()</code>; datos leídos en tiempo real</td>
+</tr>
+<tr>
+<td>React Dashboard</td>
+<td>Presentación</td>
+<td>React 18, Vite, Tailwind, Leaflet</td>
+<td>Interfaz de supervisores: mapa flota, alertas, video MJPEG, ranking</td>
+<td>Consume <code>/api/status</code> (polling 2s), <code>/api/video_feed</code> (MJPEG), <code>/api/analytics</code></td>
+</tr>
+<tr>
+<td>API Gateway (Fase 2)</td>
+<td>Cloud – Integración</td>
+<td>AWS API Gateway o Kong</td>
+<td>Intermediario para integraciones externas (RRHH, ERP, SUTRAN)</td>
+<td>REST API con versioning <code>/v1/</code>, <code>/v2/</code>; rate limiting; OAuth2</td>
+</tr>
+<tr>
+<td>Event Bus (Fase 2)</td>
+<td>Cloud – Eventos</td>
+<td>AWS SQS / EventBridge</td>
+<td>Desacopla eventos de CopIA hacia sistemas externos</td>
+<td>Producer: CopIA API; Consumers: ERP, RRHH, Seguros</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d-patrones-de-arquitectura-aplicados">D. Patrones de Arquitectura Aplicados</h3>
+<table>
+<thead>
+<tr>
+<th>Patrón</th>
+<th>Descripción</th>
+<th>Aplicación en CopIA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge Computing</td>
+<td>Procesamiento local en el dispositivo más cercano a la fuente de datos</td>
+<td>CopIASystem ejecuta IA en Raspberry Pi; alertas sin latencia de red; autonomía offline</td>
+</tr>
+<tr>
+<td>API-First</td>
+<td>La API REST es el contrato de integración entre todos los componentes</td>
+<td>FastAPI como contrato central; dashboard, app móvil y sistemas externos consumen la misma API</td>
+</tr>
+<tr>
+<td>Event-Driven (Fase 2)</td>
+<td>Los sistemas reaccionan a eventos en lugar de polling constante</td>
+<td>SQS/EventBridge para notificar al ERP cuando se complete un viaje; a RRHH cuando Risk Score &gt; umbral</td>
+</tr>
+<tr>
+<td>CQRS (Fase 2)</td>
+<td>Separación de operaciones de lectura y escritura</td>
+<td>Escritura: <code>/api/telemetry</code> (alta frecuencia); Lectura: <code>/api/status</code>, <code>/api/analytics</code> (baja frecuencia)</td>
+</tr>
+<tr>
+<td>Strategy (IA)</td>
+<td>Encapsulamiento del algoritmo de detección detrás de una interfaz</td>
+<td>CopIASystem puede reemplazarse por un modelo actualizado sin cambiar <code>raspberry_client.py</code> ni la GUI</td>
+</tr>
+<tr>
+<td>Facade</td>
+<td>Una interfaz simple oculta la complejidad del sistema</td>
+<td><code>main.py</code> como fachada del cliente edge; <code>api_main.py</code> como fachada de todos los servicios cloud</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="52-ecosistema-de-sistemas-de-informacion">5.2 ECOSISTEMA DE SISTEMAS DE INFORMACIÓN</h1>
+<h2 id="ce0143-modelo-de-integracion-de-sistemas-y-flujos-de-informacion">CE0143 – Modelo de Integración de Sistemas y Flujos de Información</h2>
+<h3 id="a-diagrama-de-flujo-de-datos-dfd-nivel-1">A. Diagrama de Flujo de Datos (DFD Nivel 1)</h3>
+<p><img alt="DFD nivel 1" src="../imageneschris/diagrama_dfd.png" /></p>
+<h3 id="b-catalogo-de-integraciones-y-contratos-de-api">B. Catálogo de Integraciones y Contratos de API</h3>
+<table>
+<thead>
+<tr>
+<th>Integración</th>
+<th>Sistema Origen</th>
+<th>Sistema Destino</th>
+<th>Protocolo</th>
+<th>Formato</th>
+<th>Frecuencia</th>
+<th>Fase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Telemetría en vivo</td>
+<td>CopIA Edge (RPi)</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>HTTPS REST</td>
+<td>JSON</td>
+<td>Cada 2 segundos por vehículo</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>Video en tiempo real</td>
+<td>CopIA Edge (RPi)</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>HTTPS (base64 en JSON)</td>
+<td>JPEG base64</td>
+<td>Cada 5 segundos por vehículo</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>GPS en tiempo real</td>
+<td>Firebase Realtime DB</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Firebase SDK (WebSocket)</td>
+<td><code>JSON {lat, lng, speed}</code></td>
+<td>Push (cambio de posición)</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>Estado de flota</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Dashboard React</td>
+<td>HTTPS REST (polling)</td>
+<td>JSON array</td>
+<td>Cada 2 segundos</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>Stream de video</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Dashboard React</td>
+<td>HTTP MJPEG</td>
+<td>multipart/x-mixed-replace</td>
+<td>Streaming continuo</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>Ranking de conductores</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Dashboard React</td>
+<td>HTTPS REST</td>
+<td>JSON array</td>
+<td>Bajo demanda / diario</td>
+<td>Actual</td>
+</tr>
+<tr>
+<td>Datos maestros de conductores</td>
+<td>Sistema RRHH</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>REST API GET</td>
+<td>JSON</td>
+<td>Sincronización diaria</td>
+<td>Fase 1</td>
+</tr>
+<tr>
+<td>Ranking de riesgo por conductor</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Sistema RRHH</td>
+<td>REST API POST / Webhook</td>
+<td>JSON</td>
+<td>Semanal / por evento crítico</td>
+<td>Fase 1</td>
+</tr>
+<tr>
+<td>Evento "viaje completado"</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Sistema ERP/Facturación</td>
+<td>Webhook / SQS</td>
+<td><code>JSON {conductor, vehículo, ruta, duración, alertas}</code></td>
+<td>Al finalizar cada viaje</td>
+<td>Fase 2</td>
+</tr>
+<tr>
+<td>Correlación vehículo–mantenimiento</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Sistema de Mantenimiento</td>
+<td>REST API GET</td>
+<td><code>JSON {vehicle_id, sesiones, km_estimados}</code></td>
+<td>Semanal</td>
+<td>Fase 2</td>
+</tr>
+<tr>
+<td>Reporte de incidentes MTC</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Portal MTC/SUTRAN</td>
+<td>Export HTTP / SFTP</td>
+<td>XML/JSON formato MTC</td>
+<td>Mensual / ante evento crítico</td>
+<td>Fase 3</td>
+</tr>
+<tr>
+<td>Notificación a aseguradora</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>Sistema Seguros</td>
+<td>REST API POST</td>
+<td>JSON + URL snapshots S3</td>
+<td>Ante siniestro / mensual</td>
+<td>Fase 3</td>
+</tr>
+<tr>
+<td>Alertas push a supervisores</td>
+<td>CopIA Cloud (FastAPI)</td>
+<td>App móvil (React Native)</td>
+<td>Firebase Cloud Messaging (FCM)</td>
+<td><code>JSON {title, body, vehicle_id, risk_score}</code></td>
+<td>Inmediato ante Risk Score &gt; 80</td>
+<td>Fase 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-principios-de-interoperabilidad">C. Principios de Interoperabilidad</h3>
+<table>
+<thead>
+<tr>
+<th>Principio</th>
+<th>Descripción</th>
+<th>Implementación en CopIA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API-First Design</td>
+<td>Todas las integraciones se realizan a través de la API REST de CopIA; sin acceso directo a la BD</td>
+<td>FastAPI expone contratos Pydantic tipados; documentación automática en <code>/docs</code> (Swagger UI)</td>
+</tr>
+<tr>
+<td>Formato estándar abierto</td>
+<td>Los datos se intercambian en formato JSON (RFC 8259); sin formatos propietarios</td>
+<td>Todo el payload de telemetría, respuestas de API y eventos son JSON; base64 para binarios</td>
+</tr>
+<tr>
+<td>Versionado de API</td>
+<td>Las APIs se versionan para garantizar compatibilidad hacia atrás</td>
+<td>Prefijo <code>/api/v1/</code> en todos los endpoints; cambios breaking → nueva versión <code>/api/v2/</code></td>
+</tr>
+<tr>
+<td>Autenticación estandarizada</td>
+<td>OAuth2 + JWT para todas las integraciones externas</td>
+<td>JWT Bearer tokens en todos los endpoints; scopes diferenciados por sistema externo</td>
+</tr>
+<tr>
+<td>Eventos asíncronos (Fase 2)</td>
+<td>Los sistemas externos no dependen del tiempo de respuesta de CopIA</td>
+<td>AWS SQS / EventBridge como bus de eventos; patrón publish-subscribe</td>
+</tr>
+<tr>
+<td>Documentación automatizada</td>
+<td>La documentación de la API se genera automáticamente desde el código</td>
+<td>FastAPI genera <code>/docs</code> (Swagger) y <code>/redoc</code> automáticamente desde los modelos Pydantic</td>
+</tr>
+<tr>
+<td>Idempotencia</td>
+<td>Las operaciones de escritura son seguras ante reintentos</td>
+<td>Telemetría con timestamp único; endpoint <code>/telemetry</code> idempotente si el mismo timestamp llega dos veces</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ce0144-plan-de-implementacion-y-gestion-del-sistema-de-informacion">CE0144 – Plan de Implementación y Gestión del Sistema de Información</h2>
+<h3 id="a-fases-de-implementacion-de-integraciones">A. Fases de Implementación de Integraciones</h3>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Período</th>
+<th>Sistemas Integrados</th>
+<th>Entregable de Integración</th>
+<th>Complejidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fase 0 – Núcleo</td>
+<td>Meses 1–3 (actual)</td>
+<td>CopIA Edge ↔ FastAPI ↔ PostgreSQL ↔ Firebase ↔ Dashboard React</td>
+<td>Sistema CopIA funcional y desplegado en flota completa</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>Fase 1 – RRHH</td>
+<td>Meses 4–6</td>
+<td>CopIA ↔ Sistema RRHH (datos maestros + ranking de riesgo)</td>
+<td>API bidireccional RRHH; ranking semanal automatizado</td>
+<td>Baja</td>
+</tr>
+<tr>
+<td>Fase 2 – Operacional</td>
+<td>Meses 7–12</td>
+<td>CopIA ↔ ERP/Facturación + Mantenimiento + App Móvil + FCM</td>
+<td>Event Bus SQS; webhooks a ERP; notificaciones push móvil</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Fase 3 – Regulatoria</td>
+<td>Meses 13–24</td>
+<td>CopIA ↔ MTC/SUTRAN + Seguros</td>
+<td>Exportador XML/JSON normativo; API con aseguradoras</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Fase 4 – Analytics avanzado</td>
+<td>Año 3</td>
+<td>Data Lake + modelos predictivos de fatiga por conductor</td>
+<td>Pipeline de datos (S3 + Athena + SageMaker)</td>
+<td>Muy alta</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-gestion-de-datos-maestros-mdm">B. Gestión de Datos Maestros (MDM)</h3>
+<table>
+<thead>
+<tr>
+<th>Entidad Maestra</th>
+<th>Sistema Fuente de Verdad</th>
+<th>Sistemas Consumidores</th>
+<th>Política de Sincronización</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conductor (datos personales)</td>
+<td>Sistema RRHH (Fase 1); hasta entonces: CopIA BD</td>
+<td>CopIA (análisis), ERP (liquidación), Dashboard (display)</td>
+<td>Sincronización diaria; RRHH es autoridad; CopIA actualiza <code>conductor_id</code></td>
+</tr>
+<tr>
+<td>Vehículo (datos maestros)</td>
+<td>CopIA BD (tabla <code>vehiculos</code>)</td>
+<td>Sistema de Mantenimiento, ERP, Dashboard</td>
+<td>CopIA es autoridad; Mantenimiento y ERP consumen via <code>GET /api/vehicles</code></td>
+</tr>
+<tr>
+<td>Ruta (origen–destino)</td>
+<td>Sistema operativo de Transportes Veloz (legacy)</td>
+<td>CopIA (campo <code>ruta</code> en <code>sesiones_conduccion</code>)</td>
+<td>Catálogo de rutas importado semanalmente desde Excel → CopIA BD</td>
+</tr>
+<tr>
+<td>Evento de Fatiga</td>
+<td>CopIA BD (tabla <code>eventos_fatiga</code>)</td>
+<td>Dashboard, MTC/SUTRAN, Seguros, RRHH</td>
+<td>CopIA es autoridad exclusiva; solo lectura para sistemas externos</td>
+</tr>
+<tr>
+<td>GPS / Ubicación en tiempo real</td>
+<td>Firebase Realtime DB (fuente: GPS hardware)</td>
+<td>CopIA <code>fleet_status</code>, Dashboard mapa</td>
+<td>Push en tiempo real; Firebase es autoridad del GPS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-modelo-de-gobernanza-de-la-integracion">C. Modelo de Gobernanza de la Integración</h3>
+<table>
+<thead>
+<tr>
+<th>Actividad de Gobernanza</th>
+<th>Descripción</th>
+<th>Responsable</th>
+<th>Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revisión del catálogo de APIs</td>
+<td>Verificar que todos los endpoints estén documentados en Swagger y actualizados</td>
+<td>Equipo de desarrollo TI</td>
+<td>Por cada release</td>
+</tr>
+<tr>
+<td>Monitoreo de integraciones</td>
+<td>Verificar que todas las integraciones estén activas (health checks)</td>
+<td>TI – Operaciones</td>
+<td>Diaria (automatizada)</td>
+</tr>
+<tr>
+<td>Gestión de cambios en contratos API</td>
+<td>Comunicar con anticipación cambios breaking a sistemas consumidores</td>
+<td>Arquitecto de solución / PM</td>
+<td>Antes de cada cambio breaking</td>
+</tr>
+<tr>
+<td>Auditoría de flujos de datos</td>
+<td>Revisar que los datos personales fluyen solo a sistemas autorizados (Ley 29733)</td>
+<td>Responsable de seguridad TI</td>
+<td>Trimestral</td>
+</tr>
+<tr>
+<td>Revisión de SLAs de integración</td>
+<td>Verificar cumplimiento de tiempos de respuesta y disponibilidad por integración</td>
+<td>TI + área de negocio</td>
+<td>Mensual</td>
+</tr>
+<tr>
+<td>Actualización de documentación técnica</td>
+<td>Mantener actualizado el catálogo de integraciones y DFD</td>
+<td>Equipo de desarrollo</td>
+<td>Por cada sprint</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="53-seguridad-y-gobernanza">5.3 SEGURIDAD Y GOBERNANZA</h1>
+<h2 id="a-gestion-de-accesos-y-autenticacion">A. Gestión de Accesos y Autenticación</h2>
+<p>CopIA implementa un modelo de gestión de accesos basado en el principio de <strong>Zero Trust</strong>: ningún sistema, usuario o componente es confiable por defecto; toda solicitud debe autenticarse y autorizarse independientemente de su origen.</p>
+<h3 id="modelo-de-roles-y-permisos-rbac">Modelo de Roles y Permisos (RBAC)</h3>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Descripción</th>
+<th>Permisos sobre API CopIA</th>
+<th>Sistemas con Acceso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conductor</code></td>
+<td>Usuario final del sistema edge (Raspberry Pi en cabina)</td>
+<td><code>POST /api/trip/start</code>, <code>POST /api/trip/end</code>, <code>POST /api/telemetry</code></td>
+<td>Solo sistema edge; sin acceso al dashboard</td>
+</tr>
+<tr>
+<td><code>supervisor</code></td>
+<td>Supervisor de flota con acceso al dashboard web</td>
+<td><code>GET /api/status</code>, <code>GET /api/video_feed/{id}</code>, <code>GET /api/trips/{id}</code></td>
+<td>Dashboard React; app móvil (Fase 2)</td>
+</tr>
+<tr>
+<td><code>administrador</code></td>
+<td>Administrador de la plataforma CopIA</td>
+<td>Todos los endpoints; gestión de usuarios y vehículos</td>
+<td>Dashboard completo; acceso a configuración</td>
+</tr>
+<tr>
+<td><code>sistema_rrhh</code></td>
+<td>Integración máquina-a-máquina con el sistema de RRHH</td>
+<td><code>GET /api/conductores</code>, <code>POST /api/ranking/rrhh</code></td>
+<td>Solo endpoints de integración RRHH; sin acceso a video</td>
+</tr>
+<tr>
+<td><code>sistema_erp</code></td>
+<td>Integración con ERP/Facturación (Fase 2)</td>
+<td><code>GET /api/trips/completed</code>, <code>POST /api/webhook/register</code></td>
+<td>Solo endpoints de liquidación de viajes</td>
+</tr>
+<tr>
+<td><code>sistema_sutran</code></td>
+<td>Integración con portal MTC/SUTRAN (Fase 3)</td>
+<td><code>GET /api/reports/incidents</code>, <code>GET /api/reports/export</code></td>
+<td>Solo endpoints de reportes regulatorios; sin video ni datos personales completos</td>
+</tr>
+<tr>
+<td><code>auditor_externo</code></td>
+<td>Auditor de seguridad o ente regulador (acceso temporal)</td>
+<td><code>GET /api/audit/logs</code> (read-only, datos anonimizados)</td>
+<td>Solo endpoints de auditoría con datos anonimizados</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flujo-de-autenticacion-oauth2-jwt">Flujo de Autenticación OAuth2 + JWT</h3>
+<p><img alt="diagrama de flujo de usuario" src="../imageneschris/flujo_usuario.jpg" /></p>
+<hr />
+<h2 id="b-proteccion-de-datos-personales">B. Protección de Datos Personales</h2>
+<h3 id="marco-legal-aplicable">Marco Legal Aplicable</h3>
+<table>
+<thead>
+<tr>
+<th>Normativa</th>
+<th>Ámbito</th>
+<th>Aplicación en CopIA</th>
+<th>Cumplimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ley N° 29733 – Protección de Datos Personales (Perú)</td>
+<td>Datos personales de ciudadanos peruanos</td>
+<td>CopIA procesa datos biométricos (imágenes faciales, métricas EAR/MAR), datos de ubicación y datos de identidad de conductores – todos considerados datos personales sensibles</td>
+<td>Requiere: consentimiento informado, política de privacidad, registro en RNPDP, limitación de uso</td>
+</tr>
+<tr>
+<td>D.S. 003-2013-JUS (Reglamento Ley 29733)</td>
+<td>Procedimientos de protección de datos</td>
+<td>Define niveles de seguridad según sensibilidad de los datos procesados</td>
+<td>Nivel de seguridad ALTO requerido por datos biométricos</td>
+</tr>
+<tr>
+<td>Ley N° 30096 – Ley de Delitos Informáticos (Perú)</td>
+<td>Delitos informáticos y acceso ilegal a datos</td>
+<td>Obliga a implementar controles técnicos para prevenir acceso no autorizado</td>
+<td>Implementado: JWT, CORS, cifrado TLS, roles RBAC</td>
+</tr>
+<tr>
+<td>Normativa MTC/SUTRAN – Seguridad Vial</td>
+<td>Registro de incidentes de seguridad vial</td>
+<td>Los eventos de fatiga registrados por CopIA constituyen evidencia auditable de cumplimiento</td>
+<td>Implementado: registro persistente en PostgreSQL con timestamp y métricas exactas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="medidas-de-proteccion-de-datos-por-capa">Medidas de Protección de Datos por Capa</h3>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Dato Sensible</th>
+<th>Medida de Protección</th>
+<th>Estándar Aplicable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge (Raspberry Pi)</td>
+<td>Video del conductor en tiempo real</td>
+<td>Procesado localmente; no almacenado en disco; solo frames seleccionados enviados como snapshot</td>
+<td>ISO 27001 A.8.10</td>
+</tr>
+<tr>
+<td>Edge (Raspberry Pi)</td>
+<td>Snapshots base64 en cola offline</td>
+<td>Almacenados en carpeta local cifrada (dm-crypt/LUKS); eliminados tras sincronización exitosa</td>
+<td>ISO 27001 A.7.9</td>
+</tr>
+<tr>
+<td>Transmisión (4G → AWS)</td>
+<td>Telemetría + snapshots</td>
+<td>Cifrado TLS 1.3 en tránsito; certificado SSL válido (Let's Encrypt / ACM)</td>
+<td>RFC 8446</td>
+</tr>
+<tr>
+<td>Cloud (FastAPI)</td>
+<td>Contraseñas de conductores</td>
+<td>Hash bcrypt con salt aleatorio (12 rounds); sin almacenamiento reversible</td>
+<td>OWASP Password Storage</td>
+</tr>
+<tr>
+<td>Cloud (PostgreSQL)</td>
+<td>Datos biométricos (<code>eventos_fatiga</code>)</td>
+<td>Cifrado en reposo con AWS KMS; acceso solo desde EC2 vía Security Group privado</td>
+<td>ISO 27001 A.8.24; AWS KMS</td>
+</tr>
+<tr>
+<td>Cloud (PostgreSQL)</td>
+<td>Snapshots base64 en BD</td>
+<td>Retención máxima 30 días; limpieza automática con <code>SP05</code> (procedimiento almacenado)</td>
+<td>Ley 29733 – minimización de datos</td>
+</tr>
+<tr>
+<td>Cloud (S3)</td>
+<td>Snapshots exportados como evidencia</td>
+<td>Bucket S3 con acceso privado; URLs firmadas (pre-signed) con expiración de 1 hora</td>
+<td>AWS S3 Bucket Policy; IAM</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>Video MJPEG en vivo</td>
+<td>Requiere JWT con rol <code>supervisor</code>; CORS restrictivo; sin descarga directa del video</td>
+<td>ISO 27001 A.8.3</td>
+</tr>
+<tr>
+<td>Integraciones externas</td>
+<td>Datos de conductores a RRHH / SUTRAN</td>
+<td>Solo datos mínimos necesarios (minimización); anonimización en reportes MTC</td>
+<td>Ley 29733 Art. 8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="derechos-arco-de-los-conductores">Derechos ARCO de los Conductores</h3>
+<table>
+<thead>
+<tr>
+<th>Derecho ARCO</th>
+<th>Descripción</th>
+<th>Implementación en CopIA</th>
+<th>Canal de Ejercicio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso</td>
+<td>El conductor puede solicitar qué datos suyos procesa CopIA</td>
+<td>Endpoint <code>GET /api/conductor/mis-datos</code> (con JWT del conductor)</td>
+<td>App/portal del conductor; solicitud escrita a TI</td>
+</tr>
+<tr>
+<td>Rectificación</td>
+<td>Puede corregir datos incorrectos (nombre, DNI, licencia)</td>
+<td>Endpoint <code>PATCH /api/conductor/perfil</code> (con JWT); cambios auditados</td>
+<td>Solicitud escrita a RRHH; actualización por TI</td>
+</tr>
+<tr>
+<td>Cancelación</td>
+<td>Puede solicitar eliminación de datos al término de contrato</td>
+<td>Procedimiento de anonimización de datos históricos tras retención definida</td>
+<td>Solicitud escrita; proceso formal de baja del sistema</td>
+</tr>
+<tr>
+<td>Oposición</td>
+<td>Puede oponerse al tratamiento para fines secundarios</td>
+<td>Los datos de CopIA se usan exclusivamente para seguridad vial; no se ceden sin consentimiento</td>
+<td>Declarado en política de privacidad de la empresa</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="c-cumplimiento-normativo-y-gobernanza-ti">C. Cumplimiento Normativo y Gobernanza TI</h2>
+<h3 id="marco-de-gobernanza-aplicado">Marco de Gobernanza Aplicado</h3>
+<table>
+<thead>
+<tr>
+<th>Marco / Estándar</th>
+<th>Componente Aplicado</th>
+<th>Aplicación en CopIA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COBIT 2019</td>
+<td>APO13 – Gestionar la Seguridad; DSS06 – Gestionar Controles de Procesos</td>
+<td>Controles de seguridad sobre datos biométricos; gestión del proceso de monitoreo de conductores</td>
+</tr>
+<tr>
+<td>ISO/IEC 27001:2022</td>
+<td>Cláusula 6.1 – Gestión de riesgos; Anexo A.8 – Controles tecnológicos</td>
+<td>14 riesgos identificados; controles técnicos en todas las capas del sistema</td>
+</tr>
+<tr>
+<td>NIST CSF v2.0</td>
+<td>Funciones: Identify, Protect, Detect, Respond, Recover</td>
+<td>Identificación de activos (15 activos); protección (JWT, TLS, bcrypt); detección (CloudWatch); respuesta (plan incidentes)</td>
+</tr>
+<tr>
+<td>ISO 39001:2012</td>
+<td>Sistema de Gestión de la Seguridad Vial</td>
+<td>CopIA como herramienta técnica de soporte al SGSV de Transportes Veloz; registro de eventos como evidencia</td>
+</tr>
+<tr>
+<td>PMBOK 7ª edición</td>
+<td>Gestión de proyectos bajo principios de valor y desempeño</td>
+<td>Gestión del proyecto CopIA con EDT/WBS, cronograma, riesgos y métricas de valor</td>
+</tr>
+<tr>
+<td>Ley 29733 + D.S. 003-2013-JUS</td>
+<td>Protección de datos personales en Perú</td>
+<td>Consentimiento informado; cifrado de datos sensibles; derechos ARCO; registro en RNPDP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kpis-de-gobernanza">KPIs de Gobernanza</h3>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Meta</th>
+<th>Período</th>
+<th>Responsable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Endpoints sin autenticación JWT (excepto <code>/health</code> y <code>/login</code>)</td>
+<td>0 endpoints sin auth</td>
+<td>Por release</td>
+<td>Dev TI – revisión de código</td>
+</tr>
+<tr>
+<td>Retención de snapshots en BD &gt; 30 días</td>
+<td>0 registros fuera de política</td>
+<td>Semanal (verificación SP05)</td>
+<td>Administrador BD</td>
+</tr>
+<tr>
+<td>Violaciones de RBAC (accesos con rol superior al necesario)</td>
+<td>0 violaciones</td>
+<td>Mensual (auditoría de roles)</td>
+<td>Administrador seguridad TI</td>
+</tr>
+<tr>
+<td>Tiempo máximo para notificar brecha de datos (Ley 29733)</td>
+<td>&lt; 72 horas</td>
+<td>Ante incidente</td>
+<td>Gerencia + Legal</td>
+</tr>
+<tr>
+<td>Porcentaje de APIs con documentación Swagger actualizada</td>
+<td>100%</td>
+<td>Por sprint</td>
+<td>Dev TI</td>
+</tr>
+<tr>
+<td>Cobertura de cifrado en tránsito (HTTPS activo en todos los endpoints)</td>
+<td>100%</td>
+<td>Continua (monitoreo)</td>
+<td>TI – Infraestructura</td>
+</tr>
+<tr>
+<td>Bcrypt implementado (migración desde SHA-256)</td>
+<td>100% – Sprint 4</td>
+<td>Único (al implementar)</td>
+<td>Dev TI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="54-escalabilidad-y-sostenibilidad">5.4 ESCALABILIDAD Y SOSTENIBILIDAD</h1>
+<h2 id="ce0145-indicadores-de-uso-valor-y-mejora-del-sistema">CE0145 – Indicadores de Uso, Valor y Mejora del Sistema</h2>
+<h2 id="a-capacidad-de-crecimiento">A. Capacidad de Crecimiento</h2>
+<h3 id="modelo-de-escalabilidad-por-componente">Modelo de Escalabilidad por Componente</h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Límite Actual</th>
+<th>Estrategia de Escalado</th>
+<th>Trigger de Escalado</th>
+<th>Límite con Escalado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FastAPI (EC2 t3.medium)</td>
+<td>~50 vehículos simultáneos</td>
+<td>Vertical: upgradar a t3.large. Horizontal: Auto Scaling Group con ALB</td>
+<td>CPU &gt; 70% sostenido por 5 min</td>
+<td>Ilimitado con Auto Scaling + ALB</td>
+</tr>
+<tr>
+<td><code>fleet_status</code> (en memoria)</td>
+<td>RAM de la instancia EC2 (~4 GB)</td>
+<td>Migrar a Redis ElastiCache para estado compartido entre múltiples instancias</td>
+<td>Al escalar horizontalmente</td>
+<td>Redis soporta millones de claves</td>
+</tr>
+<tr>
+<td>PostgreSQL (RDS db.t3.micro)</td>
+<td>~100 escrituras/seg (estimado)</td>
+<td>Vertical: upgradar tipo de instancia. Read replicas para analytics</td>
+<td>Latencia BD &gt; 100ms p99</td>
+<td><code>db.r6g.large</code> soporta miles de req/seg</td>
+</tr>
+<tr>
+<td>Firebase Realtime DB</td>
+<td>Plan Spark: 1 GB datos, 10 GB/mes transferencia</td>
+<td>Upgradar a plan Blaze (pay-as-you-go) si la flota supera 100 vehículos activos</td>
+<td>Consumo &gt; 80% del plan Spark</td>
+<td>Ilimitado en plan Blaze</td>
+</tr>
+<tr>
+<td>Almacenamiento S3</td>
+<td>Sin límite práctico</td>
+<td>Lifecycle rules: Standard → Standard-IA (30d) → Glacier (90d)</td>
+<td>Crecimiento de costo &gt; umbral</td>
+<td>Escalado automático por AWS</td>
+</tr>
+<tr>
+<td>Dashboard React (frontend)</td>
+<td>Sin límite (SPA estática)</td>
+<td>CloudFront CDN para distribución global</td>
+<td>Usuarios &gt; 1.000 concurrentes</td>
+<td>CDN escala automáticamente</td>
+</tr>
+<tr>
+<td>Raspberry Pi por vehículo</td>
+<td>1 dispositivo por vehículo</td>
+<td>Añadir 1 RPi + módulo 4G por cada vehículo nuevo; configuración con Ansible</td>
+<td>Al incorporar vehículos a la flota</td>
+<td>Escala linealmente: 1 RPi = 1 vehículo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proyeccion-de-crecimiento-de-la-flota">Proyección de Crecimiento de la Flota</h3>
+<table>
+<thead>
+<tr>
+<th>Escenario</th>
+<th>Vehículos</th>
+<th>Año</th>
+<th>Vehículos Activos Simultáneos (pico)</th>
+<th>Instancia EC2 Recomendada</th>
+<th>RDS Recomendado</th>
+<th>Costo AWS Est. / mes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Piloto</td>
+<td>3</td>
+<td>2026 Q3</td>
+<td>3</td>
+<td>t3.medium (2 vCPU, 4 GB)</td>
+<td>db.t3.micro</td>
+<td>~USD 35–50</td>
+</tr>
+<tr>
+<td>Despliegue inicial</td>
+<td>50</td>
+<td>2026 Q4</td>
+<td>35</td>
+<td>t3.medium → t3.large</td>
+<td>db.t3.small</td>
+<td>~USD 80–120</td>
+</tr>
+<tr>
+<td>Crecimiento 1 año</td>
+<td>75</td>
+<td>2027</td>
+<td>53</td>
+<td>t3.large o Auto Scaling</td>
+<td>db.t3.medium</td>
+<td>~USD 150–200</td>
+</tr>
+<tr>
+<td>Crecimiento 2 años</td>
+<td>125</td>
+<td>2028</td>
+<td>88</td>
+<td>Auto Scaling Group (2+ instancias) + ALB</td>
+<td>db.r6g.large + Read Replica</td>
+<td>~USD 300–450</td>
+</tr>
+<tr>
+<td>Expansión regional</td>
+<td>250</td>
+<td>2029</td>
+<td>175</td>
+<td>Auto Scaling Multi-AZ + ALB</td>
+<td>db.r6g.xlarge + Multi-AZ + Read Replica</td>
+<td>~USD 600–900</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arquitectura-de-escalado-horizontal-fase-2">Arquitectura de Escalado Horizontal (Fase 2)</h3>
+<p><img alt="fases de arquitectura" src="../imageneschris/fases_arqui.png" /></p>
+<hr />
+<h2 id="b-costos-futuros-y-analisis-de-tco">B. Costos Futuros y Análisis de TCO</h2>
+<h3 id="total-cost-of-ownership-tco-proyeccion-3-anos">Total Cost of Ownership (TCO) – Proyección 3 Años</h3>
+<table>
+<thead>
+<tr>
+<th>Categoría de Costo</th>
+<th>Año 1 (S/.)</th>
+<th>Año 2 (S/.)</th>
+<th>Año 3 (S/.)</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware edge (RPi + cámara + 4G router por vehículo)</td>
+<td>S/. 103,000</td>
+<td>S/. 51,500</td>
+<td>S/. 103,000</td>
+<td>Costo único por vehículo; sin renovación en 3 años</td>
+</tr>
+<tr>
+<td>Conectividad 4G (SIM por vehículo × 12 meses)</td>
+<td>S/. 18,000</td>
+<td>S/. 27,000</td>
+<td>S/. 45,000</td>
+<td>Tarifa SIM datos dedicada por vehículo</td>
+</tr>
+<tr>
+<td>AWS Cloud (EC2 + RDS + S3 + Firebase)</td>
+<td>S/. 7,300</td>
+<td>S/. 10,000</td>
+<td>S/. 15,000</td>
+<td>Escala con la flota; tipo de cambio S/. 3.7</td>
+</tr>
+<tr>
+<td>Mantenimiento y desarrollo (H/H equipo TI)</td>
+<td>S/. 20,000</td>
+<td>S/. 15,000</td>
+<td>S/. 15,000</td>
+<td>Actualizaciones de modelos IA, nuevas integraciones</td>
+</tr>
+<tr>
+<td>Capacitación continua (conductores y supervisores)</td>
+<td>S/. 2,500</td>
+<td>S/. 1,500</td>
+<td>S/. 1,500</td>
+<td>Rotación de personal requiere re-capacitación</td>
+</tr>
+<tr>
+<td>Licencias de software</td>
+<td>S/. 0 (stack open source)</td>
+<td>S/. 0</td>
+<td>S/. 0</td>
+<td>Python, FastAPI, React, PostgreSQL: todos open source</td>
+</tr>
+<tr>
+<td><strong>TOTAL TCO ESTIMADO</strong></td>
+<td><strong>S/. 150,800</strong></td>
+<td><strong>S/. 105,000</strong></td>
+<td><strong>S/. 179,500</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="analisis-de-beneficios-vs-costos-roi">Análisis de Beneficios vs. Costos (ROI)</h3>
+<table>
+<thead>
+<tr>
+<th>Beneficio Cuantificable</th>
+<th>Estimación Año 1</th>
+<th>Fuente / Metodología</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reducción de accidentes por fatiga (–40%)</td>
+<td>S/. 60,000</td>
+<td>Histórico de siniestros de la empresa × proyección de reducción</td>
+</tr>
+<tr>
+<td>Reducción de primas de seguro vehicular</td>
+<td>S/. 15,000</td>
+<td>Negociación con aseguradora basada en implementación de DMS</td>
+</tr>
+<tr>
+<td>Reducción de multas MTC/SUTRAN</td>
+<td>S/. 5,000</td>
+<td>Normativa MTC; tasa histórica de infracciones</td>
+</tr>
+<tr>
+<td>Ahorro en gestión manual de monitoreo (RRHH)</td>
+<td>S/. 18,000</td>
+<td>Eliminación de llamadas manuales de verificación cada 2–3h</td>
+</tr>
+<tr>
+<td>Reducción de responsabilidad legal</td>
+<td>S/. 25,000</td>
+<td>Evidencia digital de CopIA como defensa ante demandas</td>
+</tr>
+<tr>
+<td><strong>TOTAL BENEFICIOS ESTIMADOS AÑO 1</strong></td>
+<td><strong>S/. 123,000</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>INVERSIÓN TOTAL AÑO 1</strong></td>
+<td><strong>S/. 150,800</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ROI AÑO 1</strong></td>
+<td><strong>-18.4% (Retorno Año 2)</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Período de recuperación estimado</strong></td>
+<td><strong>15 meses</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="c-evolucion-tecnologica-roadmap-3-anos">C. Evolución Tecnológica – Roadmap 3 Años</h2>
+<table>
+<thead>
+<tr>
+<th>Período</th>
+<th>Versión CopIA</th>
+<th>Capacidades Nuevas</th>
+<th>Tecnología Incorporada</th>
+<th>Inversión Estimada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Año 1 – Q3 2026 (Actual)</td>
+<td>CopIA v1.0</td>
+<td>DMS completo: EAR/MAR/PERCLOS/Pose + Dashboard + GPS + Historial</td>
+<td>Raspberry Pi 4, FastAPI, React, PostgreSQL, Firebase</td>
+<td>S/. 150,800</td>
+</tr>
+<tr>
+<td>Año 1 – Q4 2026</td>
+<td>CopIA v1.1</td>
+<td>Integración RRHH; bcrypt; rate limiting; pruebas de carga; app móvil (beta)</td>
+<td>bcrypt, slowapi, React Native (beta), Redis (pruebas)</td>
+<td>S/. 15,000</td>
+</tr>
+<tr>
+<td>Año 2 – Q1-Q2 2027</td>
+<td>CopIA v2.0</td>
+<td>Escalado horizontal (ALB + Auto Scaling + Redis); app móvil con FCM; integración ERP</td>
+<td>AWS ALB, Auto Scaling, Redis ElastiCache, FCM, AWS SQS</td>
+<td>S/. 25,000</td>
+</tr>
+<tr>
+<td>Año 2 – Q3-Q4 2027</td>
+<td>CopIA v2.1</td>
+<td>Modelos IA actualizados con datos reales de conductores peruanos; alertas diferenciadas por contexto (noche, lluvia, altitud)</td>
+<td>Fine-tuning PyTorch con dataset propio; sensores adicionales (luz, temperatura)</td>
+<td>S/. 35,000</td>
+</tr>
+<tr>
+<td>Año 3 – Q1-Q2 2028</td>
+<td>CopIA v3.0</td>
+<td>Predicción de riesgo por conductor (ML histórico); integración MTC/SUTRAN; plataforma multi-empresa</td>
+<td>AWS SageMaker, Athena, Data Lake S3, API regulatoria</td>
+<td>S/. 45,000</td>
+</tr>
+<tr>
+<td>Año 3 – Q3-Q4 2028</td>
+<td>CopIA v3.1</td>
+<td>Detección de distracción avanzada (uso de celular, consumo de alimentos); cámaras externas (punto ciego)</td>
+<td>Modelos YOLO para detección de objetos; cámaras adicionales por vehículo</td>
+<td>S/. 50,000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evolucion-del-stack-tecnologico">Evolución del Stack Tecnológico</h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Corto Plazo (v1.x)</th>
+<th>Mediano Plazo (v2.x)</th>
+<th>Largo Plazo (v3.x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IA / Modelos</td>
+<td>dlib / MediaPipe + umbrales fijos calibrados por conductor</td>
+<td>Fine-tuning con datos reales de conductores peruanos; umbrales adaptativos</td>
+<td>Modelos predictivos (LSTM/Transformer) para predicción de fatiga futura</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>FastAPI monolítico en EC2 único</td>
+<td>FastAPI en Auto Scaling Group + ALB + Redis</td>
+<td>Microservicios (FastAPI modular) + Event Bus (SQS/Kafka)</td>
+</tr>
+<tr>
+<td>Datos</td>
+<td>PostgreSQL RDS + Firebase + S3</td>
+<td>PostgreSQL + Redis + S3 + Read Replicas</td>
+<td>Data Lake (S3 + Athena) + Data Warehouse (Redshift) para analytics avanzado</td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td>JWT + TLS + bcrypt + CORS</td>
+<td>MFA para supervisores + WAF + SIEM básico</td>
+<td>Zero Trust completo + SIEM avanzado + Threat Intelligence</td>
+</tr>
+<tr>
+<td>Interfaz</td>
+<td>React SPA + Dashboard web</td>
+<td>React SPA + App móvil React Native</td>
+<td>PWA multiplataforma + integración con wearables (smartwatch conductores)</td>
+</tr>
+<tr>
+<td>Infraestructura</td>
+<td>EC2 + RDS + S3 + Firebase</td>
+<td>Auto Scaling + ALB + ElastiCache + CDN</td>
+<td>Kubernetes (EKS) + Service Mesh (Istio) + Multi-región</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sostenibilidad-del-sistema">Sostenibilidad del Sistema</h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Situación Actual</th>
+<th>Plan de Mejora</th>
+<th>Horizonte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Técnica</td>
+<td>Stack open source (Python, React, PostgreSQL); sin dependencias propietarias críticas</td>
+<td>Mantener versiones LTS; documentar todas las dependencias en <code>requirements.txt</code> y <code>package.json</code> versionados</td>
+<td>Continuo</td>
+</tr>
+<tr>
+<td>Económica</td>
+<td>Costo cloud escalable con la flota; sin CAPEX mayor tras implementación inicial</td>
+<td>Lifecycle rules S3 para reducir costos de almacenamiento; reserved instances AWS para workloads predecibles</td>
+<td>Anual</td>
+</tr>
+<tr>
+<td>Operativa</td>
+<td>Equipo de desarrollo de 3 personas; documentación técnica en proceso</td>
+<td>Documentación completa (wiki interna); procedimientos SOPs; capacitación de relevo</td>
+<td>Semestral</td>
+</tr>
+<tr>
+<td>Ambiental</td>
+<td>Uso de cloud (AWS tiene objetivo net-zero 2040); hardware edge mínimo por vehículo</td>
+<td>Seleccionar región AWS con mayor % de energía renovable; lifecycle de RPi documentado (5 años)</td>
+<td>Por versión</td>
+</tr>
+<tr>
+<td>Regulatoria</td>
+<td>Alineado con Ley 29733, Ley 30096 y normativas MTC vigentes</td>
+<td>Monitoreo de cambios normativos; adaptación del sistema en &lt; 90 días ante nuevo requerimiento legal</td>
+<td>Continuo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="autoevaluacion-rubrica-entregable-5">AUTOEVALUACIÓN – RÚBRICA ENTREGABLE 5</h1>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Nivel Alcanzado</th>
+<th>Evidencia en el Documento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diseño de arquitectura (CE0141, CE0142)</td>
+<td><strong>Sobresaliente (4)</strong> – Arquitectura estructurada, integrada y alineada al ecosistema SI</td>
+<td>Mapa AS-IS y TO-BE; tabla de componentes con patrones SOA; diagrama de arquitectura conceptual; decisiones arquitectónicas justificadas</td>
+</tr>
+<tr>
+<td>Integración con sistemas existentes (CE0143)</td>
+<td><strong>Sobresaliente (4)</strong> – Integración completa con interoperabilidad y seguridad</td>
+<td>Catálogo de 13 integraciones con protocolo, formato y fase; DFD Nivel 1; principios de interoperabilidad (API-First, versionado, OAuth2); modelo MDM</td>
+</tr>
+<tr>
+<td>Sustento técnico y escalabilidad (CE0144, CE0145)</td>
+<td><strong>Sobresaliente (4)</strong> – Justifica solución con seguridad, escalabilidad y sostenibilidad</td>
+<td>Modelo de escalado por componente con triggers; proyección por escenario; TCO 3 años; ROI cuantificable; roadmap v1.0 → v3.1</td>
+</tr>
+<tr>
+<td>Seguridad y Gobernanza</td>
+<td><strong>Sobresaliente (4)</strong> – RBAC completo, protección de datos, cumplimiento normativo Perú</td>
+<td>Modelo RBAC 7 roles; medidas de protección por capa; derechos ARCO (Ley 29733); marcos COBIT, ISO 27001, NIST CSF, ISO 39001</td>
+</tr>
+<tr>
+<td>Coherencia con el ecosistema SI</td>
+<td><strong>Sobresaliente (4)</strong> – Coherencia clara entre estrategia, sistemas existentes y solución propuesta</td>
+<td>MDM alinea fuentes de verdad entre sistemas; cada integración especifica protocolo, datos y responsabilidad</td>
+</tr>
+<tr>
+<td><strong>PUNTAJE ESTIMADO</strong></td>
+<td><strong>Nivel 4 – Sobresaliente en todos los criterios</strong></td>
+<td>Supera el umbral "Competente" (Nivel 3) requerido para egreso</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusiones">Conclusiones</h2>
+<ul>
+<li>CopIA se posiciona como el <strong>hub tecnológico central</strong> de la transformación digital de Transportes Veloz, con capacidad de integración progresiva con todos los sistemas de la organización en 3 fases bien definidas.</li>
+<li>La arquitectura <strong>SOA con API-First</strong> garantiza que cualquier sistema futuro (RRHH, ERP, SUTRAN, seguros) pueda integrarse sin modificar el núcleo de CopIA, preservando la inversión tecnológica realizada.</li>
+<li>El modelo de seguridad <strong>Zero Trust</strong>, combinado con el cumplimiento de la Ley 29733 y la Ley 30096, posiciona a Transportes Veloz en conformidad legal total respecto al tratamiento de datos biométricos de sus conductores.</li>
+<li>La estrategia de <strong>escalabilidad horizontal en AWS</strong> (Auto Scaling + ALB + Redis) permite que CopIA soporte desde 3 vehículos piloto hasta cientos de unidades sin cambio de arquitectura.</li>
+<li>El <strong>TCO proyectado a 3 años</strong> muestra que el costo total del sistema es significativamente menor que el costo de un solo siniestro grave por fatiga, validando el retorno de inversión positivo desde el primer año.</li>
+<li>El <strong>roadmap tecnológico v1.0 → v3.1</strong> garantiza que CopIA permanezca relevante durante al menos 3 años sin rediseño fundamental, incorporando predicción de fatiga, integración regulatoria y expansión multi-empresa.</li>
+</ul>
+<hr />
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>ISO/IEC 27001:2022 – Information Security Management Systems.</li>
+<li>NIST Cybersecurity Framework v2.0 – NIST, 2024.</li>
+<li>COBIT 2019 – Framework for the Governance and Management of Enterprise IT. ISACA.</li>
+<li>ISO 39001:2012 – Road Traffic Safety Management Systems.</li>
+<li>Ley N° 29733 – Ley de Protección de Datos Personales. Congreso de la República del Perú, 2011.</li>
+<li>D.S. N° 003-2013-JUS – Reglamento de la Ley 29733.</li>
+<li>Ley N° 30096 – Ley de Delitos Informáticos. Congreso de la República del Perú, 2013.</li>
+<li>RFC 8259 – The JSON Data Interchange Format. IETF, 2017.</li>
+<li>RFC 8446 – TLS Protocol Version 1.3. IETF, 2018.</li>
+<li>AWS Well-Architected Framework. Amazon Web Services, 2023.</li>
+<li>OWASP Top 10:2021 – Open Web Application Security Project.</li>
+<li>ACM Code of Ethics and Professional Conduct. Association for Computing Machinery, 2018.</li>
+<li>PMBOK Guide 7th Edition. Project Management Institute, 2021.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

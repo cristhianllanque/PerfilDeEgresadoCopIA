@@ -1,0 +1,1719 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación oficial del proyecto CopIA">
+      
+      
+        <meta name="author" content="Equipo CopIA">
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../entregable2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Entregable 1: Diseño de Red (CE0311) - Documentación CopIA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entregable-1-diseno-de-red-alineado-con-ce0311" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Documentación CopIA" class="md-header__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación CopIA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entregable 1: Diseño de Red (CE0311)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Frank Choquehuanca (CE03: Infraestructura)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ChristianSalas/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Christian Salas (CE01: Gestión)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CristhianLlanque/entregable1/" class="md-tabs__link">
+          
+  
+  
+  Cristhian Llanque (CE02: Software)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Documentación CopIA" class="md-nav__button md-logo" aria-label="Documentación CopIA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación CopIA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frank Choquehuanca (CE03: Infraestructura)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 1 (Diseño Preliminar)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Diseño de Red (CE0311)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-1-levantamiento-de-requerimientos-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 1: Levantamiento de Requerimientos de Red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 1: Levantamiento de Requerimientos de Red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-requerimientos-funcionales-y-no-funcionales-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Requerimientos Funcionales y No Funcionales de Conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dimensionamiento-de-ancho-de-banda-y-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Dimensionamiento de Ancho de Banda y Tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-2-diseno-de-topologia-y-segmentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 2: Diseño de Topología y Segmentación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 2: Diseño de Topología y Segmentación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-topologia-logica-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Topología Lógica de Red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justificacion-de-decisiones-tecnologicas-marco-teorico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Justificación de Decisiones Tecnológicas (Marco Teórico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-segmentacion-logica-vlans-ieee-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Segmentación Lógica (VLANs - IEEE 802.1Q)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-3-arquitectura-de-redundancia-y-alta-disponibilidad-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 3: Arquitectura de Redundancia y Alta Disponibilidad (HA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 3: Arquitectura de Redundancia y Alta Disponibilidad (HA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-alta-disponibilidad-en-el-borde-edge-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Alta Disponibilidad en el Borde (Edge Failover)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-alta-disponibilidad-en-el-nucleo-core-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Alta Disponibilidad en el Núcleo (Core HA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seccion-4-cumplimiento-de-estandares-internacionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sección 4: Cumplimiento de Estándares Internacionales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sección 4: Cumplimiento de Estándares Internacionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-estandares-de-topologia-logica-y-transporte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Estándares de Topología Lógica y Transporte
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-estandares-de-cableado-estructurado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Estándares de Cableado Estructurado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anexos-catalogo-exhaustivo-de-hardware-bill-of-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anexos: Catálogo Exhaustivo de Hardware (Bill of Materials)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Planificación de Seguridad (CE0321)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Diseño de Centro de Datos (CE0331)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semestre 2 (Implementación y Operación)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre2/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 1: Implementación de Red (CE0312/13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre2/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 2: Seguridad y Ética ACM (CE0322/23/24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre2/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable 3: Implementación de Centro de Datos (CE0332/33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christian Salas (CE01: Gestión)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Christian Salas (CE01: Gestión)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0113 - Entregable 2: Business Case del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0121-CE0125 - Entregable 3: Plan de Gestión del Proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0131-CE0135 - Entregable 4: Modelado de Procesos AS-IS / TO-BE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ChristianSalas/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0141-CE0145 - Entregable 5: Propuesta de Solución TIC Integrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cristhian Llanque (CE02: Software)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE021 - Entregable 1: Requerimientos y Diseño del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE022 - Entregable 2: Plataforma de Datos del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE023 - Entregable 3: Sistema de Software Funcional Integrado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CristhianLlanque/entregable5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entregable-1-diseno-de-red-alineado-con-ce0311">Entregable 1: Diseño de Red (Alineado con CE0311)</h1>
+<h2 id="portada">Portada</h2>
+<ul>
+<li><strong>Título del Proyecto:</strong> CopIA - Asistente de Conducción AI (Edge &amp; Central Server)</li>
+<li><strong>Línea de Evaluación:</strong> CE03: Infraestructura Tecnológica</li>
+<li><strong>Competencia:</strong> CE0311 - Diseño de Red</li>
+<li><strong>Responsable:</strong> Frank Choquehuanca</li>
+<li><strong>Semestre:</strong> X</li>
+<li><strong>Fecha:</strong> Julio 2026</li>
+</ul>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo</h2>
+<p>El presente documento constituye el diseño conceptual, lógico y físico de la infraestructura de conectividad de misión crítica para el sistema <strong>CopIA</strong>. La necesidad primordial de este proyecto radica en interconectar de forma segura y con baja latencia una flota distribuida geográficamente de vehículos pesados (equipados con nodos Edge de procesamiento AI) con un núcleo de datos centralizado (Datacenter). </p>
+<p>Para lograr este objetivo, la arquitectura de red propuesta se divide en dos grandes frentes bajo un modelo de nube híbrida. El primero es la conectividad móvil (WAN), fundamentada en túneles cifrados sobre infraestructuras celulares 4G/5G con capacidades de failover automático, respaldada por una sincronización asíncrona hacia la nube pública (Firebase) para telemetría ágil. El segundo frente es la infraestructura de área local (LAN) en el Datacenter On-Premise, la cual ha sido diseñada bajo estrictos principios de seguridad de defensa en profundidad. </p>
+<p>En el núcleo de datos, se ha implementado una segmentación lógica estricta mediante el estándar IEEE 802.1Q (VLANs), aislando físicamente el tráfico de la flota, las bases de datos de almacenamiento masivo, los servidores de inferencia web en una zona desmilitarizada (DMZ) y los canales de gestión administrativa. Todo el diseño de red, desde el tendido de fibra óptica y cableado estructurado hasta la configuración de alta disponibilidad (CARP/HSRP), se ha estructurado para cumplir rigurosamente con los lineamientos de la industria de telecomunicaciones, incluyendo TIA/EIA-568 e ISO/IEC 11801, asegurando un entorno escalable, seguro y auditable.</p>
+<hr />
+<h2 id="seccion-1-levantamiento-de-requerimientos-de-red">Sección 1: Levantamiento de Requerimientos de Red</h2>
+<p>El diseño de red de CopIA no se basa en estimaciones empíricas, sino en un análisis cuantitativo de la volumetría de datos que la inteligencia artificial en cabina genera. A continuación se detallan los requerimientos funcionales y no funcionales, seguidos de su dimensionamiento.</p>
+<h3 id="11-requerimientos-funcionales-y-no-funcionales-de-conectividad">1.1 Requerimientos Funcionales y No Funcionales de Conectividad</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Descripción del Requerimiento</th>
+<th style="text-align: left;">Criterio de Aceptación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>REQ-R01</strong></td>
+<td style="text-align: left;">Funcional</td>
+<td style="text-align: left;">El sistema debe transmitir la telemetría del conductor (niveles de EAR, MAR, Pitch) desde el camión hacia el Datacenter en tiempo real.</td>
+<td style="text-align: left;">La transmisión debe realizarse vía túnel IPSec utilizando la red celular disponible.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>REQ-R02</strong></td>
+<td style="text-align: left;">Funcional</td>
+<td style="text-align: left;">El centro de control debe poder solicitar un flujo de video en vivo (streaming) de cualquier cámara en cabina bajo demanda.</td>
+<td style="text-align: left;">Transmisión fluida de MJPEG a 15 FPS con resolución mínima de 640x480.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>REQ-R03</strong></td>
+<td style="text-align: left;">No Funcional (Disponibilidad)</td>
+<td style="text-align: left;">Los enlaces de telecomunicaciones en la cabina deben poseer redundancia ante la pérdida de cobertura de un operador.</td>
+<td style="text-align: left;">Failover automático a un segundo proveedor SIM en menos de 5 segundos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>REQ-R04</strong></td>
+<td style="text-align: left;">No Funcional (Seguridad)</td>
+<td style="text-align: left;">El tráfico de base de datos en el Datacenter debe estar aislado de cualquier red con salida directa a internet.</td>
+<td style="text-align: left;">Implementación obligatoria de VLAN dedicada sin ruta por defecto al ISP.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>REQ-R05</strong></td>
+<td style="text-align: left;">No Funcional (Rendimiento)</td>
+<td style="text-align: left;">La latencia end-to-end de transmisión de alertas críticas no debe superar los 150 milisegundos.</td>
+<td style="text-align: left;">Ping promedio desde el Edge al Core &lt;= 120 ms.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-dimensionamiento-de-ancho-de-banda-y-trafico">1.2 Dimensionamiento de Ancho de Banda y Tráfico</h3>
+<p>Para garantizar la viabilidad técnica del sistema a escala corporativa, se ha modelado el tráfico de red de la siguiente manera:</p>
+<ul>
+<li><strong>Tráfico de Telemetría (Paquetes JSON)</strong>: 
+  El agente IoT embebido (<code>raspberry_client.py</code>) genera un <em>payload</em> JSON de telemetría de <strong>1.2 KB</strong> de tamaño promedio. Para mantener una latencia mínima de reacción, este paquete se envía cada <strong>3 segundos</strong>. </li>
+<li>
+<p>Consumo por vehículo = (1.2 KB * 8 bits) / 3 s = 3.2 kbps</p>
+</li>
+<li>
+<p><strong>Tráfico de Streaming de Video (MJPEG)</strong>: 
+  El análisis visual remoto requiere transmisión de video. Un frame de 640 x 480 comprimido con calidad JPEG (70%) pesa aproximadamente <strong>35 KB</strong>. Transmitiendo a 15 FPS:</p>
+</li>
+<li>
+<p>Consumo de Video = 35 KB * 15 FPS * 8 bits = 4,200 kbps (Aprox 4.2 Mbps)</p>
+</li>
+<li>
+<p><strong>Escenario de Concurrencia (Flota de 150 Vehículos)</strong>: 
+  El Datacenter debe estar en capacidad de recibir la telemetría concurrente de toda la flota operando simultáneamente, y mantener hasta 5 conexiones de streaming de video simultáneas para auditorías en vivo por parte del centro de control:</p>
+</li>
+<li>Tráfico Telemetría = 150 * 3.2 kbps = 480 kbps</li>
+<li>Tráfico Video = 5 * 4.2 Mbps = 21 Mbps</li>
+<li><strong>Ancho de Banda Total de Ingesta = 21.48 Mbps</strong></li>
+</ul>
+<p>Dado que el requerimiento de ingesta es de aprox 21.5 Mbps, el Datacenter se proveerá de un enlace de fibra óptica dedicado de <strong>100 Mbps (Simétrico, 1:1)</strong> para garantizar un margen de tolerancia a picos de tráfico (bursts) y escalabilidad futura hasta 500 vehículos.</p>
+<hr />
+<h2 id="seccion-2-diseno-de-topologia-y-segmentacion">Sección 2: Diseño de Topología y Segmentación</h2>
+<h3 id="21-topologia-logica-de-red">2.1 Topología Lógica de Red</h3>
+<p>La infraestructura se diseña bajo un modelo jerárquico modificado, donde se prioriza la seguridad perimetral para los nodos Edge (IoT). </p>
+<pre><code class="language-mermaid">graph TD
+    subgraph Dominio_Edge [Dispositivos Edge en Cabina]
+        Camion1[&quot;Nodo IoT - Vehículo 001&quot;]
+        Camion2[&quot;Nodo IoT - Vehículo 002&quot;]
+        CamionN[&quot;Nodo IoT - Vehículo N&quot;]
+    end
+
+    subgraph Dominio_WAN [Canales de Transporte Móvil e ISP]
+        ISP_Principal[&quot;Red Celular Primaria (LTE)&quot;]
+        ISP_Respaldo[&quot;Red Celular Secundaria (LTE)&quot;]
+        VPN_IPSec{&quot;Túnel Cifrado IPSec (AES-256)&quot;}
+    end
+
+    subgraph Dominio_Cloud [Infraestructura Cloud Híbrida]
+        Firebase_DB[(&quot;Firebase Realtime DB (Telemetría Ágil)&quot;)]
+    end
+
+    subgraph Dominio_Datacenter [Datacenter Central Corporativo]
+        FW[&quot;Firewall Perimetral (pfSense) - HA Cluster&quot;]
+        SW_Core[&quot;Switch Core Capa 3&quot;]
+
+        subgraph VLAN_30_DMZ [VLAN 30: DMZ - Servicios Expuestos]
+            API_Srv[&quot;API REST (FastAPI / Nginx)&quot;]
+        end
+
+        subgraph VLAN_20_DB [VLAN 20: Almacenamiento Crítico]
+            DB_Srv[&quot;Cluster MySQL&quot;]
+        end
+
+        subgraph VLAN_40_MGT [VLAN 40: Gestión y Monitoreo]
+            Mon_Srv[&quot;Zabbix Server&quot;]
+        end
+    end
+
+    Camion1 --&gt; ISP_Principal
+    Camion2 --&gt; ISP_Respaldo
+    CamionN --&gt; ISP_Principal
+
+    ISP_Principal --&gt; VPN_IPSec
+    ISP_Respaldo --&gt; VPN_IPSec
+
+    %% Sync Asíncrono a Firebase
+    Camion1 -.-&gt;|Push Asíncrono| Firebase_DB
+    Camion2 -.-&gt;|Push Asíncrono| Firebase_DB
+    CamionN -.-&gt;|Push Asíncrono| Firebase_DB
+
+    VPN_IPSec --&gt; FW
+    FW --&gt; SW_Core
+
+    SW_Core --&gt; API_Srv
+    SW_Core --&gt; DB_Srv
+    SW_Core --&gt; Mon_Srv
+
+    API_Srv -.-&gt;|Tráfico Permitido Puerto 3306| DB_Srv
+</code></pre>
+<h3 id="22-justificacion-de-decisiones-tecnologicas-marco-teorico">2.2 Justificación de Decisiones Tecnológicas (Marco Teórico)</h3>
+<p><strong>Firewall Perimetral: pfSense vs Fortinet</strong>
+Para el nodo de terminación de VPN y firewall de borde, se optó por <strong>pfSense (Netgate)</strong> sobre soluciones privativas como Fortinet FortiGate o Cisco ASA. La decisión radica en que pfSense, basado en FreeBSD, permite una flexibilidad absoluta en la configuración de túneles IPSec con enrutamiento BGP dinámico sin costos recurrentes de licenciamiento por ancho de banda o por cantidad de túneles concurrentes. Dado que se planea escalar a 500 nodos vehiculares independientes, el esquema de licenciamiento abierto de pfSense reduce el TCO (Total Cost of Ownership) drásticamente, sin sacrificar las capacidades de filtrado SPI (Stateful Packet Inspection).</p>
+<p><strong>Protocolo de Túnel: IPSec IKEv2</strong>
+La comunicación entre la Raspberry Pi en el camión y el Datacenter se encapsula mediante IPSec utilizando la fase de intercambio de claves IKEv2. Se eligió este estándar frente a OpenVPN debido a que IPSec opera directamente en la capa de red del kernel, minimizando el overhead de CPU en las placas de desarrollo ARM (Raspberry Pi), lo que reserva la potencia computacional restante exclusivamente para el modelo de inteligencia artificial de visión por computadora.</p>
+<h3 id="23-segmentacion-logica-vlans-ieee-8021q">2.3 Segmentación Lógica (VLANs - IEEE 802.1Q)</h3>
+<p>Aplicando el principio de defensa en profundidad, la red interna del Datacenter se divide en subredes estrictas para aislar los dominios de colisión y difusión. Esta separación lógica evita que un dispositivo comprometido tenga libre tránsito lateral por la infraestructura.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Identificador</th>
+<th style="text-align: left;">Etiqueta</th>
+<th style="text-align: left;">Propósito Operativo</th>
+<th style="text-align: left;">Rango CIDR</th>
+<th style="text-align: left;">Puerta de Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>VLAN 10</strong></td>
+<td style="text-align: left;"><code>VLAN_FLOTA</code></td>
+<td style="text-align: left;">Red virtual que agrupa las IPs entregadas por DHCP sobre el túnel a los dispositivos IoT móviles.</td>
+<td style="text-align: left;"><code>10.100.10.0/24</code></td>
+<td style="text-align: left;"><code>10.100.10.1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VLAN 20</strong></td>
+<td style="text-align: left;"><code>VLAN_DB</code></td>
+<td style="text-align: left;">Red altamente aislada sin acceso a internet. Exclusiva para almacenamiento relacional y <em>backups</em>.</td>
+<td style="text-align: left;"><code>192.168.20.0/24</code></td>
+<td style="text-align: left;"><code>192.168.20.1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VLAN 30</strong></td>
+<td style="text-align: left;"><code>VLAN_DMZ</code></td>
+<td style="text-align: left;">Zona Desmilitarizada. Contiene el proxy reverso Nginx y la API. Única VLAN que permite tráfico web entrante (TCP 443).</td>
+<td style="text-align: left;"><code>192.168.30.0/24</code></td>
+<td style="text-align: left;"><code>192.168.30.1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VLAN 40</strong></td>
+<td style="text-align: left;"><code>VLAN_MGT</code></td>
+<td style="text-align: left;">Red de administración. Permite el escaneo SNMP y conexiones SSH restringidas para los administradores de TI.</td>
+<td style="text-align: left;"><code>192.168.40.0/24</code></td>
+<td style="text-align: left;"><code>192.168.40.1</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="seccion-3-arquitectura-de-redundancia-y-alta-disponibilidad-ha">Sección 3: Arquitectura de Redundancia y Alta Disponibilidad (HA)</h2>
+<p>El diseño arquitectónico de CopIA asume que cualquier componente de hardware o red puede fallar. Por ello, se implementan múltiples mecanismos de tolerancia a fallos.</p>
+<h3 id="31-alta-disponibilidad-en-el-borde-edge-failover">3.1 Alta Disponibilidad en el Borde (Edge Failover)</h3>
+<p>En la cabina del camión, la pérdida de cobertura móvil en carreteras es el mayor riesgo (Zonas oscuras o de sombra topográfica). 
+Para mitigarlo, el hardware de comunicaciones del nodo IoT incluye un módem LTE industrial dual-SIM. Se configura un script de failover a nivel de sistema operativo en la Raspberry Pi. El sistema realiza un <em>polling</em> continuo de pings hacia el servidor central. Si se detecta un 100% de pérdida de paquetes por más de 5 segundos consecutivos, el demonio <code>NetworkManager</code> apaga la interfaz celular principal y levanta la secundaria con un operador móvil de la competencia, restableciendo el túnel IPSec dinámicamente y evitando la pérdida prolongada de telemetría.</p>
+<h3 id="32-alta-disponibilidad-en-el-nucleo-core-ha">3.2 Alta Disponibilidad en el Núcleo (Core HA)</h3>
+<p>En el Datacenter, el punto único de falla (SPOF) clásico es el enrutador o firewall principal.
+Para evitar la parálisis total de operaciones, el diseño emplea dos aparatos pfSense idénticos configurados en un clúster Activo-Pasivo utilizando el protocolo <strong>CARP (Common Address Redundancy Protocol)</strong> y sincronización de estados TCP mediante <code>pfsync</code>.
+* Ambas máquinas comparten un grupo de direcciones IPs virtuales (VIPs) flotantes.
+* El nodo Activo (Maestro) posee el control de la IP y responde a las peticiones ARP.
+* Constantemente se emite un "heartbeat" multicast (latido) entre los firewalls. Si la tarjeta de red, el cable o la fuente de poder del nodo Activo falla, el nodo Pasivo detecta la ausencia del latido en fracciones de segundo y asume el control de la IP virtual y las tablas de enrutamiento IPSec, logrando una conmutación (failover) transparente para las Raspberry Pi conectadas en menos de 2 segundos.</p>
+<hr />
+<h2 id="seccion-4-cumplimiento-de-estandares-internacionales">Sección 4: Cumplimiento de Estándares Internacionales</h2>
+<p>Toda la infraestructura física y lógica ha sido diseñada para auditarse favorablemente frente a normativas internacionales de telecomunicaciones, un requerimiento imperativo para infraestructuras empresariales.</p>
+<h3 id="a-estandares-de-topologia-logica-y-transporte">A. Estándares de Topología Lógica y Transporte</h3>
+<ol>
+<li><strong>IEEE 802.1Q (VLAN Tagging)</strong>: La red utiliza enlaces troncales (<code>Trunks</code>) que insertan etiquetas de 4 bytes en las tramas Ethernet. Esto separa de forma criptográficamente inviable el tráfico de las bases de datos (VLAN 20) del tráfico expuesto de la API (VLAN 30), utilizando un único enlace físico hacia el hypervisor de virtualización.</li>
+<li><strong>IEEE 802.3ad (Link Aggregation - LACP)</strong>: Los servidores físicos se conectan al switch Core mediante dos cables de red agrupados lógicamente (Port-Channel). Esto no solo duplica el ancho de banda efectivo (permitiendo flujos teóricos de hasta 20 Gbps en servidores críticos), sino que proporciona tolerancia a cortes físicos de un cable individual o a fallas en un puerto específico del switch.</li>
+</ol>
+<h3 id="b-estandares-de-cableado-estructurado">B. Estándares de Cableado Estructurado</h3>
+<ol>
+<li><strong>TIA/EIA-568-D</strong>: Todo el tendido de red en cobre dentro del centro de datos respeta escrupulosamente este estándar. Se ha dictaminado el uso de cable <strong>Categoría 6A (F/UTP)</strong> para los patch cords de los servidores. Esta elección garantiza la capacidad de soportar ráfagas de 10 Gigabit Ethernet a distancias menores a 100 metros sin atenuación de señal.</li>
+<li><strong>ISO/IEC 11801</strong>: Este lineamiento certifica que los componentes pasivos (Patch panels, conectores tipo Keystone RJ45, organizadores de cables de alta densidad) cumplen con los márgenes de atenuación, pérdida de retorno y diafonía (Crosstalk) requeridos para centros de datos de clase empresarial. El estricto apego a este estándar es vital para que la latencia interna de procesamiento sea consistentemente inferior a 1 milisegundo.</li>
+</ol>
+<hr />
+<h2 id="anexos-catalogo-exhaustivo-de-hardware-bill-of-materials">Anexos: Catálogo Exhaustivo de Hardware (Bill of Materials)</h2>
+<p>Para materializar el diseño lógico, y tras analizar la matriz de carga de red, se ha especificado el siguiente listado de hardware de grado empresarial para el aprovisionamiento del Datacenter corporativo y la flota Edge:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Marca y Modelo Especificado</th>
+<th style="text-align: left;">Función en la Arquitectura</th>
+<th style="text-align: left;">Justificación Técnica de la Elección</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Firewall de Borde (Nodo Principal)</strong></td>
+<td style="text-align: left;">Netgate 6100 (pfSense Plus)</td>
+<td style="text-align: left;">Terminación de túneles VPN, enrutamiento estático/BGP y filtrado perimetral WAN a LAN.</td>
+<td style="text-align: left;">Procesador Atom C3558 (Intel QuickAssist Technology) para aceleración criptográfica de IPSec. Rendimiento máximo de 1.77 Gbps en VPN.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Firewall de Borde (Nodo Respaldo)</strong></td>
+<td style="text-align: left;">Netgate 6100 (pfSense Plus)</td>
+<td style="text-align: left;">Clúster CARP Activo/Pasivo (Failover Firewall).</td>
+<td style="text-align: left;">Debe ser un hardware idéntico al principal para garantizar que la replicación <code>pfsync</code> y las interfaces L2 coincidan exactamente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Switch Core Capa 3 (Distribución)</strong></td>
+<td style="text-align: left;">Cisco Catalyst 9300-24T</td>
+<td style="text-align: left;">Conmutación central L2 y enrutamiento Inter-VLAN L3 de alta velocidad.</td>
+<td style="text-align: left;">Backbone switching capacity de 208 Gbps. Soporte nativo para protocolos OSPF, LACP, y fuentes de alimentación redundantes e intercambiables en caliente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Switch Access Capa 2 (Opcional Mgt)</strong></td>
+<td style="text-align: left;">Cisco Catalyst 1000-8T-2G</td>
+<td style="text-align: left;">Conexiones out-of-band y administración IPMI/iDRAC de servidores.</td>
+<td style="text-align: left;">Dispositivo sin ventiladores (fanless) ideal para switches de gestión silenciosa.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cableado y Conectores de Cobre</strong></td>
+<td style="text-align: left;">Furukawa Gigalan Green (Cat 6A)</td>
+<td style="text-align: left;">Interconexión interna del rack (Patch cords de 1m y 3m).</td>
+<td style="text-align: left;">Cable blindado (F/UTP) indispensable para mitigar la interferencia electromagnética (EMI) irradiada por los servidores cercanos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Módem Edge (Instalado en Vehículos)</strong></td>
+<td style="text-align: left;">Sierra Wireless AirLink RV55</td>
+<td style="text-align: left;">Provee el enlace primario LTE para la Raspberry Pi 4 de cabina.</td>
+<td style="text-align: left;">Módem de grado industrial encapsulado en aluminio, resistente a vibraciones severas y temperaturas desde -40°C hasta 70°C. Soporta Dual-SIM nativo.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
