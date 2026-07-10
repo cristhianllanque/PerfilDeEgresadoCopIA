@@ -80,20 +80,20 @@ El Servidor Central centraliza los datos, emite reportes y permite el monitoreo 
 ### 2.2 Pantallas Principales
 
 - **Pantalla Login Edge:** 
-  ![Login Edge](../imagenesllanque/login_edge.png)
+  ![Login Edge](./imagenesllanque/login_edge.png)
   **Descripción Formal:** Interfaz de acceso seguro desarrollada con la librería CustomTkinter en modo oscuro (Dark Theme). Incluye controles optimizados para pantallas táctiles vehiculares. El sistema valida las credenciales contra la base de datos central antes de conceder acceso al menú de conducción.
 
 - **Pantalla de Monitoreo Edge:**
-  ![Monitor Edge](../imagenesllanque/monitor_edge.png)
+  ![Monitor Edge](./imagenesllanque/monitor_edge.png)
   **Descripción Formal:** Panel principal de conducción ejecutado en la Raspberry Pi. Renderiza el stream de video en tiempo real superponiendo la malla facial generada por MediaPipe. Integra lecturas asíncronas del módulo GPS SIM7600G-H para mostrar velocidad y ubicación. Emplea la métrica PERCLOS para disparar el estado de alarma.
 
 - **Dashboard Web (Cerebro Central):**
-  ![Dashboard Web](../imagenesllanque/dashboard_web.png)
+  ![Dashboard Web](./imagenesllanque/dashboard_web.png)
   **Descripción Formal:** Aplicación web de administración desarrollada con Vue.js y Tailwind CSS. Funciona como el panel de control integral. Muestra gráficas estadísticas de rendimiento, un módulo CRUD completo de Gestión de Conductores y Rutas, y una tabla histórica de incidentes de fatiga vinculados a datos de Firebase y MySQL.
 
 ### 2.3 Evidencia de Validación
 *(Adjuntar aquí el resumen de la prueba con usuarios simulados, feedback de los profesores o captura de las pruebas de integración)*
-![Evidencia de Prueba](../imagenesllanque/evidencia_prueba.png)
+![Evidencia de Prueba](./imagenesllanque/evidencia_prueba.png)
 
 ---
 
@@ -105,13 +105,13 @@ El **Nodo Edge** procesa la visión computacional pesada (MediaPipe, algoritmos 
 La capa de persistencia es dual: envía logs inmediatos a **Firebase** para telemetría ágil, y al **Cerebro Central (Monolito FastAPI + MySQL)** mediante un túnel inverso (Ngrok) para integridad relacional. El Frontend consume esta información para renderizar gráficas y gestionar rutas.
 
 ### 3.2 Diagrama de Componentes
-![Diagrama de Componentes](../imagenesllanque/diagrama_componentes.png)
+![Diagrama de Componentes](./imagenesllanque/diagrama_componentes.png)
 
 **Descripción Formal:** El diagrama ilustra la arquitectura distribuida del sistema CopAI. En el Nodo Edge (Raspberry Pi), coexisten el Motor de IA (MediaPipe/OpenCV), el Módulo GPS (SIM7600G-H), el Asistente de Voz (gTTS) y la GUI (CustomTkinter). Estos convergen en un Gestor de Estado que enruta la telemetría hacia Firebase y hacia el Servidor Central a través de Ngrok. El Cerebro Central expone una API REST (FastAPI) asegurada con JWT, que guarda relaciones en MySQL y sirve métricas al panel de administración en Vue.js.
 
 
 ### 3.3 Diagrama de Despliegue
-![Diagrama de Despliegue](../imagenesllanque/diagrama_despliegue.png)
+![Diagrama de Despliegue](./imagenesllanque/diagrama_despliegue.png)
 
 **Descripción Formal:** El diagrama de despliegue muestra la topología de red y hardware. En el entorno vehicular, la Raspberry Pi 4 interactúa directamente con periféricos (Cámara, GPS SIM7600, Parlantes). Este nodo atraviesa redes celulares con NAT estricto utilizando un túnel Ngrok seguro, alcanzando al Servidor Windows central. Además, se observa la conexión secundaria asíncrona hacia la infraestructura de nube de Firebase.
 
@@ -127,13 +127,13 @@ La capa de persistencia es dual: envía logs inmediatos a **Firebase** para tele
 ## Sección 4: Diseño Detallado
 
 ### 4.1 Diagrama de Secuencia (Detección de Fatiga y Telemetría)
-![Diagrama de Secuencia](../imagenesllanque/diagrama_secuencia.png)
+![Diagrama de Secuencia](./imagenesllanque/diagrama_secuencia.png)
 
 **Descripción Formal:** El diagrama modela el flujo síncrono y asíncrono. La cámara entrega frames al Motor IA, que calcula el EAR y el PERCLOS. Paralelamente, el hilo del GPS sondea el SIM7600G-H. Si el PERCLOS indica fatiga, el sistema local dispara instantáneamente la alerta de voz. Simultáneamente, el hilo de red agrupa la alerta y las coordenadas GPS, realizando un push hacia Firebase y una petición POST a FastAPI para registrar el incidente en MySQL.
 
 
 ### 4.2 Diagrama de Estados (Máquina de Estados del Edge)
-![Diagrama de Estados](../imagenesllanque/diagrama_estados.png)
+![Diagrama de Estados](./imagenesllanque/diagrama_estados.png)
 
 **Descripción Formal:** Modela el ciclo de vida del software en el vehículo. Desde el estado inicial, se ingresa al menú de Autenticación. Una vez validado, se accede al Menú Principal. Al iniciar ruta, se transita al estado de Monitoreo Activo (bucle de captura de video y sondeo GPS). Ante fatiga, el sistema salta al estado de Alerta Crítica (generando alarmas y envíos a Firebase/API) y retorna al monitoreo tras un tiempo de enfriamiento (cooldown).
 
