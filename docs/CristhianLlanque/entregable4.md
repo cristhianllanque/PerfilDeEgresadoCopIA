@@ -1,6 +1,6 @@
 # Entregable 4: Calidad, Operación y Evolución del Sistema
 
-<img src="./imagenesllanque/logoupeu.png" width="150" align="right">
+![Logo UPeU](./imagenesllanque/logoupeu.png)
 
 ## Portada
 - **Título del sistema:** CopAI - Asistente de Conducción AI (Edge & Central Server)

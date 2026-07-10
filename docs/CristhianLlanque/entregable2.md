@@ -1,6 +1,6 @@
 # Entregable 2: Plataforma de Datos del Sistema
 
-<img src="./imagenesllanque/logoupeu.png" width="150" align="right">
+![Logo UPeU](./imagenesllanque/logoupeu.png)
 
 ## Portada
 - **Título del sistema:** CopAI - Asistente de Conducción AI (Edge & Central Server)

@@ -1,6 +1,6 @@
 # Entregable 5: Presentación, Video Pitch y Sustentación Final
 
-<img src="./imagenesllanque/logoupeu.png" width="150" align="right">
+![Logo UPeU](./imagenesllanque/logoupeu.png)
 
 ## Portada
 - **Título del sistema:** CopAI - Asistente de Conducción AI (Edge & Central Server)
@@ -94,4 +94,6 @@ CopAI demuestra que el hardware de bajo costo combinado con modelos matemáticos
 
 ### 5.2 Enlaces del Proyecto
 - **Repositorio de Código:** [https://github.com/cristhianllanque/Equipo-CopIA](https://github.com/cristhianllanque/Equipo-CopIA)
-- **Enlace al Pitch (YouTube / Drive):** *(Pegar link aquí una vez grabado)*
+- **Video Pitch 1:** [https://youtu.be/h3ncpM2H848](https://youtu.be/h3ncpM2H848)
+- **Video Pitch 2:** [https://youtu.be/n_1TPsFxeQk](https://youtu.be/n_1TPsFxeQk)
+- **Presentación PPT (Google Drive):** [https://drive.google.com/drive/u/0/folders/1qLLPRyibnaa9ugWKPzuRgwPkzagCqU2A](https://drive.google.com/drive/u/0/folders/1qLLPRyibnaa9ugWKPzuRgwPkzagCqU2A)
