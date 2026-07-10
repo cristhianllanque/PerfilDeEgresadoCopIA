@@ -33,6 +33,7 @@ El sistema está diseñado y normalizado para mantener una estricta trazabilidad
 ### 1.2 Diccionario de Datos
 
 **Tabla: `conductores`**
+
 | Campo | Tipo de Dato | Restricciones | Descripción |
 |:---|:---|:---|:---|
 | id | INT(11) | PK, AUTO_INC | Identificador único del conductor. |
@@ -47,6 +48,7 @@ El sistema está diseñado y normalizado para mantener una estricta trazabilidad
 | fecha_registro| DATETIME | DEFAULT NOW | Fecha de creación del registro. |
 
 **Tabla: `eventos_fatiga`**
+
 | Campo | Tipo de Dato | Restricciones | Descripción |
 |:---|:---|:---|:---|
 | id | INT(11) | PK, AUTO_INC | ID único de la alerta. |
