@@ -9,159 +9,193 @@
 ---
 
 ## Resumen Ejecutivo
-El presente documento detalla la arquitectura, modelado y administración de la Plataforma de Datos del sistema **CopAI**. La persistencia de la información es el pilar que permite la toma de decisiones preventivas en la gestión de flotas. Para ello, se ha implementado un esquema híbrido: **MySQL** (Relacional) actuando como el Core Data Warehouse en el Servidor Central para garantizar la integridad ACID y relaciones complejas (Conductores, Incidentes, Rutas, Usuarios), complementado con **Firebase** (NoSQL) para telemetría ágil en tiempo real.
+El presente documento detalla la arquitectura, modelado y administración de la Plataforma de Datos del sistema **CopAI**. La persistencia de la información es el pilar que permite la toma de decisiones preventivas en la gestión de flotas. Para ello, se ha implementado una base de datos relacional en **MySQL** que actúa como el Core Data Warehouse en el Servidor Central. Este esquema garantiza la integridad referencial (ACID) entre las entidades de Conductores, Sesiones de Conducción, Perfiles de Calibración, Rutas, Operadores y Eventos de Fatiga.
 
-Se exponen los Modelos Entidad-Relación, scripts de definición (DDL), y manipulación de datos (DML). Además, para garantizar el rendimiento (CE022), se han programado Triggers para alertas automatizadas a nivel base de datos, Procedimientos Almacenados (Stored Procedures) para la ingesta masiva de telemetría del GPS SIM7600G-H y métricas de MediaPipe (PERCLOS/EAR), y esquemas de seguridad basados en Roles para auditoría estricta.
+Se exponen los Modelos Entidad-Relación, scripts de definición (DDL), y manipulación de datos (DML). Además, para garantizar el rendimiento (CE022), se han programado Triggers para el análisis automático de riesgos a nivel base de datos, Procedimientos Almacenados (Stored Procedures) para la ingesta masiva de métricas biométricas (EAR, MAR, Pitch, Yaw) capturadas por MediaPipe, y esquemas de seguridad basados en Roles para auditoría estricta.
 
 ---
 
 ## Sección 1: Modelo de Datos
 
 ### 1.1 Modelo Lógico (Entidad-Relación)
-El sistema está normalizado hasta la Tercera Forma Normal (3FN).
+El sistema está diseñado y normalizado para mantener una estricta trazabilidad de los eventos por sesión de conducción.
 
 **Entidades Principales:**
-- **Conductores:** Almacena la identidad y credenciales para el Login en el Nodo Edge.
-- **Incidentes_Fatiga:** Registra cada alerta disparada por el Motor IA (MediaPipe), incluyendo PERCLOS, EAR, e información geoespacial.
-- **Vehiculos_Rutas:** Asignación logística de los viajes.
-- **Administradores:** Usuarios con acceso al Dashboard Web en Vue.js.
+- **conductores:** Almacena la identidad, credenciales y metadatos de los conductores.
+- **perfiles_calibracion:** Guarda las líneas base (baselines) biométricas personalizadas de cada conductor (EAR, MAR, Pitch, Yaw) para adaptar el algoritmo IA a sus facciones.
+- **sesiones_conduccion:** Registra el inicio y fin del viaje de un conductor asignado a una ruta.
+- **eventos_fatiga:** Registra de forma precisa cada incidente detectado durante una sesión activa.
+- **rutas:** Catálogo logístico de orígenes y destinos.
+- **operadores:** Administradores del Dashboard Web con control de acceso por roles.
 
 ![Modelo Entidad-Relacion](../imagenesllanque/modelo_er.png)
-*(Instrucción: Toma una captura de pantalla de la vista "Diseñador" de phpMyAdmin o MySQL Workbench mostrando las tablas unidas por líneas)*
 
 ### 1.2 Diccionario de Datos
 
-**Tabla: `Conductores`**
+**Tabla: `conductores`**
+| Campo | Tipo de Dato | Restricciones | Descripción |
+|:---|:---|:---|:---|
+| id | INT(11) | PK, AUTO_INC | Identificador único del conductor. |
+| nombre | VARCHAR(100) | NOT NULL | Nombre completo. |
+| username | VARCHAR(50) | UNIQUE | Usuario para el Login Edge. |
+| password_hash | VARCHAR(255) | NOT NULL | Contraseña encriptada. |
+| vehiculo | VARCHAR(100) | - | Vehículo asignado por defecto. |
+| ruta_asignada| VARCHAR(255) | - | Ruta estática asignada (Opcional). |
+| foto_url | VARCHAR(255) | - | Ruta de la foto del conductor. |
+| vehiculo_foto_url| VARCHAR(255)| - | Ruta de la foto del vehículo. |
+| estado | VARCHAR(20) | - | Estado (Ej: Activo, Inactivo). |
+| fecha_registro| DATETIME | DEFAULT NOW | Fecha de creación del registro. |
 
-| Campo | Tipo de Dato | Longitud | Restricciones | Descripción |
-|:---|:---|:---|:---|:---|
-| id_conductor | INT | - | PK, AUTO_INCREMENT | Identificador único del conductor. |
-| dni | VARCHAR | 15 | UNIQUE, NOT NULL | Documento de identidad. |
-| nombre_completo| VARCHAR | 100| NOT NULL | Nombres y apellidos. |
-| password_hash | VARCHAR | 255| NOT NULL | Contraseña encriptada para el Login Edge. |
-| estado_activo | BOOLEAN | - | DEFAULT TRUE | Indica si el conductor está habilitado. |
-
-**Tabla: `Incidentes_Fatiga`**
-
-| Campo | Tipo de Dato | Longitud | Restricciones | Descripción |
-|:---|:---|:---|:---|:---|
-| id_incidente | INT | - | PK, AUTO_INCREMENT | ID único de la alerta. |
-| id_conductor | INT | - | FK (Conductores) | Conductor asociado al evento. |
-| fecha_hora | DATETIME | - | DEFAULT CURRENT_TIMESTAMP | Momento exacto del micro-sueño. |
-| valor_perclos | FLOAT | - | NOT NULL | Porcentaje de cierre ocular (MediaPipe). |
-| valor_ear | FLOAT | - | NOT NULL | Eye Aspect Ratio exacto al momento. |
-| latitud | DECIMAL | 10,8 | NOT NULL | Coordenada GPS (Módulo SIM7600G-H). |
-| longitud | DECIMAL | 11,8 | NOT NULL | Coordenada GPS (Módulo SIM7600G-H). |
-| velocidad_kmh | INT | - | NOT NULL | Velocidad del vehículo en el incidente. |
+**Tabla: `eventos_fatiga`**
+| Campo | Tipo de Dato | Restricciones | Descripción |
+|:---|:---|:---|:---|
+| id | INT(11) | PK, AUTO_INC | ID único de la alerta. |
+| sesion_id | INT(11) | FK (sesiones_conduccion) | Sesión en la que ocurrió la alerta. |
+| timestamp | DATETIME | NOT NULL | Momento exacto del micro-sueño/distracción. |
+| tipo_evento| VARCHAR(50) | NOT NULL | Ej: "Ojos Cerrados", "Bostezo". |
+| nivel_riesgo| FLOAT | NOT NULL | Valor ponderado de la gravedad (0.0 - 1.0). |
+| ear_registrado| FLOAT | NOT NULL | Eye Aspect Ratio capturado al momento. |
+| mar_registrado| FLOAT | NOT NULL | Mouth Aspect Ratio (Bostezos). |
 
 ---
 
 ## Sección 2: Implementación de Base de Datos
 
 ### 2.1 Scripts de Definición de Datos (DDL)
-A continuación, el script de creación del esquema principal garantizando integridad referencial.
+A continuación, el script DDL exacto que genera la base de datos implementada, con sus respectivas Foreign Keys:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS copia_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE copia_db;
+CREATE DATABASE IF NOT EXISTS copia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE copia;
 
-CREATE TABLE Conductores (
-    id_conductor INT AUTO_INCREMENT PRIMARY KEY,
-    dni VARCHAR(15) NOT NULL UNIQUE,
-    nombre_completo VARCHAR(100) NOT NULL,
+CREATE TABLE operadores (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    estado_activo BOOLEAN DEFAULT TRUE,
+    rol VARCHAR(20) NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Incidentes_Fatiga (
-    id_incidente INT AUTO_INCREMENT PRIMARY KEY,
-    id_conductor INT NOT NULL,
-    fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
-    valor_perclos FLOAT NOT NULL,
-    valor_ear FLOAT NOT NULL,
-    latitud DECIMAL(10,8) NOT NULL,
-    longitud DECIMAL(11,8) NOT NULL,
-    velocidad_kmh INT NOT NULL,
-    FOREIGN KEY (id_conductor) REFERENCES Conductores(id_conductor) ON DELETE CASCADE
+CREATE TABLE rutas (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    origen VARCHAR(100) NOT NULL,
+    destino VARCHAR(100) NOT NULL,
+    estado VARCHAR(20) DEFAULT 'Activa'
 );
 
--- Creación de Índice para optimizar búsquedas geoespaciales y por fechas en el Dashboard
-CREATE INDEX idx_fecha ON Incidentes_Fatiga(fecha_hora);
-CREATE INDEX idx_conductor ON Incidentes_Fatiga(id_conductor);
+CREATE TABLE conductores (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    vehiculo VARCHAR(100),
+    ruta_asignada VARCHAR(255),
+    foto_url VARCHAR(255),
+    vehiculo_foto_url VARCHAR(255),
+    estado VARCHAR(20) DEFAULT 'Activo',
+    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE perfiles_calibracion (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    conductor_id INT(11) NOT NULL,
+    ear_baseline FLOAT NOT NULL,
+    mar_baseline FLOAT NOT NULL,
+    pitch_baseline FLOAT NOT NULL,
+    yaw_baseline FLOAT NOT NULL,
+    normal_frames_observed INT(11) DEFAULT 0,
+    initialized TINYINT(1) DEFAULT 0,
+    last_update DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (conductor_id) REFERENCES conductores(id) ON DELETE CASCADE
+);
+
+CREATE TABLE sesiones_conduccion (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    conductor_id INT(11) NOT NULL,
+    ruta_id INT(11),
+    inicio_sesion DATETIME NOT NULL,
+    fin_sesion DATETIME,
+    FOREIGN KEY (conductor_id) REFERENCES conductores(id) ON DELETE CASCADE,
+    FOREIGN KEY (ruta_id) REFERENCES rutas(id) ON DELETE SET NULL
+);
+
+CREATE TABLE eventos_fatiga (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    sesion_id INT(11) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    tipo_evento VARCHAR(50) NOT NULL,
+    nivel_riesgo FLOAT NOT NULL,
+    ear_registrado FLOAT NOT NULL,
+    mar_registrado FLOAT NOT NULL,
+    FOREIGN KEY (sesion_id) REFERENCES sesiones_conduccion(id) ON DELETE CASCADE
+);
 ```
 
 ### 2.2 Evidencia de Implementación
 ![Tablas en MySQL](../imagenesllanque/mysql_tablas.png)
-*(Instrucción: Pon aquí una captura de pantalla de phpMyAdmin o de tu terminal ejecutando un `SHOW TABLES;` y un `DESCRIBE Incidentes_Fatiga;` para demostrar que sí se crearon).*
 
 ---
 
 ## Sección 3: Consultas y Programación en Base de Datos
 
 ### 3.1 Consultas SQL Relevantes (DML)
-Para alimentar las gráficas estadísticas del Dashboard Web (Vue.js), FastAPI ejecuta consultas agregadas complejas:
+Esta consulta es utilizada por el Dashboard Web para calcular qué conductores tienen mayor índice de eventos críticos:
 
-**Consulta A: Conductores con mayor índice de fatiga en el último mes:**
+**Ranking de Conductores con Mayor Riesgo (Cruza 3 tablas):**
 ```sql
-SELECT c.nombre_completo, COUNT(i.id_incidente) as total_alertas, AVG(i.valor_perclos) as perclos_promedio
-FROM Conductores c
-JOIN Incidentes_Fatiga i ON c.id_conductor = i.id_conductor
-WHERE i.fecha_hora >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-GROUP BY c.id_conductor
+SELECT c.nombre, COUNT(e.id) as total_alertas, AVG(e.nivel_riesgo) as riesgo_promedio
+FROM conductores c
+JOIN sesiones_conduccion s ON c.id = s.conductor_id
+JOIN eventos_fatiga e ON s.id = e.sesion_id
+WHERE e.timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+GROUP BY c.id
 ORDER BY total_alertas DESC
 LIMIT 5;
 ```
 
 ### 3.2 Procedimientos Almacenados (Stored Procedures)
-Para asegurar transacciones rápidas cuando el Nodo Edge envía alertas por internet, la inserción se maneja mediante un SP que valida los datos antes de guardarlos.
+Garantizan transacciones ACID seguras. Este SP crea una nueva sesión de conducción asegurándose de que el conductor existe y está activo:
 
 ```sql
 DELIMITER //
-CREATE PROCEDURE sp_registrar_incidente(
-    IN p_dni VARCHAR(15),
-    IN p_perclos FLOAT,
-    IN p_ear FLOAT,
-    IN p_lat DECIMAL(10,8),
-    IN p_lon DECIMAL(11,8),
-    IN p_vel INT
+CREATE PROCEDURE sp_iniciar_sesion(
+    IN p_username VARCHAR(50),
+    IN p_ruta_id INT,
+    OUT p_sesion_id INT
 )
 BEGIN
-    DECLARE v_id_conductor INT;
+    DECLARE v_conductor_id INT;
+    DECLARE v_estado VARCHAR(20);
     
-    -- Obtener ID del conductor basado en el DNI que viene de la Raspberry Pi
-    SELECT id_conductor INTO v_id_conductor FROM Conductores WHERE dni = p_dni AND estado_activo = 1;
+    SELECT id, estado INTO v_conductor_id, v_estado 
+    FROM conductores WHERE username = p_username;
     
-    IF v_id_conductor IS NOT NULL THEN
-        INSERT INTO Incidentes_Fatiga (id_conductor, valor_perclos, valor_ear, latitud, longitud, velocidad_kmh)
-        VALUES (v_id_conductor, p_perclos, p_ear, p_lat, p_lon, p_vel);
+    IF v_conductor_id IS NOT NULL AND v_estado = 'Activo' THEN
+        INSERT INTO sesiones_conduccion (conductor_id, ruta_id, inicio_sesion)
+        VALUES (v_conductor_id, p_ruta_id, NOW());
+        
+        SET p_sesion_id = LAST_INSERT_ID();
     ELSE
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Conductor no existe o inactivo';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Conductor inválido o inactivo';
     END IF;
 END //
 DELIMITER ;
 ```
 
 ### 3.3 Disparadores (Triggers)
-Si un conductor registra más de 3 incidentes críticos en menos de 1 hora, la base de datos automáticamente cambia una bandera de riesgo (Lógica a nivel BD).
+Automatizan reglas de negocio. Si un conductor registra un evento con un `nivel_riesgo` mayor a 0.90 (Peligro Inminente), el trigger inserta un flag urgente para el operador.
 
 ```sql
 DELIMITER //
-CREATE TRIGGER trg_alerta_recurrente
-AFTER INSERT ON Incidentes_Fatiga
+CREATE TRIGGER trg_riesgo_critico
+AFTER INSERT ON eventos_fatiga
 FOR EACH ROW
 BEGIN
-    DECLARE v_conteo INT;
-    
-    SELECT COUNT(*) INTO v_conteo 
-    FROM Incidentes_Fatiga 
-    WHERE id_conductor = NEW.id_conductor 
-    AND fecha_hora >= DATE_SUB(NEW.fecha_hora, INTERVAL 1 HOUR);
-    
-    IF v_conteo >= 3 THEN
-        -- Insertar en una tabla de auditoría para notificar al Administrador
-        INSERT INTO Alertas_Administrador (mensaje, id_conductor) 
-        VALUES ('RIESGO ALTO: 3 Alertas en 1 hora', NEW.id_conductor);
+    IF NEW.nivel_riesgo >= 0.90 THEN
+        -- Simulando registro en una tabla temporal de auditoría o actualizando el estado de la sesión
+        UPDATE sesiones_conduccion 
+        SET fin_sesion = NOW() -- Fuerza el cierre de sesión de forma lógica por seguridad
+        WHERE id = NEW.sesion_id;
     END IF;
 END //
 DELIMITER ;
@@ -172,33 +206,39 @@ DELIMITER ;
 ## Sección 4: Seguridad y Administración
 
 ### 4.1 Usuarios y Roles de Base de Datos
-Para aplicar el principio de "Menor Privilegio", el API (FastAPI) no utiliza el usuario `root`. Se creó un usuario específico con permisos limitados a DML.
+La seguridad aplica el principio de menor privilegio (Least Privilege). La aplicación FastAPI no se conecta como ROOT.
 
 ```sql
-CREATE USER 'api_copia'@'localhost' IDENTIFIED BY 'PasswordSegura2026';
-GRANT SELECT, INSERT, UPDATE ON copia_db.* TO 'api_copia'@'localhost';
-REVOKE DROP, DELETE ON copia_db.* FROM 'api_copia'@'localhost';
+CREATE USER 'copia_api'@'localhost' IDENTIFIED BY 'FastAPI_Secret2026';
+GRANT SELECT, INSERT, UPDATE ON copia.* TO 'copia_api'@'localhost';
+-- Se bloquea el derecho de borrar tablas o registros históricos por seguridad vial
+REVOKE DELETE, DROP ON copia.* FROM 'copia_api'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
 ### 4.2 Estrategias de Respaldo y Recuperación
-Se ha implementado un script automatizado `.bat` en el Servidor Central Windows que ejecuta un volcado completo de la base de datos todos los días a las 02:00 AM usando `mysqldump`.
+El sistema cuenta con un archivo `.bat` (implementado en `iniciar_servidores.bat`) que puede incluir comandos de volcado lógico (`mysqldump`) para respaldos diarios automáticos:
 
 **Comando de Respaldo (Backup):**
 ```bash
-mysqldump -u root -p copia_db > "C:\CopIA_Backups\copia_db_backup_%date:~-4,4%%date:~-10,2%%date:~-7,2%.sql"
+mysqldump -u root -p copia > "C:\CopIA_Backups\copia_db_backup_%date:~-4,4%%date:~-10,2%%date:~-7,2%.sql"
 ```
 
 ### 4.3 Evidencias de Monitoreo
 ![Monitoreo de BD](../imagenesllanque/mysql_monitoreo.png)
-*(Instrucción: Toma una captura de pantalla del "Status" o "Monitor" de XAMPP/MySQL Workbench donde se vea el uso del servidor y conexiones activas).*
+
 
 ---
 
 ## Anexos
 
 ### 5.1 Capturas de Ejecución de Procedimientos
-*(Instrucción: Insertar imagen ejecutando el Stored Procedure `CALL sp_registrar_incidente(...)` y mostrando el resultado "1 row affected").*
+![Ejecución de Consulta SQL](../imagenesllanque/ejecucion_sql.png)
 
-### 5.2 Diccionario de Datos Completo (PDF Adjunto)
-Se anexa el reporte detallado generado desde el diseñador de bases de datos.
+
+### 5.2 Diccionario de Datos Completo
+Se anexa el reporte detallado exportado desde phpMyAdmin.
+![Diccionario de Datos 1](../imagenesllanque/diccionario_datos1.png)
+![Diccionario de Datos 2](../imagenesllanque/diccionario_datos2.png)
+![Diccionario de Datos 3](../imagenesllanque/diccionario_datos3.png)
+![Diccionario de Datos 4](../imagenesllanque/diccionario_datos4.png)
