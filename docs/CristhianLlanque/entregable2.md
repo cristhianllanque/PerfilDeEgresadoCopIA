@@ -1,5 +1,7 @@
 # Entregable 2: Plataforma de Datos del Sistema
 
+<img src="./imagenesllanque/logoupeu.png" width="150" align="right">
+
 ## Portada
 - **Título del sistema:** CopAI - Asistente de Conducción AI (Edge & Central Server)
 - **Nombre del estudiante:** Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca

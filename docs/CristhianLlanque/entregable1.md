@@ -1,5 +1,7 @@
 # Entregable 1: Especificación de Requerimientos y Diseño Arquitectónico Avanzado
 
+<img src="./imagenesllanque/logoupeu.png" width="150" align="right">
+
 ## Portada
 - **Título del sistema:** CopAI - Ecosistema Híbrido de Asistencia a la Conducción AI (Edge & Central Server)
 - **Nombre del estudiante:** Cristhian Edy Llanque Tipo - Christian Wilbert Salas Yupanqui - Frank Diego Choquehuanca
