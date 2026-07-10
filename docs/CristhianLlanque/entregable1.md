@@ -109,10 +109,13 @@ La capa de persistencia es dual: envía logs inmediatos a **Firebase** para tele
 
 **Descripción Formal:** El diagrama ilustra la arquitectura distribuida del sistema CopAI. En el Nodo Edge (Raspberry Pi), coexisten el Motor de IA (MediaPipe/OpenCV), el Módulo GPS (SIM7600G-H), el Asistente de Voz (gTTS) y la GUI (CustomTkinter). Estos convergen en un Gestor de Estado que enruta la telemetría hacia Firebase y hacia el Servidor Central a través de Ngrok. El Cerebro Central expone una API REST (FastAPI) asegurada con JWT, que guarda relaciones en MySQL y sirve métricas al panel de administración en Vue.js.
 
+
 ### 3.3 Diagrama de Despliegue
 ![Diagrama de Despliegue](../imagenesllanque/diagrama_despliegue.png)
 
 **Descripción Formal:** El diagrama de despliegue muestra la topología de red y hardware. En el entorno vehicular, la Raspberry Pi 4 interactúa directamente con periféricos (Cámara, GPS SIM7600, Parlantes). Este nodo atraviesa redes celulares con NAT estricto utilizando un túnel Ngrok seguro, alcanzando al Servidor Windows central. Además, se observa la conexión secundaria asíncrona hacia la infraestructura de nube de Firebase.
+
+
 
 ### 3.4 Registro de Decisiones Arquitectónicas (ADRs)
 - **ADR 01:** Priorizar **MediaPipe** sobre implementaciones puras de MobileNet/YOLO debido a la altísima eficiencia de MediaPipe en la extracción de landmarks faciales (468 puntos) en procesadores ARM sin necesidad de GPU, ideal para la métrica PERCLOS.
@@ -128,10 +131,13 @@ La capa de persistencia es dual: envía logs inmediatos a **Firebase** para tele
 
 **Descripción Formal:** El diagrama modela el flujo síncrono y asíncrono. La cámara entrega frames al Motor IA, que calcula el EAR y el PERCLOS. Paralelamente, el hilo del GPS sondea el SIM7600G-H. Si el PERCLOS indica fatiga, el sistema local dispara instantáneamente la alerta de voz. Simultáneamente, el hilo de red agrupa la alerta y las coordenadas GPS, realizando un push hacia Firebase y una petición POST a FastAPI para registrar el incidente en MySQL.
 
+
 ### 4.2 Diagrama de Estados (Máquina de Estados del Edge)
 ![Diagrama de Estados](../imagenesllanque/diagrama_estados.png)
 
 **Descripción Formal:** Modela el ciclo de vida del software en el vehículo. Desde el estado inicial, se ingresa al menú de Autenticación. Una vez validado, se accede al Menú Principal. Al iniciar ruta, se transita al estado de Monitoreo Activo (bucle de captura de video y sondeo GPS). Ante fatiga, el sistema salta al estado de Alerta Crítica (generando alarmas y envíos a Firebase/API) y retorna al monitoreo tras un tiempo de enfriamiento (cooldown).
+
+
 
 ---
 
