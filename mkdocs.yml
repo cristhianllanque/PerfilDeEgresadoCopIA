@@ -27,12 +27,14 @@ theme:
 nav:
   - Inicio: index.md
   - "Frank Choquehuanca (CE03: Infraestructura)":
-    - "CE0311 - Entregable 1: Diseño de Red": FrankChoquehuanca/entregable1.md
-    - "CE0321 - Entregable 2: Planificación de Seguridad": FrankChoquehuanca/entregable2.md
-    - "CE0331 - Entregable 3: Diseño de Centro de Datos": FrankChoquehuanca/entregable3.md
-    - "CE0312-CE0313 - Entregable 1: Implementación y Testing de Red": FrankChoquehuanca/entregable1-imp.md
-    - "CE0322-CE0324 - Entregable 2: Implementación, Monitoreo y Ética de Seguridad": FrankChoquehuanca/entregable2-imp.md
-    - "CE0332-CE0333 - Entregable 3: Implementación y Control de Centro de Datos": FrankChoquehuanca/entregable3-imp.md
+    - "Semestre 1 (Diseño Preliminar)":
+      - "Entregable 1: Diseño de Red (CE0311)": FrankChoquehuanca/semestre1/entregable1.md
+      - "Entregable 2: Planificación de Seguridad (CE0321)": FrankChoquehuanca/semestre1/entregable2.md
+      - "Entregable 3: Diseño de Centro de Datos (CE0331)": FrankChoquehuanca/semestre1/entregable3.md
+    - "Semestre 2 (Implementación y Operación)":
+      - "Entregable 1: Implementación de Red (CE0312/13)": FrankChoquehuanca/semestre2/entregable1.md
+      - "Entregable 2: Seguridad y Ética ACM (CE0322/23/24)": FrankChoquehuanca/semestre2/entregable2.md
+      - "Entregable 3: Implementación de Centro de Datos (CE0332/33)": FrankChoquehuanca/semestre2/entregable3.md
   - "Christian Salas (CE01: Gestión)":
     - "CE0111-CE0115 - Entregable 1: Diagnóstico Organizacional y Alineamiento Estratégico": ChristianSalas/entregable1.md
     - "CE0113 - Entregable 2: Business Case del Proyecto": ChristianSalas/entregable2.md
