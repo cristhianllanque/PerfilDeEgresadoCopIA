@@ -152,7 +152,8 @@ El diagrama expone el enrutamiento complejo: La Raspberry Pi (Hardware BCM2711) 
 ## Anexos Documentales
 
 ### 5.1 Acta de Validación con Stakeholders
-*(Insertar PDF o imagen escaneada del acta firmada o check-list de aceptación)*
+
+![acta](./imagenesllanque/acta_stakeholders.png)
 
 ### 5.2 Matriz de Trazabilidad de Requerimientos (Requirements Traceability Matrix - RTM)
 Esta matriz garantiza que ningún código se programó "por programar" y que cada bloque arquitectónico responde a una necesidad del negocio.
