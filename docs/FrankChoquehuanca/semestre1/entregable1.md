@@ -3,7 +3,7 @@
 ## Portada
 * **Título del Proyecto:** CopIA - Asistente de Conducción AI (Edge & Central Server)
 * **Línea de Evaluación:** CE03: Infraestructura Tecnológica
-* **Entregable:** Entregable 1: Diseño de Red (CE0311)
+* **Competencia:** CE0311 - Diseño de Red
 * **Responsable:** Frank Choquehuanca
 * **Semestre:** X
 * **Fecha:** Julio 2026
@@ -11,107 +11,175 @@
 ---
 
 ## Resumen Ejecutivo
-El presente documento detalla el diseño conceptual y lógico de la infraestructura de conectividad para el sistema **CopIA**. La arquitectura propuesta separa el procesamiento en cabina de los camiones (Nodo Edge) del núcleo de datos central (Datacenter). Se describe el dimensionamiento del ancho de banda necesario para soportar telemetría concurrente y streaming de video, la segmentación lógica mediante VLANs para mitigar riesgos de seguridad, y las estrategias de redundancia y alta disponibilidad tanto a nivel celular como en el Datacenter. Todo el diseño se encuentra alineado bajo estándares internacionales de cableado y transmisión de datos.
+
+El presente documento constituye el diseño conceptual, lógico y físico de la infraestructura de conectividad de misión crítica para el sistema **CopIA**. La necesidad primordial de este proyecto radica en interconectar de forma segura y con baja latencia una flota distribuida geográficamente de vehículos pesados (equipados con nodos Edge de procesamiento AI) con un núcleo de datos centralizado (Datacenter). 
+
+Para lograr este objetivo, la arquitectura de red propuesta se divide en dos grandes frentes bajo un modelo de nube híbrida. El primero es la conectividad móvil (WAN), fundamentada en túneles cifrados sobre infraestructuras celulares 4G/5G con capacidades de failover automático, respaldada por una sincronización asíncrona hacia la nube pública (Firebase) para telemetría ágil. El segundo frente es la infraestructura de área local (LAN) en el Datacenter On-Premise, la cual ha sido diseñada bajo estrictos principios de seguridad de defensa en profundidad. 
+
+En el núcleo de datos, se ha implementado una segmentación lógica estricta mediante el estándar IEEE 802.1Q (VLANs), aislando físicamente el tráfico de la flota, las bases de datos de almacenamiento masivo, los servidores de inferencia web en una zona desmilitarizada (DMZ) y los canales de gestión administrativa. Todo el diseño de red, desde el tendido de fibra óptica y cableado estructurado hasta la configuración de alta disponibilidad (CARP/HSRP), se ha estructurado para cumplir rigurosamente con los lineamientos de la industria de telecomunicaciones, incluyendo TIA/EIA-568 e ISO/IEC 11801, asegurando un entorno escalable, seguro y auditable.
 
 ---
 
 ## Sección 1: Levantamiento de Requerimientos de Red
 
-Para garantizar la viabilidad técnica del sistema CopIA a gran escala, se definen los siguientes requerimientos de ancho de banda y rendimiento:
+El diseño de red de CopIA no se basa en estimaciones empíricas, sino en un análisis cuantitativo de la volumetría de datos que la inteligencia artificial en cabina genera. A continuación se detallan los requerimientos funcionales y no funcionales, seguidos de su dimensionamiento.
 
-* **Tráfico de Telemetría JSON**: Cada vehículo equipado con el cliente de cabina (`raspberry_client.py`) envía un paquete JSON de telemetría cada **3 segundos** con un tamaño promedio de **1.2 KB**. Esto requiere un ancho de banda constante de:
-  $$\text{Ancho de Banda por Camión} = \frac{1.2\text{ KB} \times 8\text{ bits}}{3\text{ s}} = 3.2\text{ kbps}$$
-* **Tráfico de Streaming de Video en Vivo**: Bajo demanda del operador, se realiza streaming MJPEG (`/api/video_feed`). Cada frame en resolución $640 \times 480$ comprimido al 70% de calidad JPEG pesa **35 KB**. A una tasa de refresco de 15 FPS, el consumo por streaming activo es:
-  $$\text{Ancho de Banda de Video} = 35\text{ KB} \times 15\text{ FPS} \times 8\text{ bits} = 4,200\text{ kbps} \approx 4.2\text{ Mbps}$$
-* **Concurrencia Estimada (Flota Actual: 150 Vehículos)**: Se dimensiona la red para soportar la flota de 150 camiones transmitiendo telemetría en tiempo real de forma simultánea, y hasta 5 streamings de video concurrentes:
-  $$\text{Ancho de Banda Total Requerido} = (150 \times 3.2\text{ kbps}) + (5 \times 4.2\text{ Mbps}) \approx 480\text{ kbps} + 21\text{ Mbps} \approx 21.48\text{ Mbps}$$
-* **Requerimientos de Negocio**:
-  * Monitoreo constante e ininterrumpido de la flota durante jornadas de hasta 12 horas.
-  * Tiempos de alerta críticos inferiores a 1 segundo transmitidos localmente.
-  * Centralización histórica de la ubicación y severidad de alertas para auditoría vial corporativa.
+### 1.1 Requerimientos Funcionales y No Funcionales de Conectividad
+
+| ID | Tipo | Descripción del Requerimiento | Criterio de Aceptación |
+| :--- | :--- | :--- | :--- |
+| **REQ-R01** | Funcional | El sistema debe transmitir la telemetría del conductor (niveles de EAR, MAR, Pitch) desde el camión hacia el Datacenter en tiempo real. | La transmisión debe realizarse vía túnel IPSec utilizando la red celular disponible. |
+| **REQ-R02** | Funcional | El centro de control debe poder solicitar un flujo de video en vivo (streaming) de cualquier cámara en cabina bajo demanda. | Transmisión fluida de MJPEG a 15 FPS con resolución mínima de 640x480. |
+| **REQ-R03** | No Funcional (Disponibilidad) | Los enlaces de telecomunicaciones en la cabina deben poseer redundancia ante la pérdida de cobertura de un operador. | Failover automático a un segundo proveedor SIM en menos de 5 segundos. |
+| **REQ-R04** | No Funcional (Seguridad) | El tráfico de base de datos en el Datacenter debe estar aislado de cualquier red con salida directa a internet. | Implementación obligatoria de VLAN dedicada sin ruta por defecto al ISP. |
+| **REQ-R05** | No Funcional (Rendimiento) | La latencia end-to-end de transmisión de alertas críticas no debe superar los 150 milisegundos. | Ping promedio desde el Edge al Core <= 120 ms. |
+
+### 1.2 Dimensionamiento de Ancho de Banda y Tráfico
+
+Para garantizar la viabilidad técnica del sistema a escala corporativa, se ha modelado el tráfico de red de la siguiente manera:
+
+* **Tráfico de Telemetría (Paquetes JSON)**: 
+  El agente IoT embebido (`raspberry_client.py`) genera un *payload* JSON de telemetría de **1.2 KB** de tamaño promedio. Para mantener una latencia mínima de reacción, este paquete se envía cada **3 segundos**. 
+  - Consumo por vehículo = (1.2 KB * 8 bits) / 3 s = 3.2 kbps
+
+* **Tráfico de Streaming de Video (MJPEG)**: 
+  El análisis visual remoto requiere transmisión de video. Un frame de 640 x 480 comprimido con calidad JPEG (70%) pesa aproximadamente **35 KB**. Transmitiendo a 15 FPS:
+  - Consumo de Video = 35 KB * 15 FPS * 8 bits = 4,200 kbps (Aprox 4.2 Mbps)
+
+* **Escenario de Concurrencia (Flota de 150 Vehículos)**: 
+  El Datacenter debe estar en capacidad de recibir la telemetría concurrente de toda la flota operando simultáneamente, y mantener hasta 5 conexiones de streaming de video simultáneas para auditorías en vivo por parte del centro de control:
+  - Tráfico Telemetría = 150 * 3.2 kbps = 480 kbps
+  - Tráfico Video = 5 * 4.2 Mbps = 21 Mbps
+  - **Ancho de Banda Total de Ingesta = 21.48 Mbps**
+
+Dado que el requerimiento de ingesta es de aprox 21.5 Mbps, el Datacenter se proveerá de un enlace de fibra óptica dedicado de **100 Mbps (Simétrico, 1:1)** para garantizar un margen de tolerancia a picos de tráfico (bursts) y escalabilidad futura hasta 500 vehículos.
 
 ---
 
-## Sección 2: Diseño de Topología Lógica de Red
+## Sección 2: Diseño de Topología y Segmentación
 
-La topología de red de CopIA separa la flota de vehículos móviles del Datacenter central mediante un túnel seguro **IPSec VPN** sobre redes móviles 4G/5G, canalizando el flujo a través de un Firewall perimetral hacia la zona desmilitarizada (DMZ).
+### 2.1 Topología Lógica de Red
+
+La infraestructura se diseña bajo un modelo jerárquico modificado, donde se prioriza la seguridad perimetral para los nodos Edge (IoT). 
 
 ```mermaid
 graph TD
-    subgraph Flota_Vehiculos [VLAN 10: Flota Móvil]
-        Camion1["Raspberry Pi 4 - Camión 1"]
-        Camion2["Raspberry Pi 4 - Camión 2"]
+    subgraph Dominio_Edge [Dispositivos Edge en Cabina]
+        Camion1["Nodo IoT - Vehículo 001"]
+        Camion2["Nodo IoT - Vehículo 002"]
+        CamionN["Nodo IoT - Vehículo N"]
     end
 
-    subgraph Internet [Canal de Telecomunicaciones]
-        ISP_Movil["Red Celular 4G/5G LTE"]
-        VPN_Tunnel["Túnel IPSec VPN"]
+    subgraph Dominio_WAN [Canales de Transporte Móvil e ISP]
+        ISP_Principal["Red Celular Primaria (LTE)"]
+        ISP_Respaldo["Red Celular Secundaria (LTE)"]
+        VPN_IPSec{"Túnel Cifrado IPSec (AES-256)"}
     end
 
-    subgraph Datacenter [Datacenter Central]
-        FW["Firewall pfSense - Puerta de Enlace"]
-        SW_Core["Switch Core L3"]
+    subgraph Dominio_Cloud [Infraestructura Cloud Híbrida]
+        Firebase_DB[("Firebase Realtime DB (Telemetría Ágil)")]
+    end
+
+    subgraph Dominio_Datacenter [Datacenter Central Corporativo]
+        FW["Firewall Perimetral (pfSense) - HA Cluster"]
+        SW_Core["Switch Core Capa 3"]
         
-        subgraph DMZ [VLAN 30: DMZ Pública]
-            API_Srv["Servidor FastAPI - Nginx Gateway"]
+        subgraph VLAN_30_DMZ [VLAN 30: DMZ - Servicios Expuestos]
+            API_Srv["API REST (FastAPI / Nginx)"]
         end
         
-        subgraph VLAN_DB [VLAN 20: Base de Datos]
-            DB_Srv["Base de Datos MySQL"]
+        subgraph VLAN_20_DB [VLAN 20: Almacenamiento Crítico]
+            DB_Srv["Cluster MySQL"]
         end
         
-        subgraph VLAN_Mgt [VLAN 40: Gestión y Monitoreo]
-            Mon_Srv["Servidor de Monitoreo Zabbix"]
+        subgraph VLAN_40_MGT [VLAN 40: Gestión y Monitoreo]
+            Mon_Srv["Zabbix Server"]
         end
     end
 
-    Camion1 -->|LTE| ISP_Movil
-    Camion2 -->|LTE| ISP_Movil
-    ISP_Movil --> VPN_Tunnel
-    VPN_Tunnel -->|Tránsito Seguro| FW
+    Camion1 --> ISP_Principal
+    Camion2 --> ISP_Respaldo
+    CamionN --> ISP_Principal
+    
+    ISP_Principal --> VPN_IPSec
+    ISP_Respaldo --> VPN_IPSec
+    
+    %% Sync Asíncrono a Firebase
+    Camion1 -.->|Push Asíncrono| Firebase_DB
+    Camion2 -.->|Push Asíncrono| Firebase_DB
+    CamionN -.->|Push Asíncrono| Firebase_DB
+    
+    VPN_IPSec --> FW
     FW --> SW_Core
-    SW_Core -->|VLAN 30| API_Srv
-    SW_Core -->|VLAN 20| DB_Srv
-    SW_Core -->|VLAN 40| Mon_Srv
+    
+    SW_Core --> API_Srv
+    SW_Core --> DB_Srv
+    SW_Core --> Mon_Srv
 
-    API_Srv -->|Consultas SQL Filtradas| DB_Srv
+    API_Srv -.->|Tráfico Permitido Puerto 3306| DB_Srv
 ```
 
-### Segmentación de Red (VLANs)
+### 2.2 Justificación de Decisiones Tecnológicas (Marco Teórico)
 
-Para mitigar riesgos de seguridad y organizar el dominio de difusión de red, se implementa una segmentación basada en **VLANs (IEEE 802.1Q)** con el siguiente direccionamiento privado:
+**Firewall Perimetral: pfSense vs Fortinet**
+Para el nodo de terminación de VPN y firewall de borde, se optó por **pfSense (Netgate)** sobre soluciones privativas como Fortinet FortiGate o Cisco ASA. La decisión radica en que pfSense, basado en FreeBSD, permite una flexibilidad absoluta en la configuración de túneles IPSec con enrutamiento BGP dinámico sin costos recurrentes de licenciamiento por ancho de banda o por cantidad de túneles concurrentes. Dado que se planea escalar a 500 nodos vehiculares independientes, el esquema de licenciamiento abierto de pfSense reduce el TCO (Total Cost of Ownership) drásticamente, sin sacrificar las capacidades de filtrado SPI (Stateful Packet Inspection).
 
-| VLAN ID | Nombre de Subred | Propósito | Rango IP / Máscara | Puerta de Enlace (Gateway) |
+**Protocolo de Túnel: IPSec IKEv2**
+La comunicación entre la Raspberry Pi en el camión y el Datacenter se encapsula mediante IPSec utilizando la fase de intercambio de claves IKEv2. Se eligió este estándar frente a OpenVPN debido a que IPSec opera directamente en la capa de red del kernel, minimizando el overhead de CPU en las placas de desarrollo ARM (Raspberry Pi), lo que reserva la potencia computacional restante exclusivamente para el modelo de inteligencia artificial de visión por computadora.
+
+### 2.3 Segmentación Lógica (VLANs - IEEE 802.1Q)
+
+Aplicando el principio de defensa en profundidad, la red interna del Datacenter se divide en subredes estrictas para aislar los dominios de colisión y difusión. Esta separación lógica evita que un dispositivo comprometido tenga libre tránsito lateral por la infraestructura.
+
+| Identificador | Etiqueta | Propósito Operativo | Rango CIDR | Puerta de Enlace |
 | :--- | :--- | :--- | :--- | :--- |
-| **VLAN 10** | VLAN_FLOTA | Clientes IoT de cabina (Raspberry Pi) | `10.100.10.0/24` | `10.100.10.1` |
-| **VLAN 20** | VLAN_DB | Servidores de base de datos MySQL internos | `192.168.20.0/24` | `192.168.20.1` |
-| **VLAN 30** | VLAN_DMZ | Servidor Web de Frontend y API Gateway FastAPI | `192.168.30.0/24` | `192.168.30.1` |
-| **VLAN 40** | VLAN_MGT | Servidor de monitoreo (Zabbix) e interfaces de red | `192.168.40.0/24` | `192.168.40.1` |
+| **VLAN 10** | `VLAN_FLOTA` | Red virtual que agrupa las IPs entregadas por DHCP sobre el túnel a los dispositivos IoT móviles. | `10.100.10.0/24` | `10.100.10.1` |
+| **VLAN 20** | `VLAN_DB` | Red altamente aislada sin acceso a internet. Exclusiva para almacenamiento relacional y *backups*. | `192.168.20.0/24` | `192.168.20.1` |
+| **VLAN 30** | `VLAN_DMZ` | Zona Desmilitarizada. Contiene el proxy reverso Nginx y la API. Única VLAN que permite tráfico web entrante (TCP 443). | `192.168.30.0/24` | `192.168.30.1` |
+| **VLAN 40** | `VLAN_MGT` | Red de administración. Permite el escaneo SNMP y conexiones SSH restringidas para los administradores de TI. | `192.168.40.0/24` | `192.168.40.1` |
 
 ---
 
-## Sección 3: Incorporación de Redundancia y Alta Disponibilidad
+## Sección 3: Arquitectura de Redundancia y Alta Disponibilidad (HA)
 
-* **En el Vehículo (Edge HA)**: Las Raspberry Pi integran un módem USB dual-SIM compatible con failover automático. Si la conexión con el operador de telecomunicaciones principal (ej. Claro) se interrumpe o pierde potencia, el módem conmuta en menos de **5 segundos** al operador de respaldo (ej. Movistar).
-* **En el Datacenter (Core HA)**: El Switch Core L3 y el Firewall pfSense se configuran en alta disponibilidad mediante **CARP (Common Address Redundancy Protocol)** en el firewall y **HSRP/VRRP** en el switch de capa 3, previniendo caídas ante fallos de hardware en los enlaces de fibra óptica redundantes del proveedor WAN.
+El diseño arquitectónico de CopIA asume que cualquier componente de hardware o red puede fallar. Por ello, se implementan múltiples mecanismos de tolerancia a fallos.
+
+### 3.1 Alta Disponibilidad en el Borde (Edge Failover)
+En la cabina del camión, la pérdida de cobertura móvil en carreteras es el mayor riesgo (Zonas oscuras o de sombra topográfica). 
+Para mitigarlo, el hardware de comunicaciones del nodo IoT incluye un módem LTE industrial dual-SIM. Se configura un script de failover a nivel de sistema operativo en la Raspberry Pi. El sistema realiza un *polling* continuo de pings hacia el servidor central. Si se detecta un 100% de pérdida de paquetes por más de 5 segundos consecutivos, el demonio `NetworkManager` apaga la interfaz celular principal y levanta la secundaria con un operador móvil de la competencia, restableciendo el túnel IPSec dinámicamente y evitando la pérdida prolongada de telemetría.
+
+### 3.2 Alta Disponibilidad en el Núcleo (Core HA)
+En el Datacenter, el punto único de falla (SPOF) clásico es el enrutador o firewall principal.
+Para evitar la parálisis total de operaciones, el diseño emplea dos aparatos pfSense idénticos configurados en un clúster Activo-Pasivo utilizando el protocolo **CARP (Common Address Redundancy Protocol)** y sincronización de estados TCP mediante `pfsync`.
+* Ambas máquinas comparten un grupo de direcciones IPs virtuales (VIPs) flotantes.
+* El nodo Activo (Maestro) posee el control de la IP y responde a las peticiones ARP.
+* Constantemente se emite un "heartbeat" multicast (latido) entre los firewalls. Si la tarjeta de red, el cable o la fuente de poder del nodo Activo falla, el nodo Pasivo detecta la ausencia del latido en fracciones de segundo y asume el control de la IP virtual y las tablas de enrutamiento IPSec, logrando una conmutación (failover) transparente para las Raspberry Pi conectadas en menos de 2 segundos.
 
 ---
 
 ## Sección 4: Cumplimiento de Estándares Internacionales
 
-Para garantizar la interoperabilidad, escalabilidad y durabilidad de la infraestructura de red, el diseño cumple estrictamente con los siguientes estándares internacionales:
+Toda la infraestructura física y lógica ha sido diseñada para auditarse favorablemente frente a normativas internacionales de telecomunicaciones, un requerimiento imperativo para infraestructuras empresariales.
 
-1. **IEEE 802.1Q (VLAN Tagging)**:
-   * Define la inserción de una etiqueta (tag) en la trama Ethernet para identificar la pertenencia a una red de área local virtual. Esto nos permite estructurar el Datacenter en 4 segmentos lógicos aislados (VLAN 10, 20, 30 y 40) sobre un único switch físico principal.
-2. **TIA/EIA-568-D (Cableado Estructurado)**:
-   * Estándar utilizado para el diseño y tendido de cableado de par trenzado de cobre (Categoría 6A) y enlaces de fibra óptica (OM4) en el Datacenter central. Garantiza anchos de banda estables de hasta 10 Gbps a distancias de 100 metros en el switch core y servidores.
-3. **ISO/IEC 11801**:
-   * Especifica sistemas de cableado genérico de telecomunicaciones para locales de clientes. Asegura que los componentes de cableado cumplan con las especificaciones de rendimiento para redes de transporte rápido.
-4. **IEEE 802.3ae (10 Gigabit Ethernet)**:
-   * Define las especificaciones físicas para enlaces de 10 Gbps sobre fibra óptica. Utilizado para interconectar el switch de distribución/core con el hipervisor de servidores Proxmox, garantizando que el cuello de botella físico sea inexistente en el núcleo.
+### A. Estándares de Topología Lógica y Transporte
+1. **IEEE 802.1Q (VLAN Tagging)**: La red utiliza enlaces troncales (`Trunks`) que insertan etiquetas de 4 bytes en las tramas Ethernet. Esto separa de forma criptográficamente inviable el tráfico de las bases de datos (VLAN 20) del tráfico expuesto de la API (VLAN 30), utilizando un único enlace físico hacia el hypervisor de virtualización.
+2. **IEEE 802.3ad (Link Aggregation - LACP)**: Los servidores físicos se conectan al switch Core mediante dos cables de red agrupados lógicamente (Port-Channel). Esto no solo duplica el ancho de banda efectivo (permitiendo flujos teóricos de hasta 20 Gbps en servidores críticos), sino que proporciona tolerancia a cortes físicos de un cable individual o a fallas en un puerto específico del switch.
+
+### B. Estándares de Cableado Estructurado
+1. **TIA/EIA-568-D**: Todo el tendido de red en cobre dentro del centro de datos respeta escrupulosamente este estándar. Se ha dictaminado el uso de cable **Categoría 6A (F/UTP)** para los patch cords de los servidores. Esta elección garantiza la capacidad de soportar ráfagas de 10 Gigabit Ethernet a distancias menores a 100 metros sin atenuación de señal.
+2. **ISO/IEC 11801**: Este lineamiento certifica que los componentes pasivos (Patch panels, conectores tipo Keystone RJ45, organizadores de cables de alta densidad) cumplen con los márgenes de atenuación, pérdida de retorno y diafonía (Crosstalk) requeridos para centros de datos de clase empresarial. El estricto apego a este estándar es vital para que la latencia interna de procesamiento sea consistentemente inferior a 1 milisegundo.
 
 ---
 
-## Anexos
-1. **Diagramas Físicos Complementarios**: Especificaciones de acometidas eléctricas de enlaces WAN del Datacenter.
-2. **Lista Detallada de Requerimientos de Hardware de Conectividad**: Fichas técnicas del Firewall pfSense (Netgate 6100) y Switch Cisco Catalyst 9300.
+## Anexos: Catálogo Exhaustivo de Hardware (Bill of Materials)
+
+Para materializar el diseño lógico, y tras analizar la matriz de carga de red, se ha especificado el siguiente listado de hardware de grado empresarial para el aprovisionamiento del Datacenter corporativo y la flota Edge:
+
+| Componente | Marca y Modelo Especificado | Función en la Arquitectura | Justificación Técnica de la Elección |
+| :--- | :--- | :--- | :--- |
+| **Firewall de Borde (Nodo Principal)** | Netgate 6100 (pfSense Plus) | Terminación de túneles VPN, enrutamiento estático/BGP y filtrado perimetral WAN a LAN. | Procesador Atom C3558 (Intel QuickAssist Technology) para aceleración criptográfica de IPSec. Rendimiento máximo de 1.77 Gbps en VPN. |
+| **Firewall de Borde (Nodo Respaldo)** | Netgate 6100 (pfSense Plus) | Clúster CARP Activo/Pasivo (Failover Firewall). | Debe ser un hardware idéntico al principal para garantizar que la replicación `pfsync` y las interfaces L2 coincidan exactamente. |
+| **Switch Core Capa 3 (Distribución)** | Cisco Catalyst 9300-24T | Conmutación central L2 y enrutamiento Inter-VLAN L3 de alta velocidad. | Backbone switching capacity de 208 Gbps. Soporte nativo para protocolos OSPF, LACP, y fuentes de alimentación redundantes e intercambiables en caliente. |
+| **Switch Access Capa 2 (Opcional Mgt)** | Cisco Catalyst 1000-8T-2G | Conexiones out-of-band y administración IPMI/iDRAC de servidores. | Dispositivo sin ventiladores (fanless) ideal para switches de gestión silenciosa. |
+| **Cableado y Conectores de Cobre** | Furukawa Gigalan Green (Cat 6A) | Interconexión interna del rack (Patch cords de 1m y 3m). | Cable blindado (F/UTP) indispensable para mitigar la interferencia electromagnética (EMI) irradiada por los servidores cercanos. |
+| **Módem Edge (Instalado en Vehículos)** | Sierra Wireless AirLink RV55 | Provee el enlace primario LTE para la Raspberry Pi 4 de cabina. | Módem de grado industrial encapsulado en aluminio, resistente a vibraciones severas y temperaturas desde -40°C hasta 70°C. Soporta Dual-SIM nativo. |
