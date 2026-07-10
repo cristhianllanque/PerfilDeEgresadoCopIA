@@ -57,9 +57,9 @@ El sistema maneja dos dominios de autenticación estrictamente separados:
 - **Rol Administrador (Web):** Autenticación JWT contra endpoint `/api/admin/login`. Acceso total al CRUD de Conductores, Rutas, y dashboard estadístico.
 
 ### 2.3 Evidencias Funcionales
-![Funcionamiento Sistema1](../imagenesllanque/evidencia_funcionamiento1.png)
-![Funcionamiento Sistema2](../imagenesllanque/evidencia_funcionamiento2.png)
-![Funcionamiento Sistema3](../imagenesllanque/evidencia_funcionamiento3.png)
+![Funcionamiento Sistema1](./imagenesllanque/evidencia_funcionamiento1.png)
+![Funcionamiento Sistema2](./imagenesllanque/evidencia_funcionamiento2.png)
+![Funcionamiento Sistema3](./imagenesllanque/evidencia_funcionamiento3.png)
 
 
 ---
@@ -106,7 +106,7 @@ bash scripts/install_raspberry.sh
 ```
 *El script `install_raspberry.sh` descarga Miniforge, crea el entorno aislado Python 3.11, instala `pydantic-core` (compilado para ARM64) y crea un Acceso Directo de escritorio LXDE para el conductor.*
 
-![Instalacion raspberry](../imagenesllanque/evidencia_instalacionraspberry.png)
+![Instalacion raspberry](./imagenesllanque/evidencia_instalacionraspberry.png)
 
 ### 4.2 Configuración e Instalación del Servidor Central (Windows)
 El centro de control no requiere uso de la terminal por parte del cliente. Se ha programado una aplicación orquestadora (`server_dashboard.py`) y un `.bat` que:
@@ -115,7 +115,7 @@ El centro de control no requiere uso de la terminal por parte del cliente. Se ha
 3. Retorna la URL generada de Ngrok al operador.
 
 ### 4.3 Evidencia de Despliegue
-![Despliegue Edge](../imagenesllanque/evidencia_despliegue.png)
+![Despliegue Edge](./imagenesllanque/evidencia_despliegue.png)
 *(Instrucción: Toma una captura de tu script de instalación terminando exitosamente o la pantalla del Server Dashboard funcionando).*
 
 ---
