@@ -47,3 +47,11 @@ nav:
     - "CE023 - Entregable 3: Sistema de Software Funcional Integrado": CristhianLlanque/entregable3.md
     - "CE024 - Entregable 4: Calidad, Operación y Evolución del Sistema": CristhianLlanque/entregable4.md
     - "CE0217 - Entregable 5: Presentación, Video pitch y Sustentación Final": CristhianLlanque/entregable5.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
