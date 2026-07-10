@@ -92,7 +92,6 @@ El Servidor Central centraliza los datos, emite reportes y permite el monitoreo 
   **Descripción Formal:** Aplicación web de administración desarrollada con Vue.js y Tailwind CSS. Funciona como el panel de control integral. Muestra gráficas estadísticas de rendimiento, un módulo CRUD completo de Gestión de Conductores y Rutas, y una tabla histórica de incidentes de fatiga vinculados a datos de Firebase y MySQL.
 
 ### 2.3 Evidencia de Validación
-*(Adjuntar aquí el resumen de la prueba con usuarios simulados, feedback de los profesores o captura de las pruebas de integración)*
 ![Evidencia de Prueba](./imagenesllanque/evidencia_prueba.png)
 
 ---
